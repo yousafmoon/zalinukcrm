@@ -1,0 +1,102 @@
+<script setup>
+
+import { useStudentStore } from '@/Stores/studentStore';
+
+const props = defineProps({
+    student: Object
+});
+const formStore = useStudentStore();
+
+const addJob = () => {
+    formStore.addJob();
+};
+
+const removeJob = (index) => {
+    formStore.removeJob(index);
+};
+</script>
+<template>
+    <div>
+        <h3 class="text-lg leading-6 font-medium text-red-700">WORK HISTORY</h3>
+    </div>
+
+    <div class="grid grid-cols-12 gap-6">
+        <div class="col-span-6 sm:col-span-6 md:col-span-4">
+            <label class="block text-sm font-medium text-gray-700">What are your current personal circumstances?</label>
+            <div class="mt-1 space-y-2">
+                <label class="inline-flex items-center">
+                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Employed full time"
+                        class="form-radio text-blue-500">
+                    <span class="ml-2 mr-2 text-sm">Employed full time</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Self employed"
+                        class="form-radio text-blue-500">
+                    <span class="ml-2 mr-2 text-sm">Self employed</span>
+                </label>
+                <label class="inline-flex items-center">
+                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Student"
+                        class="form-radio text-blue-500">
+                    <span class="ml-2 mr-2 text-sm">Student</span>
+                </label>
+            </div>
+        </div>
+
+        <div v-for="(job, index) in formStore.student.jobs" :key="index"
+            class="col-span-12 grid grid-cols-12 gap-6 border p-4 rounded-md shadow-md">
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Employment Details</label>
+                <input type="text" v-model="job.employment_details"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Present Work</label>
+                <input type="text" v-model="job.present_work"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Company Name</label>
+                <input type="text" v-model="job.company_name"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Start Date</label>
+                <input type="date" v-model="job.job_start_date"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Work Address</label>
+                <textarea v-model="job.work_address" rows="2"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm"></textarea>
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Employer Phone</label>
+                <input type="tel" v-model="job.employer_phone"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Employer Email</label>
+                <input type="email" v-model="job.employer_email"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm">
+            </div>
+
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <label class="block text-sm font-medium text-gray-700">Additional Jobs</label>
+                <textarea v-model="job.additional_jobs" rows="2"
+                    class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm"></textarea>
+            </div>
+
+            <div class="col-span-6 flex items-center space-x-2">
+                <button @click="addJob" type="button" class="bg-green-500 text-white px-3 py-1 rounded-md">+</button>
+                <button @click="removeJob(index)" type="button" v-if="formStore.student.jobs.length > 1"
+                    class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
+            </div>
+        </div>
+    </div>
+</template>
