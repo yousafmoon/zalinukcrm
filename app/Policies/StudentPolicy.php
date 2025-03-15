@@ -11,7 +11,7 @@ class StudentPolicy
     use HandlesAuthorization;
     private function hasAccess(User $user, string $permission): bool
     {
-        $rolesWithAccess = ['Admin', 'Editor', 'Staff']; 
+        $rolesWithAccess = ['admin']; 
         foreach ($rolesWithAccess as $role) {
             if ($user->hasRole($role)) {
                 return true;

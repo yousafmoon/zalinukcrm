@@ -11,7 +11,7 @@ class RolePolicy
     use HandlesAuthorization;
     private function hasAccess(User $user, string $permission): bool
     {
-        $rolesWithAccess = ['Admin']; 
+        $rolesWithAccess = ['admin']; 
         foreach ($rolesWithAccess as $role) {
             if ($user->hasRole($role)) {
                 return true;

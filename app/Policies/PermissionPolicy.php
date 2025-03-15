@@ -12,7 +12,7 @@ class PermissionPolicy
 
     private function hasAccess(User $user, string $permission): bool
     {
-        $rolesWithAccess = ['Admin']; 
+        $rolesWithAccess = ['admin']; 
         foreach ($rolesWithAccess as $permission) {
             if ($user->hasRole($permission)) {
                 return true;

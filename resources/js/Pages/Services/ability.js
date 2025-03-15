@@ -16,16 +16,16 @@ export function defineAbilitiesFor(roles) {
   });
   validRoles.forEach(role => {
     const roleName = typeof role === 'object' && role?.name ? role.name : role;
-    if (roleName === 'Admin') {
+    if (roleName === 'admin') {
       can('view', 'Dashboard');
       can('view', 'Students');
       can('view', 'Permissions');
       can('view', 'Roles');
       can('view', 'Users');
-    } else if (roleName === 'Editor') {
+    } else if (roleName === 'editor') {
       can('view', 'Dashboard');
       can('view', 'Students');
-    } else if(roleName === 'Staff') {
+    } else if(roleName === 'staff') {
       can('view', 'Dashboard');
       can('view', 'Students');
     } else {
