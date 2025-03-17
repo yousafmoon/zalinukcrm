@@ -4,13 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormDetailsTables extends Migration
+class CreateSpousePartnersNotAccompanyingDetailsTable extends Migration
 {
     public function up()
     {
-
-
-
         // Spouse or Partners Not Accompanying table
         Schema::create('spouse_partners_not_accompanying_details', function (Blueprint $table) {
             $table->id();

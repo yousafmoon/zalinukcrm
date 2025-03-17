@@ -92,9 +92,9 @@ class Student extends Model
         return $this->hasOne(SpousePartnersNotAccompanyingDetails::class);
     }
 
-    public function Children()
+    public function Childrens()
     {
-        return $this->hasMany(Children::class);
+        return $this->hasMany(Childrens::class);
     }
 
     public function SpouseParnersAccompanyingDetails()
@@ -107,9 +107,9 @@ class Student extends Model
         return $this->hasOne(RequirmentsForEuropeDetails::class);
     }
 
-    public function DocumentRequired()
+    public function DocumentsRequired()
     {
-        return $this->hasOne(DocumentRequired::class);
+        return $this->hasOne(DocumentsRequired::class);
     }
 
     public function CheckCopyDetails()

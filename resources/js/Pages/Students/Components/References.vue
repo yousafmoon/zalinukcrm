@@ -1,31 +1,34 @@
 <script setup>
-import { useStudentStore } from '@/Stores/studentStore';
-import InputError from '@/Components/InputError.vue';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 
-const props = defineProps({
-  student: Object
-});
 const formStore = useStudentStore();
+
+const addRef = () => {
+  formStore.addReference();
+};
+
+const removeRef = (index) => {
+  formStore.removeReference(index);
+};
 </script>
 
 <template>
   <div>
-    <h3 class="text-lg leading-6 font-medium text-red-700">
-      ACADEMIC / JOB REFERENCES
+    <h3 class="text-lg leading-6 font-medium text-red-700 uppercase">
+      Academic / Job References
     </h3>
 
-    <div v-for="(reference, index) in formStore.references" :key="index">
-      <div class="col-span-12 mb-4 flex justify-between items-center">
-        <h3>Reference - {{ index + 1 }}</h3>
-        <div>
-          <button type="button" @click="formStore.removeReference(index)"
-            class="text-red-500 border border-red-700 rounded-md p-2">-
-          </button>
-          <button type="button" @click="formStore.addReference()"
-            class="text-red-500 border border-red-700 rounded-md p-2">+
-          </button>
-        </div>
+    <div v-for="(reference, index) in formStore.student.References" :key="index"
+      class="relative border p-4 rounded-lg shadow-md bg-white mt-4">
+      <!-- Add and Remove Buttons -->
+      <div class="absolute top-1 right-1 flex space-x-2">
+        <button @click="addRef()" type="button" class="bg-red-500 text-white px-3 py-1 rounded-md">+</button>
+        <button @click="removeRef(index)" type="button" v-if="formStore.student.References.length > 1"
+          class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
       </div>
+
+
+      <h3 class="mb-2 text-gray-800 font-semibold">Reference - {{ index + 1 }}</h3>
 
       <div class="grid grid-cols-12 gap-6">
         <div class="col-span-6 sm:col-span-3 md:col-span-3">

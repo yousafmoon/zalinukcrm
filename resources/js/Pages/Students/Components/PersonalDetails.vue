@@ -1,6 +1,6 @@
 <script setup>
 import { onMounted, computed, watch, ref } from 'vue';
-import { useStudentStore } from '@/Stores/studentStore';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
@@ -8,20 +8,27 @@ const props = defineProps({
 });
 
 const formStore = useStudentStore();
+const selectedFile = ref(null);
+const searchQuery = ref("");
+const fileSizeError = ref(null);
 
 onMounted(async () => {
     await formStore.fetchCountries();
 
-    if (props.student) {
-        formStore.student = { ...props.student };
+    if (props.student?.choice_of_country) {
+        formStore.student.choice_of_country = props.student.choice_of_country;
         setSelectedCountry(props.student.choice_of_country);
     }
 });
 
 watch(() => props.student, async (newStudent) => {
-    if (newStudent) {
+    if (newStudent?.choice_of_country && newStudent.choice_of_country !== formStore.student.choice_of_country) {
         formStore.student = { ...newStudent };
-        await formStore.fetchCountries();
+
+        if (!formStore.countries.length) {
+            await formStore.fetchCountries();
+        }
+
         setSelectedCountry(newStudent.choice_of_country);
     }
 }, { deep: true });
@@ -30,44 +37,101 @@ const selectedCountry = computed(() => formStore.selectedCountry);
 const countries = computed(() => formStore.countries);
 const isOpen = computed(() => formStore.isOpen);
 
+const filteredCountries = computed(() => {
+    if (!searchQuery.value) return countries.value;
+    const query = searchQuery.value.trim().toLowerCase();
+    const exactMatches = countries.value.filter(country =>
+        country.name.toLowerCase() === query || country.code.toLowerCase() === query
+    );
+
+    if (exactMatches.length > 0) {
+        return exactMatches;
+    }
+    return countries.value.filter(country =>
+        country.name.toLowerCase().startsWith(query) ||
+        country.code.toLowerCase().startsWith(query)
+    );
+});
+
 const selectCountry = (country) => {
+    if (!country || !country.name) return;
     formStore.selectCountry(country);
     formStore.student.choice_of_country = country.name;
+    formStore.isOpen = false;
 };
 
 const setSelectedCountry = (countryName) => {
-    if (countryName && formStore.countries.length > 0) {
-        const country = formStore.countries.find(c => c.name === countryName);
-        if (country) {
-            formStore.selectCountry(country);
-        }
+    if (!countryName || !formStore.countries?.length) return;
+    const country = formStore.countries.find(c => c.name === countryName);
+    if (country) {
+        formStore.selectCountry(country);
     }
 };
 
-const selectedFile = ref(null);
-const handleFileUpload = (event) => {
-    selectedFile.value = event.target.files[0];
+const toggleDropdown = () => {
+    formStore.isOpen = !formStore.isOpen;
 };
+
+// Handle file selection
+watch(selectedFile, (newFile) => {
+    formStore.student.uploadedFile = newFile;
+});
+
+watch(() => formStore.countries, (newCountries) => {
+    if (props.student?.choice_of_country) {
+        setSelectedCountry(props.student.choice_of_country);
+    }
+}, { immediate: true });
+
+const handleFileUpload = (event) => {
+    const file = event.target.files[0];
+    if (!file) {
+        selectedFile.value = null;
+        formStore.student.uploadedFile = null;
+        formStore.student.fircopy = null;
+        fileSizeError.value = null;
+        return;
+    }
+
+    // Check file size (2MB limit)
+    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
+    if (file.size > maxSize) {
+        fileSizeError.value = "File size must be less than 2MB.";
+        selectedFile.value = null;
+        formStore.student.uploadedFile = null;
+        formStore.student.fircopy = null;
+        event.target.value = ""; // Clear the file input
+        return;
+    }
+
+    fileSizeError.value = null; // Clear any previous error
+    selectedFile.value = file;
+    formStore.student.uploadedFile = file;
+    formStore.student.fircopy = file;
+};
+
+onMounted(() => {
+    if (props.student?.fircopy) {
+        formStore.student.fircopy = props.student.fircopy;
+    }
+});
 
 const getFileUrl = (filePath) => {
     return filePath ? `/storage/${filePath}` : "#";
 };
-
-const getFileName = (filePath) => {
-    return filePath ? filePath.split("/").pop() : "No file";
-};
-
 </script>
 
 <template v-bind="$attrs">
     <div class="grid grid-cols-12 gap-6">
         <!-- Country Selection -->
-        <div class="col-span-6 sm:col-span-3 md:col-span-4">
+        <div class="col-span-6 sm:col-span-3 md:col-span-4 relative">
             <label for="choice_of_country" class="block text-sm font-medium text-gray-700">
                 Choice of Country
             </label>
-            <div class="relative mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                @click="formStore.toggleDropdown">
+
+            <!-- Dropdown Trigger -->
+            <div class="relative mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm cursor-pointer"
+                @click="toggleDropdown">
                 <div class="flex items-center">
                     <img :src="selectedCountry?.flag" v-if="selectedCountry?.flag" alt="Selected country flag"
                         class="inline-block w-6 h-4 mr-2" />
@@ -75,22 +139,26 @@ const getFileName = (filePath) => {
                 </div>
             </div>
 
-            <ul v-if="isOpen"
-                class="absolute mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-64 overflow-y-auto">
-                <li v-for="country in countries" :key="country.code" @click="selectCountry(country)"
-                    class="flex items-center px-3 py-2 cursor-pointer hover:bg-gray-100">
-                    <img :src="country.flag" alt="Country flag" class="inline-block w-6 h-4 mr-2" />
-                    {{ country.name }} ({{ country.code }})
-                </li>
-            </ul>
+            <!-- Country Dropdown with Search -->
+            <div v-if="isOpen"
+                class="absolute mt-1 bg-white border border-gray-300 rounded-md shadow-lg z-10 max-h-64 w-full overflow-y-auto">
 
-            <input type="hidden" :value="selectedCountry?.name || ''" name="choice_of_country" id="choice_of_country"
-                :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.choice_of_country }"
-                @input="formStore.clearError('choice_of_country')" />
+                <!-- Search Input -->
+                <div class="p-2">
+                    <input type="text" v-model="searchQuery" placeholder="Search country..."
+                        class="w-full border border-gray-300 rounded-md p-2 focus:ring-red-500 focus:border-red-500 sm:text-sm">
+                </div>
 
-            <InputError :message="formStore.student.errors.choice_of_country" class="mt-2" />
+                <!-- Filtered Country List -->
+                <ul class="max-h-48 overflow-y-auto">
+                    <li v-for="country in filteredCountries" :key="country.code" @click="selectCountry(country)"
+                        class="flex items-center px-3 py-2 cursor-pointer hover:bg-gray-100">
+                        <img :src="country.flag" alt="Country flag" class="inline-block w-6 h-4 mr-2" />
+                        {{ country.name }} ({{ country.code }})
+                    </li>
+                </ul>
+            </div>
         </div>
-
 
         <!-- Intake -->
         <div class="col-span-6 sm:col-span-3 md:col-span-4">
@@ -270,26 +338,34 @@ const getFileName = (filePath) => {
                 If you lost/stolen your passport (please upload police complaint report/FIR)?
             </label>
 
+            <!-- File Input -->
             <input type="file" id="fircopy" name="fircopy" @change="handleFileUpload"
                 class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.fircopy }"
                 accept=".pdf,.jpg,.jpeg,.png" />
+
             <small class="text-gray-500">Accepted formats: PDF, JPG, JPEG, PNG</small>
 
-            <!-- Show selected file name -->
-            <p v-if="selectedFile" class="mt-2 text-green-600 text-sm">
-                File Selected: {{ selectedFile.name }}
+            <!-- File Size Error Message -->
+            <p v-if="fileSizeError" class="mt-2 text-sm text-red-500">
+                {{ fileSizeError }}
             </p>
 
-            <div v-if="formStore.student.fircopy" class="mt-2">
-                <p class="text-gray-700 text-sm">Current File:</p>
-                <a :href="getFileUrl(formStore.student.fircopy)" target="_blank" class="text-blue-600 hover:underline">
-                    {{ getFileName(formStore.student.fircopy) }}
-                </a>
-            </div>
+            <!-- Display Selected File Name -->
+            <p v-if="formStore.student.fircopy" class="mt-2 text-sm text-gray-500">
+                <span class="font-semibold">Selected File:</span> {{ formStore.student.fircopy.name }}
+            </p>
+
+            <!-- View Uploaded File Link -->
+            <a v-if="formStore.student.fircopy" :href="getFileUrl(formStore.student.fircopy)" target="_blank"
+                class="text-blue-500 hover:underline">
+                View Uploaded File
+            </a>
 
             <InputError :message="formStore.student.errors.fircopy" class="mt-2" />
         </div>
+
+
 
 
 

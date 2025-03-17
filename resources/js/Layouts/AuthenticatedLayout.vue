@@ -6,8 +6,8 @@ import Dropdown from '@/Components/Dropdown.vue';
 import DropdownLink from '@/Components/DropdownLink.vue';
 import NavLink from '@/Components/NavLink.vue';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink.vue';
-import Notification from '../Components/Notification.vue';
-import { defineAbilitiesFor } from '@/Pages/Services/ability'; 
+import { defineAbilitiesFor } from '@/Pages/Services/ability';
+
 
 defineProps({
   image: String
@@ -17,7 +17,7 @@ defineEmits(['imageUploaded']);
 
 const page = usePage();
 
-const authUser = computed(() => page.props.auth?.user || null); 
+const authUser = computed(() => page.props.auth?.user || null);
 const defaultImage = "/assets/images/profile-pic.jpg";
 const imageSrc = ref(authUser.value.image || defaultImage);
 
@@ -30,9 +30,6 @@ const showingNavigationDropdown = ref(false);
 </script>
 
 <template>
-  <div v-if="$page.props.flash.message" class="absolute top-2 right-3 z-10">
-    <Notification :message="$page.props.flash.message"/>
-  </div>
 
   <div class="min-h-screen bg-gray-100">
     <nav class="border-b border-gray-100 bg-white">
@@ -41,7 +38,7 @@ const showingNavigationDropdown = ref(false);
           <div class="flex">
             <div class="flex shrink-0 items-center">
               <Link :href="route('dashboard')">
-                <ApplicationLogo class="block h-12 w-25 fill-current text-gray-500" />
+              <ApplicationLogo class="block h-12 w-25 fill-current text-gray-500" />
               </Link>
             </div>
 
@@ -50,62 +47,76 @@ const showingNavigationDropdown = ref(false);
               <NavLink :href="route('dashboard')" :active="route().current('dashboard')">Dashboard</NavLink>
 
               <!-- Conditional Links based on permissions -->
-              <NavLink v-if="abilities.can('view', 'Students')" :href="route('students.index')" :active="route().current('students.index')">Students</NavLink>
-                </div>
+              <NavLink v-if="true" :href="route('students.index')" :active="route().current('students.index')">
+                Students
+              </NavLink>
+
+            </div>
           </div>
 
           <!-- User Menu -->
           <div class="hidden sm:ml-6 sm:flex sm:items-center">
             <Dropdown align="right" width="48">
               <template #trigger>
-               
-                <button class="inline-flex items-center rounded-md border bg-white px-2 py-1 text-sm font-medium text-gray-500">
-                  <img 
-                    class="h-10 w-10 mr-3 flex-shrink-0 rounded-full bg-gray-300" 
-                    :src="imageSrc || defaultImage"
-                    alt="Profile Picture"
-                  />
-                  
+
+                <button
+                  class="inline-flex items-center rounded-md border bg-white px-2 py-1 text-sm font-medium text-gray-500">
+                  <img class="h-10 w-10 mr-3 flex-shrink-0 rounded-full bg-gray-300" :src="imageSrc || defaultImage"
+                    alt="Profile Picture" />
+
                   {{ authUser.name }}
                   <svg class="ml-2 h-4 w-4" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
-                    <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd" />
+                    <path fill-rule="evenodd"
+                      d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z"
+                      clip-rule="evenodd" />
                   </svg>
                 </button>
               </template>
               <template #content>
                 <DropdownLink :href="route('profile.edit')">Profile</DropdownLink>
-                <DropdownLink v-if="abilities.can('view', 'Permissions')" :href="route('permissions.index')" :active="route().current('permissions.index')">Permissions</DropdownLink>
-                <DropdownLink v-if="abilities.can('view', 'Roles')" :href="route('roles.index')" :active="route().current('roles.index')">Roles</DropdownLink>
-                <DropdownLink v-if="abilities.can('view', 'Users')" :href="route('users.index')" :active="route().current('users.index')">Users</DropdownLink>         
+                <DropdownLink v-if="true" :href="route('permissions.index')"
+                  :active="route().current('permissions.index')">Permissions</DropdownLink>
+                <DropdownLink v-if="true" :href="route('roles.index')" :active="route().current('roles.index')">Roles
+                </DropdownLink>
+                <DropdownLink v-if="true" :href="route('users.index')" :active="route().current('users.index')">Users
+                </DropdownLink>
                 <DropdownLink :href="route('logout')" method="post" as="button">Log Out</DropdownLink>
               </template>
             </Dropdown>
           </div>
-       
-     
 
-       <!-- Hamburger Menu (Mobile) -->
-       <div class="-mr-2 flex items-center sm:hidden">
-            <button @click="showingNavigationDropdown = !showingNavigationDropdown" class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-100 focus:outline-none">
-              <svg class="h-6 w-6" :class="{ hidden: showingNavigationDropdown, block: !showingNavigationDropdown }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+
+
+          <!-- Hamburger Menu (Mobile) -->
+          <div class="-mr-2 flex items-center sm:hidden">
+            <button @click="showingNavigationDropdown = !showingNavigationDropdown"
+              class="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:bg-gray-100 focus:outline-none">
+              <svg class="h-6 w-6" :class="{ hidden: showingNavigationDropdown, block: !showingNavigationDropdown }"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
               </svg>
-              <svg class="h-6 w-6" :class="{ hidden: !showingNavigationDropdown, block: showingNavigationDropdown }" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <svg class="h-6 w-6" :class="{ hidden: !showingNavigationDropdown, block: showingNavigationDropdown }"
+                xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
               </svg>
             </button>
           </div>
         </div>
-        </div>
+      </div>
       <!-- Responsive Navigation Menu -->
       <div :class="{ block: showingNavigationDropdown, hidden: !showingNavigationDropdown }" class="sm:hidden">
-        <ResponsiveNavLink v-if="abilities.can('view', 'dashboard')" :href="route('dashboard')" :active="route().current('dashboard')">Dashboard</ResponsiveNavLink>
-        
+        <ResponsiveNavLink v-if="abilities.can('view', 'dashboard')" :href="route('dashboard')"
+          :active="route().current('dashboard')">Dashboard</ResponsiveNavLink>
+
         <!-- Conditional Links for mobile -->
-        <ResponsiveNavLink v-if="abilities.can('view', 'Students')" :href="route('students.index')" :active="route().current('students.index')">Students</ResponsiveNavLink>
-        <ResponsiveNavLink v-if="abilities.can('view', 'Permissions')" :href="route('permissions.index')" :active="route().current('permissions.index')">Permissions</ResponsiveNavLink>
-        <ResponsiveNavLink v-if="abilities.can('view', 'Roles')" :href="route('roles.index')" :active="route().current('roles.index')">Roles</ResponsiveNavLink>
-        <ResponsiveNavLink v-if="abilities.can('view', 'Users')" :href="route('users.index')" :active="route().current('users.index')">Users</ResponsiveNavLink>
+        <!-- <ResponsiveNavLink v-if="abilities.can('view', 'Students')" :href="route('students.index')"
+          :active="route().current('students.index')">Students</ResponsiveNavLink>
+        <ResponsiveNavLink v-if="abilities.can('view', 'Permissions')" :href="route('permissions.index')"
+          :active="route().current('permissions.index')">Permissions</ResponsiveNavLink>
+        <ResponsiveNavLink v-if="abilities.can('view', 'Roles')" :href="route('roles.index')"
+          :active="route().current('roles.index')">Roles</ResponsiveNavLink>
+        <ResponsiveNavLink v-if="abilities.can('view', 'Users')" :href="route('users.index')"
+          :active="route().current('users.index')">Users</ResponsiveNavLink> -->
       </div>
     </nav>
 

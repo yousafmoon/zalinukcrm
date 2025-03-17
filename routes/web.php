@@ -56,8 +56,6 @@ Route::middleware('auth')->group(function () {
     Route::resource('roles', RoleController::class)->middleware(['auth']);
     Route::resource('users', UserController::class)->middleware(['auth']);
     
-    Route::post('/students/{studentId}/upload-documents', [StudentController::class, 'uploadDocuments'])->name('student.uploadDocuments');
-
 });
 
 

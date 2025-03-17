@@ -9,8 +9,11 @@ import { abilitiesPlugin } from '@casl/vue';
 import { defineAbilitiesFor } from '@/Pages/Services/ability';
 import ToastPlugin from 'vue-toast-notification';
 import 'vue-toast-notification/dist/theme-bootstrap.css';
+import { createPinia } from 'pinia';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Zalinukcrm';
+
+const pinia = createPinia();
 
 createInertiaApp({
     title: (title) => `${title} - ${appName}`,
@@ -25,7 +28,8 @@ createInertiaApp({
         return createApp({ render: () => h(App, props) })
             .use(plugin)
             .use(ToastPlugin)
-            .use(abilitiesPlugin, abilities)  
+            .use(abilitiesPlugin, abilities) 
+            .use(pinia) 
             .use(ZiggyVue)
             .mount(el);
     },

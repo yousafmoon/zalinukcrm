@@ -1,49 +1,68 @@
 <script setup>
-
-import { useStudentStore } from '@/Stores/studentStore';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 
 const props = defineProps({
     student: Object
 });
+
 const formStore = useStudentStore();
 
 const addJob = () => {
-    formStore.addJob();
+    formStore.addStudentEmployment();
 };
 
 const removeJob = (index) => {
-    formStore.removeJob(index);
+    formStore.removeStudentEmployment(index);
 };
 </script>
+
 <template>
     <div>
         <h3 class="text-lg leading-6 font-medium text-red-700">WORK HISTORY</h3>
     </div>
 
-    <div class="grid grid-cols-12 gap-6">
-        <div class="col-span-6 sm:col-span-6 md:col-span-4">
-            <label class="block text-sm font-medium text-gray-700">What are your current personal circumstances?</label>
-            <div class="mt-1 space-y-2">
-                <label class="inline-flex items-center">
-                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Employed full time"
-                        class="form-radio text-blue-500">
-                    <span class="ml-2 mr-2 text-sm">Employed full time</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Self employed"
-                        class="form-radio text-blue-500">
-                    <span class="ml-2 mr-2 text-sm">Self employed</span>
-                </label>
-                <label class="inline-flex items-center">
-                    <input type="radio" v-model="formStore.student.personal_circumstances" value="Student"
-                        class="form-radio text-blue-500">
-                    <span class="ml-2 mr-2 text-sm">Student</span>
-                </label>
-            </div>
-        </div>
 
-        <div v-for="(job, index) in formStore.student.jobs" :key="index"
-            class="col-span-12 grid grid-cols-12 gap-6 border p-4 rounded-md shadow-md">
+    <div class="grid grid-cols-12">
+        <label class="block text-sm font-medium text-gray-700 col-span-12">
+            What are your current personal circumstances?
+        </label>
+    </div>
+
+
+    <div class="grid grid-cols-12 gap-6">
+
+        <!-- Job Entries -->
+        <div v-for="(job, index) in formStore.student.StudentEmployment" :key="index"
+            class="col-span-12 grid grid-cols-12 gap-6 border p-4 rounded-md shadow-md relative">
+            <!-- Add & Remove Buttons (Top-Right) -->
+            <div class="absolute top-1 right-1 flex space-x-2">
+                <button @click="addJob" type="button" class="bg-red-500 text-white px-3 py-1 rounded-md">+</button>
+                <button @click="removeJob(index)" type="button" v-if="formStore.student.StudentEmployment.length > 1"
+                    class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
+            </div>
+
+            <!-- Personal Circumstances -->
+            <div class="col-span-6 sm:col-span-6 md:col-span-4">
+                <div class="mt-1 space-y-2">
+                    <label class="inline-flex items-center">
+                        <input type="radio" v-model="job.personal_circumstances" value="Employed full time"
+                            class="form-radio text-blue-500">
+                        <span class="ml-2 mr-2 text-sm">Employed full time</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" v-model="job.personal_circumstances" value="Self employed"
+                            class="form-radio text-blue-500">
+                        <span class="ml-2 mr-2 text-sm">Self employed</span>
+                    </label>
+                    <label class="inline-flex items-center">
+                        <input type="radio" v-model="job.personal_circumstances" value="Student"
+                            class="form-radio text-blue-500">
+                        <span class="ml-2 mr-2 text-sm">Student</span>
+                    </label>
+                </div>
+            </div>
+
+            <!-- Employment Details -->
             <div class="col-span-6 sm:col-span-6 md:col-span-4">
                 <label class="block text-sm font-medium text-gray-700">Employment Details</label>
                 <input type="text" v-model="job.employment_details"
@@ -90,12 +109,6 @@ const removeJob = (index) => {
                 <label class="block text-sm font-medium text-gray-700">Additional Jobs</label>
                 <textarea v-model="job.additional_jobs" rows="2"
                     class="mt-1 block w-full border-gray-300 rounded-md shadow-sm py-2 px-3 sm:text-sm"></textarea>
-            </div>
-
-            <div class="col-span-6 flex items-center space-x-2">
-                <button @click="addJob" type="button" class="bg-green-500 text-white px-3 py-1 rounded-md">+</button>
-                <button @click="removeJob(index)" type="button" v-if="formStore.student.jobs.length > 1"
-                    class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
             </div>
         </div>
     </div>

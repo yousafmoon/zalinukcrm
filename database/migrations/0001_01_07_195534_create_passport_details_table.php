@@ -4,11 +4,10 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateFormDetailsTables extends Migration
+class CreatePassportDetailsTable extends Migration
 {
     public function up()
     {
-
 
         // Passport Details table
         Schema::create('passport_details', function (Blueprint $table) {

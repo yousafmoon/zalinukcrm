@@ -11,7 +11,6 @@ class CreateParentsDetailsTable extends Migration
         Schema::create('parents_details', function (Blueprint $table) {
             $table->id();
             $table->foreignId('student_id')->constrained()->onDelete('cascade');
-
             // Father's Details
             $table->string('father_given_name')->nullable();
             $table->string('father_family_name')->nullable();

@@ -1,6 +1,6 @@
 <script setup>
 
-import { useStudentStore } from '@/Stores/studentStore';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({

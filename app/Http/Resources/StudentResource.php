@@ -73,13 +73,14 @@ class StudentResource extends JsonResource
                 ];
             }),
 
-            'FinancialDocuments' => array_map(function ($document) {
-                    return [
-                        'document_title' => $document->document_title,
-                        'document_name' => $document->document_name,
-                        'document_path' => $document->document_path,
-                    ];
-                }),
+        'FinancialDocuments' => array_map(function ($document) {
+            return [
+                'document_title' => $document->document_title,
+                'document_name' => $document->document_name,
+                'document_path' => $document->document_path,
+            ];
+        }, $financialDocuments ?? []),
+
             
             'PassportDetails' => [
                 'passport_number' => $this->passport_number,
@@ -199,7 +200,7 @@ class StudentResource extends JsonResource
                 'spouse_accompanying_uk' => $this->spouse_accompanying_uk,
             ],
 
-            'Children' => $this->Children->map(function ($child) {
+            'Childrens' => $this->Childrens->map(function ($child) {
                 return [
                     'id' => $child->id,
                     'full_name' => $child->full_name,
@@ -235,13 +236,14 @@ class StudentResource extends JsonResource
                 'bonafide_student_undertaking' => $this->bonafide_student_undertaking,
             ],
 
-           'DocumentRequired' => $this->DocumentRequired->map(function ($document) {
-                return [
-                    'file_title' => $document->file_title,
-                    'file_name' => $document->file_name,
-                    'file_path' => $document->file_path,
-                ];
-            }),
+            'DocumentsRequired' => optional($this->DocumentsRequired)->map(function ($document) {
+                    return [
+                        'file_title' => $document->file_title,
+                        'file_name' => $document->file_name,
+                        'file_path' => $document->file_path,
+                    ];
+                }) ?? [],
+
 
 
             'CheckCopyDetails' => [
@@ -250,6 +252,6 @@ class StudentResource extends JsonResource
                 'copy_any_previous_passports' => $this->copy_any_previous_passports,
                 'remarks' => $this->remarks,
             ],
-        ])
+        ]);
     }
 }

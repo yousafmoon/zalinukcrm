@@ -1,5 +1,5 @@
 <script setup>
-import { useStudentStore } from '@/Stores/studentStore';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 import { ref, watch } from 'vue';
 
 const props = defineProps({
@@ -41,16 +41,20 @@ const removeDocument = (index) => {
 
   <div class="grid grid-cols-12 gap-6">
     <div class="col-span-12">
-      <h4 class="text-md font-medium text-green-900">Please Upload Required Documents</h4>
+      <h4 class="text-md font-medium text-gray-900">Please Upload CNIC,Photos,Passport,Resume,Police Clearance
+        Certificate,English Proficiency Certificate,IELTS,Matric Transcript,Matric Certificate,Inter Transcript,Inter
+        Certificate,Bachelor Transcript,Bachelor’s Degree,Experience Certificates,Any Other Certification,Two
+        Recommendation Letters,Professional Experience Letter,Motivational Letter,Bank Statement,Past 3 Years Tax
+        Returns</h4>
 
-      <div v-for="(document, index) in documents" :key="index" class="border p-4 rounded-md mt-4">
-        <div class="flex justify-between items-center mb-2">
-          <h3>Document - {{ index + 1 }}</h3>
-          <div>
-            <button type="button" @click="removeDocument(index)"
-              class="text-red-500 border border-red-700 rounded-md p-2 mx-1" v-if="documents.length > 1">-
+      <div v-for="(document, index) in documents" :key="index" class="border p-4 rounded-md mt-2">
+        <div class="flex justify-between items-center mb-2 relative">
+          <h3>Add Document - {{ index + 1 }}</h3>
+          <div class="absolute top-1 right-1 flex space-x-2">
+            <button type="button" @click="addDocument()" class="bg-red-500 text-white px-3 py-1 rounded-md">+
             </button>
-            <button type="button" @click="addDocument()" class="text-green-500 border border-green-700 rounded-md p-2">+
+            <button type="button" @click="removeDocument(index)" class="bg-red-500 text-white px-3 py-1 rounded-md"
+              v-if="documents.length > 1">-
             </button>
           </div>
         </div>

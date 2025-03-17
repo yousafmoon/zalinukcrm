@@ -3,21 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 
-class DocumentRequired extends Model
+class DocumentsRequired extends Model
 {
-    use HasFactory;
-
-    // Define table name explicitly if it does not follow Laravel naming conventions
-    protected $table = 'documentrequired';
-
+    protected $table = 'documents_required';
     // Mass assignable fields
-    protected $fillable = [
-        'file_title',        
-        'file_name',    
-        'file_path',    
-        'student_id' 
+    protected $fillable = ['file_title','file_name','file_path','student_id' 
     ];
 
     /**

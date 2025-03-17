@@ -1,6 +1,6 @@
 <script setup>
 
-import { useStudentStore } from '@/Stores/studentStore';
+import { useStudentStore } from '@/Pages/Stores/studentStore';
 import InputError from '@/Components/InputError.vue';
 
 const props = defineProps({
@@ -19,7 +19,7 @@ const formStore = useStudentStore();
     </label>
     <div class="grid grid-cols-12 gap-6">
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-3">
+        <div class="col-span-6 sm:col-span-6 md:col-span-6">
 
             <div class="mt-2">
                 <label for="visa_type" class="block text-sm font-medium text-gray-700">VISA TYPE</label>
@@ -34,7 +34,7 @@ const formStore = useStudentStore();
         </div>
 
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-3">
+        <div class="col-span-6 sm:col-span-6 md:col-span-6">
             <div class="mt-2">
                 <label for="visa_valid_from" class="block text-sm font-medium text-gray-700">DATE VALID FROM</label>
                 <input v-model="formStore.student.visa_valid_from" type="date" id="visa_valid_from"
@@ -42,7 +42,7 @@ const formStore = useStudentStore();
             </div>
         </div>
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-3">
+        <div class="col-span-6 sm:col-span-6 md:col-span-6">
             <div class="mt-2">
                 <label for="visa_expiry_date" class="block text-sm font-medium text-gray-700">EXPIRY DATE</label>
                 <input v-model="formStore.student.visa_expiry_date" type="date" id="visa_expiry_date"
@@ -50,7 +50,7 @@ const formStore = useStudentStore();
             </div>
         </div>
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-3">
+        <div class="col-span-6 sm:col-span-6 md:col-span-6">
             <div class="mt-2">
                 <label for="visa_reference_number" class="block text-sm font-medium text-gray-700">REFERENCE NUMBER (if
                     applicable)</label>
