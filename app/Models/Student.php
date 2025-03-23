@@ -12,7 +12,7 @@ class Student extends Model
         'living_situation', 'correspondence_address'
     ];
 
-    public function FinancialDetails()
+    public function financialDetails()
     {
         return $this->hasOne(FinancialDetails::class);
     }

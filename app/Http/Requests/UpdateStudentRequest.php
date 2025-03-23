@@ -25,7 +25,7 @@ class UpdateStudentRequest extends FormRequest
            'choice_of_country' => 'nullable|string',
             'intake' => 'nullable|date',
             'intended_course'=>'nullable|string',
-            'firstname' => 'required|string|max:255',
+            'firstname' => 'nullable|string|max:255',
             'middlename' => 'nullable|string|max:255',
             'surname' => 'nullable|string|max:255',
             'nickname' => 'nullable|string|max:255',
@@ -45,12 +45,11 @@ class UpdateStudentRequest extends FormRequest
             'correspondence_address' => 'nullable|string|max:255',
 
             // Financial details (nested array)
-            'FinancialDetails' => 'nullable|array',
-            'FinancialDetails.own_property' => 'nullable|string|max:255',
-            'FinancialDetails.bank_savings' => 'nullable|string|max:255',
-            'FinancialDetails.tuition_budget' => 'nullable|string|max:255',
-            'FinancialDetails.bank_funds' => 'nullable|string|max:255',
-            'FinancialDetails.tuition_payer' => 'nullable|string|max:255',
+            'own_property' => 'nullable|string|max:255',
+            'bank_savings' => 'nullable|string|max:255',
+            'tuition_budget' => 'nullable|numeric',
+            'bank_funds' => 'nullable|string|max:255',
+            'tuition_payer' => 'nullable|string|max:255',
 
             // Student Employment (nested array)
             'StudentEmployment' => 'nullable|array',

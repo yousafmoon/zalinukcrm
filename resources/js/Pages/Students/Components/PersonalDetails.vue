@@ -8,9 +8,7 @@ const props = defineProps({
 });
 
 const formStore = useStudentStore();
-const selectedFile = ref(null);
 const searchQuery = ref("");
-const fileSizeError = ref(null);
 
 onMounted(async () => {
     await formStore.fetchCountries();
@@ -72,10 +70,6 @@ const toggleDropdown = () => {
     formStore.isOpen = !formStore.isOpen;
 };
 
-// Handle file selection
-watch(selectedFile, (newFile) => {
-    formStore.student.uploadedFile = newFile;
-});
 
 watch(() => formStore.countries, (newCountries) => {
     if (props.student?.choice_of_country) {
@@ -83,42 +77,8 @@ watch(() => formStore.countries, (newCountries) => {
     }
 }, { immediate: true });
 
-const handleFileUpload = (event) => {
-    const file = event.target.files[0];
-    if (!file) {
-        selectedFile.value = null;
-        formStore.student.uploadedFile = null;
-        formStore.student.fircopy = null;
-        fileSizeError.value = null;
-        return;
-    }
 
-    // Check file size (2MB limit)
-    const maxSize = 2 * 1024 * 1024; // 2MB in bytes
-    if (file.size > maxSize) {
-        fileSizeError.value = "File size must be less than 2MB.";
-        selectedFile.value = null;
-        formStore.student.uploadedFile = null;
-        formStore.student.fircopy = null;
-        event.target.value = ""; // Clear the file input
-        return;
-    }
 
-    fileSizeError.value = null; // Clear any previous error
-    selectedFile.value = file;
-    formStore.student.uploadedFile = file;
-    formStore.student.fircopy = file;
-};
-
-onMounted(() => {
-    if (props.student?.fircopy) {
-        formStore.student.fircopy = props.student.fircopy;
-    }
-});
-
-const getFileUrl = (filePath) => {
-    return filePath ? `/storage/${filePath}` : "#";
-};
 </script>
 
 <template v-bind="$attrs">
@@ -339,33 +299,40 @@ const getFileUrl = (filePath) => {
             </label>
 
             <!-- File Input -->
-            <input type="file" id="fircopy" name="fircopy" @change="handleFileUpload"
-                class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.fircopy }"
+            <input type="file" id="fircopy" name="fircopy" @change="formStore.handleFileUpload" class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 
+                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+                :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.fileSizeError }"
                 accept=".pdf,.jpg,.jpeg,.png" />
 
             <small class="text-gray-500">Accepted formats: PDF, JPG, JPEG, PNG</small>
 
             <!-- File Size Error Message -->
-            <p v-if="fileSizeError" class="mt-2 text-sm text-red-500">
-                {{ fileSizeError }}
+            <p v-if="formStore.fileSizeError" class="mt-2 text-sm text-red-500">
+                {{ formStore.fileSizeError }}
             </p>
 
-            <!-- Display Selected File Name -->
-            <p v-if="formStore.student.fircopy" class="mt-2 text-sm text-gray-500">
-                <span class="font-semibold">Selected File:</span> {{ formStore.student.fircopy.name }}
-            </p>
+            <!-- Show Uploaded File Link & File Name -->
+            <template
+                v-if="formStore.selectedFile || (formStore.student.fircopy && typeof formStore.student.fircopy === 'string')">
+                <a :href="formStore.getFileUrl(formStore.selectedFile || formStore.student.fircopy)" target="_blank"
+                    class="text-blue-500 hover:underline">
+                    View Uploaded File
+                </a>
 
-            <!-- View Uploaded File Link -->
-            <a v-if="formStore.student.fircopy" :href="getFileUrl(formStore.student.fircopy)" target="_blank"
-                class="text-blue-500 hover:underline">
-                View Uploaded File
-            </a>
+                <div class="mt-2 flex items-center space-x-2">
+                    <span class="text-sm text-gray-700">
+                        <!-- If a file is selected, display its name, else extract file name from stored path -->
+                        {{ formStore.selectedFile ? formStore.selectedFile.name :
+                            formStore.student.fircopy.split('/').pop() }}
+                    </span>
+                    <button type="button" @click="formStore.removeFile" class="text-red-500 text-sm underline">
+                        Remove File
+                    </button>
+                </div>
+            </template>
 
-            <InputError :message="formStore.student.errors.fircopy" class="mt-2" />
+            <InputError :message="formStore.fileSizeError" class="mt-2" />
         </div>
-
-
 
 
 

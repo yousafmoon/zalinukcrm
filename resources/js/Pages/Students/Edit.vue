@@ -1,7 +1,7 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
-import { onMounted, watch, watchEffect } from 'vue';
+import { onMounted, watch } from 'vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 import { Inertia } from '@inertiajs/inertia';
 
@@ -48,12 +48,6 @@ Inertia.on('success', (event) => {
         formStore.setStudent(event.detail.page.props.student);
     }
 });
-watchEffect(() => {
-    if (page.props.student) {
-        formStore.setStudent(page.props.student);
-    }
-});
-
 watch(
     () => props.student,
     (newStudent) => {
@@ -61,8 +55,10 @@ watch(
             formStore.setStudent(newStudent);
         }
     },
-    { deep: true }
+    { deep: true, immediate: true }
 );
+
+
 
 const updateStudent = () => {
     formStore.updateStudentForm();

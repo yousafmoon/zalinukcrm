@@ -5,6 +5,7 @@ import { router } from '@inertiajs/vue3';
 import { useToast } from "vue-toast-notification";
 import { ref } from "vue";
 export const useStudentStore = defineStore("student", {
+  
   state: () => ({
     student: useForm({
       id: "",
@@ -29,13 +30,11 @@ export const useStudentStore = defineStore("student", {
       fircopy: "",
       living_situation: "",
       correspondence_address: "",
-      FinancialDetails: {
-        own_property: "",
-        bank_savings: "",
-        tuition_budget: "",
-        bank_funds: "",
-        tuition_payer: "",
-      },
+      own_property: "",
+      bank_savings: "",
+      tuition_budget: "",
+      bank_funds: "",
+      tuition_payer: "",
       StudentEmployment: [
         {
           personal_circumstances: "",
@@ -142,24 +141,19 @@ export const useStudentStore = defineStore("student", {
         visa_expiry_date: "",
         visa_reference_number: "",
       },
-      OverseasTravelHistoryDetails: {
-        uk_country_visited: "",
-        uk_date_arrived: "",
-        uk_purpose_of_visit: "",
-        uk_length_of_stay: "",
-        europe_country_visited: "",
-        europe_date_arrived: "",
-        europe_purpose_of_visit: "",
-        europe_length_of_stay: "",
-        acnz_usa_country_visited: "",
-        acnz_usa_date_arrived: "",
-        acnz_usa_purpose_of_visit: "",
-        acnz_usa_length_of_stay: "",
-        row_country_visited: "",
-        row_date_arrived: "",
-        row_purpose_of_visit: "",
-        row_length_of_stay: "",
-      },
+      OverseasTravelHistoryDetails: [
+        {
+            region_title: '',
+            visits: [
+                {
+                    country_visited: '',
+                    date_arrived: '',
+                    purpose_of_visit: '',
+                    length_of_stay: ''
+                }
+            ]
+        }
+    ],
       SpousePartnersNotAccompanyingDetails: {
         spouse_given_name: "",
         spouse_family_name: "",
@@ -225,6 +219,47 @@ export const useStudentStore = defineStore("student", {
   
 
   actions: {
+
+    handleFileUpload(event) {
+      const file = event.target.files[0];
+      if (!file) {
+        this.selectedFile = null;
+        this.student.fircopy = null;
+        this.fileSizeError = null;
+        return;
+      }
+      const maxSize = 2 * 1024 * 1024; // 2MB limit
+      if (file.size > maxSize) {
+        this.fileSizeError = "File size must be less than 2MB.";
+        this.selectedFile = null;
+        this.student.fircopy = null;
+        event.target.value = "";
+        return;
+      }
+      this.fileSizeError = null;
+      this.selectedFile = file;
+      // Assign the raw File object for submission.
+      this.student.fircopy = file;
+    },
+    
+  
+    removeFile() {
+
+      this.selectedFile = null;
+      this.student.fircopy = null;
+      this.fileSizeError = null;
+      const fileInput = document.querySelector("#fircopy");
+      if (fileInput) {
+        fileInput.value = "";
+      }
+    },
+    
+  
+    getFileUrl(file) {
+      if (!file) return "";
+      return file instanceof File ? URL.createObjectURL(file) : `/storage/${file}`;
+  },
+
     async addStudentForm() {
       const toast = useToast();
       try {
@@ -244,36 +279,41 @@ export const useStudentStore = defineStore("student", {
     },
 
     setStudent(data) {
-      this.student = { ...this.student, ...data };
-    },
-  
-    async updateStudentForm() {
-      const toast = useToast();
-      try {
-          const updateUrl = route('students.update', { student: this.student.id });
-  
-          Inertia.put(updateUrl, this.student, {
-            onSuccess: () => {
-              toast.success("Student updated successfully.");
-              router.visit(route('students.index'), {
-                  preserveScroll: true,
-                  replace: true,
-              });
-          },
-              onError: (errors) => {
-                  toast.error("Failed to update student.");
-                  console.error("Validation errors:", errors);
-                  this.errors = errors;
-              }
-          });
-  
-      } catch (error) {
-          toast.error("An unexpected error occurred.");
-          console.error("Error updating student:", error);
-      }
+      this.student = { ...this.student, ...data, errors: data.errors || {} };
   },
   
-  
+  async updateStudentForm() {
+    const toast = useToast();
+
+    if (!this.student.id) {
+        toast.error("Student ID is missing.");
+        console.error("Student ID is undefined or null.");
+        return;
+    }
+
+    try {
+        const updateUrl = route('students.update', { student: this.student.id });
+        Inertia.put(updateUrl, this.student, {
+            onSuccess: () => {
+                toast.success("Student updated successfully.");
+                router.visit(route('students.index'), {
+                    preserveScroll: true,
+                    replace: true,
+                });
+            },
+            onError: (errors) => {
+                toast.error("Failed to update student.");
+                console.error("Validation errors:", errors);
+                this.errors = errors;
+            }
+        });
+
+    } catch (error) {
+        toast.error("An unexpected error occurred.");
+        console.error("Error updating student:", error);
+    }
+},
+
       updateStudentField(field, value) {
         this.student[field] = value;
       },
@@ -304,7 +344,6 @@ export const useStudentStore = defineStore("student", {
           console.error("Error deleting student:", error);
       }
   },
-  
 
     setFormField(field, value) {
         this.student[field] = value;
@@ -321,15 +360,14 @@ export const useStudentStore = defineStore("student", {
         }
     },
     
-      
-      validateField(field) {
-        if (!this.student[field] || this.student[field].trim() === '') {
-          this.setError(field, `${field} is required.`);
-          return false;
-        }
-        this.clearError(field);
-        return true;
-      },
+    validateField(field) {
+      if (!this.student[field] || this.student[field].trim() === '') {
+        this.setError(field, `${field} is required.`);
+        return false;
+      }
+      this.clearError(field);
+      return true;
+    },  
   
       async fetchCountries() {
         try {
@@ -401,6 +439,37 @@ export const useStudentStore = defineStore("student", {
           this.student.Childrens.splice(index, 1);
         }
       },
+      addRegion() {
+        this.student.OverseasTravelHistoryDetails.push({
+            region_title: '',
+            visits: [
+                {
+                    country_visited: '',
+                    date_arrived: '',
+                    purpose_of_visit: '',
+                    length_of_stay: ''
+                }
+            ]
+        });
+    },
+    removeRegion(index) {
+        if (this.student.OverseasTravelHistoryDetails.length > 1) {
+            this.student.OverseasTravelHistoryDetails.splice(index, 1);
+        }
+    },
+    addVisit(regionIndex) {
+        this.student.OverseasTravelHistoryDetails[regionIndex].visits.push({
+            country_visited: '',
+            date_arrived: '',
+            purpose_of_visit: '',
+            length_of_stay: ''
+        });
+    },
+    removeVisit(regionIndex, visitIndex) {
+        if (this.student.OverseasTravelHistoryDetails[regionIndex].visits.length > 1) {
+            this.student.OverseasTravelHistoryDetails[regionIndex].visits.splice(visitIndex, 1);
+        }
+    },
 
       addFinancialDocument() {
         if (!this.student.FinancialDocuments) {

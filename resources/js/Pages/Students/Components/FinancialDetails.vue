@@ -2,11 +2,18 @@
 
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 import InputError from '@/Components/InputError.vue';
+import { watchEffect } from 'vue';
 
 const props = defineProps({
     student: Object
 });
 const formStore = useStudentStore();
+
+watchEffect(() => {
+    if (props.student) {
+        formStore.setStudent(props.student);
+    }
+});
 
 </script>
 <template>
@@ -24,8 +31,8 @@ const formStore = useStudentStore();
                 class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.own_property }">
                 <option value="">Select an option</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
             </select>
             <InputError :message="formStore.student.errors.own_property" class="mt-2" />
         </div>
@@ -38,8 +45,8 @@ const formStore = useStudentStore();
                 class="mt-1 block w-full bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.bank_savings }">
                 <option value="">Select an option</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
             </select>
             <InputError :message="formStore.student.errors.bank_savings" class="mt-2" />
         </div>
