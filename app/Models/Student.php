@@ -1,10 +1,13 @@
 <?php
 namespace App\Models;
-
+use Spatie\MediaLibrary\InteractsWithMedia;
+use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model
+class Student extends Model implements HasMedia
 {
+    use InteractsWithMedia;
+
     protected $fillable = [
         'choice_of_country', 'intake', 'intended_course','firstname', 'middlename', 'surname', 'nickname', 'email', 
         'gender', 'nationality', 'date_of_birth', 'place_of_birth', 'national_insurance', 'other_nationalities', 
@@ -17,11 +20,11 @@ class Student extends Model
         return $this->hasOne(FinancialDetails::class);
     }
 
-    public function StudentEmployment()
+    public function studentEmployment()
     {
-        return $this->hasOne(StudentEmployment::class);
+        return $this->hasMany(StudentEmployment::class);
     }
-
+    
     public function IncomeDetails()
     {
         return $this->hasOne(IncomeDetails::class);

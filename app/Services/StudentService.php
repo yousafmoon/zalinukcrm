@@ -1,10 +1,11 @@
 <?php
+
 namespace App\Services;
 
 use App\Http\Requests\StoreStudentRequest;
 use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
-use App\Repositories\StudentRepository; 
+use App\Repositories\StudentRepository;
 use Illuminate\Support\Facades\Storage;
 
 class StudentService
@@ -37,42 +38,36 @@ class StudentService
     public function storeStudent(StoreStudentRequest $request)
     {
         $data = $request->validated();
+        $student = $this->studentRepository->create($data);
+
         if ($request->hasFile('fircopy')) {
-            $data['fircopy'] = $this->handleFileUpload($request, 'fircopy', 'uploads/passport');
+            $student->clearMediaCollection('fircopy');
+            $student->addMedia($request->file('fircopy'))
+                    ->preservingOriginal()
+                    ->toMediaCollection('fircopy');
         }
-        return $this->studentRepository->create($data);
+
+        return $student;
     }
 
     public function updateStudent(UpdateStudentRequest $request, Student $student)
     {
         $validatedData = $request->validated();
+        $this->studentRepository->update($student, $validatedData);
+
         if ($request->hasFile('fircopy')) {
-            $this->deleteOldFile($student->fircopy);
-            $validatedData['fircopy'] = $this->handleFileUpload($request, 'fircopy', 'uploads/passport');
+            $student->clearMediaCollection('fircopy');
+            $student->addMedia($request->file('fircopy'))
+                    ->preservingOriginal()
+                    ->toMediaCollection('fircopy');
         }
-        return $this->studentRepository->update($student, $validatedData);
+
+        return $student;
     }
 
     public function deleteStudent(Student $student)
     {
-        $this->deleteOldFile($student->fircopy);
-        Storage::disk('public')->deleteDirectory('uploads/passport');
+        $student->clearMediaCollection('fircopy');
         $student->delete();
-    }
-
-    private function handleFileUpload($request, $fieldName, $directory)
-    {
-        if ($request->hasFile($fieldName) && $request->file($fieldName)->isValid()) {
-            $filename = time() . '-' . $request->file($fieldName)->getClientOriginalName();
-            return $request->file($fieldName)->storeAs($directory, $filename, 'public');
-        }
-        return null;
-    }
-
-    private function deleteOldFile($filePath)
-    {
-        if (!empty($filePath) && Storage::disk('public')->exists($filePath)) {
-            Storage::disk('public')->delete($filePath);
-        }
     }
 }

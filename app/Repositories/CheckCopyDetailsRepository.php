@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\FinancialDetails;
+use App\Models\CheckCopyDetails; 
 
-class FinancialDetailsRepository
+class CheckCopyDetailsRepository
 {
     protected $model;
 
-    public function __construct(FinancialDetails $model)
+    public function __construct(CheckCopyDetails $model)
     {
         $this->model = $model;
     }

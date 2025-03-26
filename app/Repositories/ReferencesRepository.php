@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\FinancialDetails;
+use App\Models\References; 
 
-class FinancialDetailsRepository
+class ReferencesRepository
 {
     protected $model;
 
-    public function __construct(FinancialDetails $model)
+    public function __construct(References $model)
     {
         $this->model = $model;
     }

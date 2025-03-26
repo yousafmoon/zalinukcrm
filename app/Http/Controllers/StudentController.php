@@ -8,6 +8,7 @@ use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Services\StudentService;
 use App\Services\FinancialDetailsService;
+use App\Services\StudentEmploymentService;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
@@ -17,11 +18,13 @@ class StudentController extends Controller
 
     protected $studentService;
     protected $financialDetailsService;
+    protected $StudentEmploymentService;
 
-    public function __construct(StudentService $studentService, FinancialDetailsService $financialDetailsService)
+    public function __construct(StudentService $studentService, FinancialDetailsService $financialDetailsService, StudentEmploymentService $StudentEmploymentService)
     {
         $this->studentService = $studentService;
-        $this->financialDetailsService = $financialDetailsService; 
+        $this->financialDetailsService = $financialDetailsService;
+        $this->StudentEmploymentService = $StudentEmploymentService; 
     }
 
     public function middleware(): array
@@ -59,19 +62,36 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
+
         $this->authorize('create', Student::class);
-        $this->studentService->storeStudent($request);
-        $this->financialDetailsService->storeFinancialDetails($request->input('financial_details'), $student);
+        $student = $this->studentService->storeStudent($request);
+    
+        if (!$student || !$student->id) {
+            return back()->with('error', 'Failed to create student.');
+        }
+    
+        $financialDetails = $request->only([
+            'own_property', 'bank_savings', 'tuition_budget', 'bank_funds', 'tuition_payer'
+        ]);
+        $studentEmployment = $request->input('StudentEmployment');
+
+        if (!empty($financialDetails)) {
+            $this->financialDetailsService->storeFinancialDetails($financialDetails, $student);
+        }
+    
+        if (!empty($studentEmployment)) {
+            $this->StudentEmploymentService->storeStudentEmployment($studentEmployment, $student);
+        }
+    
         return redirect()->route('students.index')->with('message', 'Student created successfully.');
     }
+    
+    
+    
 
     public function edit(Student $student)
     {
         $this->authorize('update', $student);
-        if (!$this->financialDetailsService) {
-            throw new \Exception('FinancialDetailsService is not available');
-        }
-
         $studentData = $this->financialDetailsService->editFinancialDetails($student);
 
         return inertia('Students/Edit', [

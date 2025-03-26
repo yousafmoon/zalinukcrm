@@ -222,43 +222,46 @@ export const useStudentStore = defineStore("student", {
 
     handleFileUpload(event) {
       const file = event.target.files[0];
+
       if (!file) {
-        this.selectedFile = null;
-        this.student.fircopy = null;
-        this.fileSizeError = null;
+        this.clearFile();
         return;
       }
-      const maxSize = 2 * 1024 * 1024; // 2MB limit
+
+      const maxSize = 2 * 1024 * 1024; 
       if (file.size > maxSize) {
         this.fileSizeError = "File size must be less than 2MB.";
-        this.selectedFile = null;
-        this.student.fircopy = null;
-        event.target.value = "";
+        this.clearFile();
+        event.target.value = ""; 
         return;
       }
+
       this.fileSizeError = null;
       this.selectedFile = file;
-      // Assign the raw File object for submission.
-      this.student.fircopy = file;
+      this.student.fircopy = file; 
     },
-    
   
     removeFile() {
-
-      this.selectedFile = null;
-      this.student.fircopy = null;
-      this.fileSizeError = null;
+      this.clearFile();
       const fileInput = document.querySelector("#fircopy");
       if (fileInput) {
         fileInput.value = "";
       }
     },
     
+    clearFile() {
+      this.selectedFile = null;
+      this.student.fircopy = null;
+      this.fileSizeError = null;
+    },
   
-    getFileUrl(file) {
-      if (!file) return "";
-      return file instanceof File ? URL.createObjectURL(file) : `/storage/${file}`;
-  },
+    getFileUrl() {
+      if (this.selectedFile) {
+        return URL.createObjectURL(this.selectedFile); 
+      } else if (typeof this.student.fircopy === "string" && this.student.fircopy.trim() !== "") {
+        return `/storage/${this.student.fircopy}`; 
+      }
+    },
 
     async addStudentForm() {
       const toast = useToast();

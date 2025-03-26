@@ -300,7 +300,7 @@ watch(() => formStore.countries, (newCountries) => {
 
             <!-- File Input -->
             <input type="file" id="fircopy" name="fircopy" @change="formStore.handleFileUpload" class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 
-                focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
+        focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.fileSizeError }"
                 accept=".pdf,.jpg,.jpeg,.png" />
 
@@ -312,27 +312,25 @@ watch(() => formStore.countries, (newCountries) => {
             </p>
 
             <!-- Show Uploaded File Link & File Name -->
-            <template
-                v-if="formStore.selectedFile || (formStore.student.fircopy && typeof formStore.student.fircopy === 'string')">
-                <a :href="formStore.getFileUrl(formStore.selectedFile || formStore.student.fircopy)" target="_blank"
-                    class="text-blue-500 hover:underline">
+            <template v-if="formStore.getFileUrl()">
+                <a :href="formStore.getFileUrl()" target="_blank" class="text-blue-500 hover:underline">
                     View Uploaded File
                 </a>
 
                 <div class="mt-2 flex items-center space-x-2">
                     <span class="text-sm text-gray-700">
-                        <!-- If a file is selected, display its name, else extract file name from stored path -->
-                        {{ formStore.selectedFile ? formStore.selectedFile.name :
-                            formStore.student.fircopy.split('/').pop() }}
+                        {{ formStore.selectedFile?.name || formStore.student?.fircopy?.split('/').pop() ||
+                            'No file uploaded' }}
                     </span>
-                    <button type="button" @click="formStore.removeFile" class="text-red-500 text-sm underline">
+
+                    <button type="button" @click="formStore.removeFile" class="text-red-500 text-sm underline"
+                        :disabled="!formStore.selectedFile && !formStore.student?.fircopy">
                         Remove File
                     </button>
                 </div>
             </template>
-
-            <InputError :message="formStore.fileSizeError" class="mt-2" />
         </div>
+
 
 
 

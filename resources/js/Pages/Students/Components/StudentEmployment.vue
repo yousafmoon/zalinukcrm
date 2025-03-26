@@ -45,17 +45,17 @@ const removeJob = (index) => {
             <div class="col-span-6 sm:col-span-6 md:col-span-4">
                 <div class="mt-1 space-y-2">
                     <label class="inline-flex items-center">
-                        <input type="radio" v-model="job.personal_circumstances" value="Employed full time"
+                        <input type="radio" v-model="job.personal_circumstances" :value="'Employed full time'"
                             class="form-radio text-blue-500">
                         <span class="ml-2 mr-2 text-sm">Employed full time</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" v-model="job.personal_circumstances" value="Self employed"
+                        <input type="radio" v-model="job.personal_circumstances" :value="'Self employed'"
                             class="form-radio text-blue-500">
                         <span class="ml-2 mr-2 text-sm">Self employed</span>
                     </label>
                     <label class="inline-flex items-center">
-                        <input type="radio" v-model="job.personal_circumstances" value="Student"
+                        <input type="radio" v-model="job.personal_circumstances" :value="'Student'"
                             class="form-radio text-blue-500">
                         <span class="ml-2 mr-2 text-sm">Student</span>
                     </label>

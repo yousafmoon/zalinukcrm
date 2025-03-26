@@ -2,13 +2,13 @@
 
 namespace App\Repositories;
 
-use App\Models\FinancialDetails;
+use App\Models\FirstPassportDetails; 
 
-class FinancialDetailsRepository
+class FirstPassportDetailsRepository
 {
     protected $model;
 
-    public function __construct(FinancialDetails $model)
+    public function __construct(FirstPassportDetails $model)
     {
         $this->model = $model;
     }

@@ -52,14 +52,14 @@ class StoreStudentRequest extends FormRequest
                 'tuition_payer' => 'nullable|string|max:255',
 
                 // Student Employment (nested array)
-                'StudentEmployment' => 'nullable|array',
+                'StudentEmployment' => 'sometimes|array',
                 'StudentEmployment.*.personal_circumstances' => 'nullable|string|max:255',
                 'StudentEmployment.*.employment_details' => 'nullable|string|max:255',
                 'StudentEmployment.*.present_work' => 'nullable|string|max:255',
                 'StudentEmployment.*.company_name' => 'nullable|string|max:255',
                 'StudentEmployment.*.job_start_date' => 'nullable|date',
                 'StudentEmployment.*.work_address' => 'nullable|string|max:255',
-                'StudentEmployment.*.employer_phone' => 'nullable|string|max:20',
+                'StudentEmployment.*.employer_phone' => 'nullable|numeric|digits_between:8,20',
                 'StudentEmployment.*.employer_email' => 'nullable|email|max:255',
                 'StudentEmployment.*.additional_jobs' => 'nullable|string|max:255',
 
