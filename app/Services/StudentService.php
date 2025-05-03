@@ -2,11 +2,9 @@
 
 namespace App\Services;
 
-use App\Http\Requests\StoreStudentRequest;
-use App\Http\Requests\UpdateStudentRequest;
 use App\Models\Student;
 use App\Repositories\StudentRepository;
-use Illuminate\Support\Facades\Storage;
+use Illuminate\Http\Request;
 
 class StudentService
 {
@@ -17,57 +15,67 @@ class StudentService
         $this->studentRepository = $studentRepository;
     }
 
-    public function getStudents($search)
+    public function storeStudent(Request $request): Student
     {
-        return Student::query()
-            ->when($search, function ($query, $search) {
-                $query->where('firstname', 'like', "%{$search}%")
-                      ->orWhere('email', 'like', "%{$search}%")
-                      ->orWhere('passport_number', 'like', "%{$search}%")
-                      ->orWhere('nationality', 'like', "%{$search}%");
-            })
-            ->orderBy('firstname', 'DESC')
-            ->paginate(10);
+        return $this->studentRepository->saveStudent($request->all());
     }
 
-    public function getStudentById($id)
+    public function storeFinancialDetails(array $financialDetails, Student $student): void
     {
-        return Student::findOrFail($id);
+        $this->studentRepository->saveFinancialDetails($student, $financialDetails);
     }
 
-    public function storeStudent(StoreStudentRequest $request)
+    public function storeStudentEmployment(array $employmentData, Student $student): void
     {
-        $data = $request->validated();
-        $student = $this->studentRepository->create($data);
+        $this->studentRepository->saveStudentEmployment($student, $employmentData);
+    }
 
-        if ($request->hasFile('fircopy')) {
-            $student->clearMediaCollection('fircopy');
-            $student->addMedia($request->file('fircopy'))
-                    ->preservingOriginal()
-                    ->toMediaCollection('fircopy');
+    public function updateStudent(Request $request, Student $student): void
+    {
+        $this->studentRepository->saveStudent($request->all(), $student);
+    }
+
+    public function updateFinancialDetails(array $financialDetails, Student $student): void
+    {
+        foreach ($financialDetails as $details) {
+            $this->studentRepository->saveFinancialDetails($student, $details);
         }
-
-        return $student;
     }
 
-    public function updateStudent(UpdateStudentRequest $request, Student $student)
+    public function updateStudentEmployment(array $employmentData, Student $student): void
     {
-        $validatedData = $request->validated();
-        $this->studentRepository->update($student, $validatedData);
-
-        if ($request->hasFile('fircopy')) {
-            $student->clearMediaCollection('fircopy');
-            $student->addMedia($request->file('fircopy'))
-                    ->preservingOriginal()
-                    ->toMediaCollection('fircopy');
+        foreach ($employmentData as $employment) {
+            $this->studentRepository->saveStudentEmployment($student, $employment);
         }
-
-        return $student;
     }
 
-    public function deleteStudent(Student $student)
+    public function deleteStudent(Student $student): void
     {
-        $student->clearMediaCollection('fircopy');
         $student->delete();
     }
+
+    public function getStudents(?string $search = null)
+    {
+        return Student::when($search, fn($query) =>
+            $query->where('name', 'like', "%{$search}%")
+        )->paginate(10);
+    }
+
+    public function getStudentById($id): Student
+    {
+        return Student::with(['financialDetails', 'studentEmployment'])->findOrFail($id);
+    }
+
+    public function editStudent(Student $student): Student
+    {
+        
+        return $student->load([
+            'financialDetails',
+            'studentEmployment' => function($query) {
+                $query->orderBy('created_at', 'desc');
+            } 
+        ]);
+    }
+    
+    
 }

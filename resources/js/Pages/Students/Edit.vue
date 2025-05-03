@@ -3,7 +3,6 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, usePage } from '@inertiajs/vue3';
 import { onMounted, watch } from 'vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
-import { Inertia } from '@inertiajs/inertia';
 
 // Importing form components
 import PersonalDetails from '@/Pages/Students/Components/PersonalDetails.vue';
@@ -35,19 +34,12 @@ const props = defineProps({
 
 const formStore = useStudentStore();
 
-
 onMounted(() => {
     if (props.student) {
         formStore.setStudent(props.student);
     }
 });
 
-const page = usePage();
-Inertia.on('success', (event) => {
-    if (event.detail.page.props.student) {
-        formStore.setStudent(event.detail.page.props.student);
-    }
-});
 watch(
     () => props.student,
     (newStudent) => {
@@ -58,11 +50,11 @@ watch(
     { deep: true, immediate: true }
 );
 
-
-
 const updateStudent = () => {
     formStore.updateStudentForm();
-};
+}
+
+
 </script>
 
 <template>
@@ -80,8 +72,8 @@ const updateStudent = () => {
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
                 <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
-                    <form @submit.prevent="updateStudent();" enctype="multipart/form-data">
-                        <div class="shadow sm:rounded-md sm:overflow-hidden">
+                    <form @submit.prevent="updateStudent()" enctype="multipart/form-data">
+                        <div class=" shadow sm:rounded-md sm:overflow-hidden">
                             <div class="bg-white py-6 px-4 space-y-6 sm:p-6 relative">
                                 <div class="flex justify-between">
                                     <h3 class="text-lg leading-6 font-medium text-red-700">

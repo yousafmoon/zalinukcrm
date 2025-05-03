@@ -20,13 +20,22 @@ Route::get('/', function () {
 });
 
 Route::get('/dashboard', function () {
+    $user = Auth::user(); 
     $totalStudents = Student::count();
     $students = Student::all();
+
     return Inertia::render('Dashboard', [
         'students' => $students,
         'totalStudents' => $totalStudents,
+        'user' => [
+            'id' => $user->id,
+            'name' => $user->name,
+            'roles' => $user->roles->pluck('name'),
+            'permissions' => $user->getAllPermissions()->pluck('name')
+        ]
     ]);
-})->name('dashboard');
+})->middleware(['auth'])->name('dashboard');
+
 
 Route::get('/students', function () {
     return Inertia::render('Students');
@@ -44,19 +53,19 @@ Route::get('/users', function () {
     return Inertia::render('Users');
 })->middleware(['auth', 'verified'])->name('users');
 
-
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::post('/profile/upload-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    
+
     Route::resource('students', StudentController::class)->middleware(['auth']);
     Route::resource('permissions', PermissionController::class)->middleware(['auth']);
     Route::resource('roles', RoleController::class)->middleware(['auth']);
     Route::resource('users', UserController::class)->middleware(['auth']);
-    
+
 });
+
 
 
 require __DIR__.'/auth.php';

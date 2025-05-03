@@ -1,8 +1,8 @@
 import { defineStore } from "pinia";
-import { useForm } from "@inertiajs/vue3";
-import { Inertia } from '@inertiajs/inertia';
-import { router } from '@inertiajs/vue3';
+import { useForm, router } from "@inertiajs/vue3";
 import { useToast } from "vue-toast-notification";
+import { Inertia } from '@inertiajs/inertia';
+
 import { ref } from "vue";
 export const useStudentStore = defineStore("student", {
   
@@ -30,12 +30,16 @@ export const useStudentStore = defineStore("student", {
       fircopy: "",
       living_situation: "",
       correspondence_address: "",
-      own_property: "",
-      bank_savings: "",
-      tuition_budget: "",
-      bank_funds: "",
-      tuition_payer: "",
-      StudentEmployment: [
+      financialDetails: {
+        own_property: "",
+        bank_savings: "",
+        tuition_budget: "",
+        bank_funds: "",
+        tuition_payer: "",
+        errors: {}
+      },
+      
+      studentEmployment: [
         {
           personal_circumstances: "",
           employment_details: "",
@@ -265,56 +269,111 @@ export const useStudentStore = defineStore("student", {
 
     async addStudentForm() {
       const toast = useToast();
+      const formData = new FormData();
+    
+      // Append student fields
+      for (const key in this.student) {
+        const value = this.student[key];
+        if (key === 'fircopy') {
+          if (value instanceof File) {
+            formData.append('fircopy', value);
+          }
+        } else if (value !== null && value !== undefined) {
+          formData.append(key, value);
+        }
+      }
+    
       try {
-        await this.student.post(route("students.store"), {
-          onSuccess: () => {
-            toast.success("Student added successfully!");
-          },
-          onError: (errors) => {
-            toast.error("Failed to add student.");
-            console.error("Validation errors:", errors);
+        await this.student.post(route("students.store"), formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
           },
         });
+        toast.success("Student added successfully!");
       } catch (error) {
-        toast.error("An unexpected error occurred.");
-        console.error("Error adding student:", error);
+        toast.error("Failed to add student.");
+        if (error.response?.data?.errors) {
+          console.error("Validation errors:", error.response.data.errors);
+        } else {
+          console.error("Error adding student:", error);
+        }
+      }
+    },
+    
+    computed: {
+      isEditMode() {
+        return !!this.student?.id; 
       }
     },
 
-    setStudent(data) {
-      this.student = { ...this.student, ...data, errors: data.errors || {} };
+    setStudent(student) {
+      if (!student) {
+        this.student = {
+          ...this.student, 
+        };
+        return;
+      }
+      const financialDetails = student.financialDetails || {};
+      this.student = {
+        ...this.student,
+        ...student,
+        ...(this.isEditMode ? { errors: student.errors || {} } : {}),
+    
+        financialDetails: {
+          ...this.defaultFinancialDetails(),
+          ...financialDetails,
+          ...(this.isEditMode ? { errors: financialDetails.errors || {} } : {}),
+        },
+      };
+    }
+    ,
+  defaultFinancialDetails() {
+      return {
+          own_property: '',
+          bank_savings: '',
+          tuition_budget: '',
+          bank_funds: '',
+          tuition_payer: '',
+          errors: {}
+      };
   },
-  
-  async updateStudentForm() {
+
+  updateStudentForm() {
     const toast = useToast();
 
-    if (!this.student.id) {
-        toast.error("Student ID is missing.");
-        console.error("Student ID is undefined or null.");
+    if (!this.student || !this.student.id) {
+        toast.error("Student data is missing or invalid.");
         return;
     }
 
-    try {
-        const updateUrl = route('students.update', { student: this.student.id });
-        Inertia.put(updateUrl, this.student, {
-            onSuccess: () => {
-                toast.success("Student updated successfully.");
-                router.visit(route('students.index'), {
-                    preserveScroll: true,
-                    replace: true,
-                });
-            },
-            onError: (errors) => {
-                toast.error("Failed to update student.");
-                console.error("Validation errors:", errors);
-                this.errors = errors;
-            }
-        });
+    const formData = new FormData();
+    formData.append('_method', 'PUT');
 
-    } catch (error) {
-        toast.error("An unexpected error occurred.");
-        console.error("Error updating student:", error);
+    for (const key in this.student) {
+        const value = this.student[key];
+
+        if (value === null || value === undefined) continue;
+
+        if (key === 'fircopy' && value instanceof File) {
+            formData.append(key, value);
+        } else if (Array.isArray(value) || typeof value === 'object') {
+            formData.append(key, JSON.stringify(value));
+        } else {
+            formData.append(key, value);
+        }
     }
+
+    Inertia.post(route('students.update', this.student.id), formData, {
+        preserveScroll: true,
+        onSuccess: () => toast.success("Student updated successfully."),
+        onError: (errors) => {
+            toast.error("Validation failed.");
+            console.error(errors);
+        },
+        onFinish: () => {
+            console.log("Student update request finished.");
+        }
+    });
 },
 
       updateStudentField(field, value) {
@@ -329,7 +388,7 @@ export const useStudentStore = defineStore("student", {
     async handleDelete(studentId) {
       const toast = useToast();
       try {
-          await Inertia.delete(route('students.destroy', { student: studentId }), {
+          await this.student.delete(route('students.destroy', { student: studentId }), {
               onSuccess: () => {
                   toast.success("Student deleted successfully.");
                   router.visit(route('students.index'), {
@@ -420,9 +479,7 @@ export const useStudentStore = defineStore("student", {
       },
       
       removeReference(index) {
-        if (this.student.References.length > 0) {
           this.student.References.splice(index, 1);
-        }
       },
 
       addChild() {
@@ -438,9 +495,7 @@ export const useStudentStore = defineStore("student", {
         });
       },
       removeChild(index) {
-        if (this.student.Childrens.length > 0) {
           this.student.Childrens.splice(index, 1);
-        }
       },
       addRegion() {
         this.student.OverseasTravelHistoryDetails.push({
@@ -456,9 +511,7 @@ export const useStudentStore = defineStore("student", {
         });
     },
     removeRegion(index) {
-        if (this.student.OverseasTravelHistoryDetails.length > 1) {
             this.student.OverseasTravelHistoryDetails.splice(index, 1);
-        }
     },
     addVisit(regionIndex) {
         this.student.OverseasTravelHistoryDetails[regionIndex].visits.push({
@@ -469,9 +522,7 @@ export const useStudentStore = defineStore("student", {
         });
     },
     removeVisit(regionIndex, visitIndex) {
-        if (this.student.OverseasTravelHistoryDetails[regionIndex].visits.length > 1) {
             this.student.OverseasTravelHistoryDetails[regionIndex].visits.splice(visitIndex, 1);
-        }
     },
 
       addFinancialDocument() {
@@ -486,9 +537,7 @@ export const useStudentStore = defineStore("student", {
       },
   
       removeFinancialDocument(index) {
-        if (this.student.FinancialDocuments.length > 0) {
           this.student.FinancialDocuments.splice(index, 1);
-        }
       },
   
       handleFileChange(event, index) {
@@ -499,24 +548,22 @@ export const useStudentStore = defineStore("student", {
         }
       },
 
-      addStudentEmployment() {
-        this.student.StudentEmployment.push({
-          personal_circumstances: "",
-          employment_details: "",
-          present_work: "",
-          company_name: "",
-          job_start_date: "",
-          work_address: "",
-          employer_phone: "",
-          employer_email: "",
-          additional_jobs: "",
+      addstudentEmployment() {
+        this.student.studentEmployment.push({
+            personal_circumstances: '',
+            employment_details: '',
+            present_work: '',
+            company_name: '',
+            job_start_date: '',
+            work_address: '',
+            employer_phone: '',
+            employer_email: '',
+            additional_jobs: '',
         });
-      },
-      removeStudentEmployment(index) {
-        if (this.student.StudentEmployment.length > 0) {
-          this.student.StudentEmployment.splice(index, 1);
-        }
-      },
+    },
+    removestudentEmployment(index) {
+        this.student.studentEmployment.splice(index, 1);
+    },
 
       persist: {
         enabled: true,

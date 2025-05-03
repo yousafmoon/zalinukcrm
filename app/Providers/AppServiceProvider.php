@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Vite;
 use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\File;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -33,6 +34,7 @@ class AppServiceProvider extends ServiceProvider
                 'user' => $user ? [
                     'name' => $user->name,
                     'email' => $user->email,
+                     'roles' => $user->roles->pluck('name')->toArray(),
                 ] : null,
             ];
         });

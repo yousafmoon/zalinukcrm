@@ -7,24 +7,19 @@ use App\Http\Requests\UpdateStudentRequest;
 use App\Http\Resources\StudentResource;
 use App\Models\Student;
 use App\Services\StudentService;
-use App\Services\FinancialDetailsService;
-use App\Services\StudentEmploymentService;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Log;
 
 class StudentController extends Controller
 {
     use AuthorizesRequests;
 
     protected $studentService;
-    protected $financialDetailsService;
-    protected $StudentEmploymentService;
 
-    public function __construct(StudentService $studentService, FinancialDetailsService $financialDetailsService, StudentEmploymentService $StudentEmploymentService)
+    public function __construct(StudentService $studentService)
     {
         $this->studentService = $studentService;
-        $this->financialDetailsService = $financialDetailsService;
-        $this->StudentEmploymentService = $StudentEmploymentService; 
     }
 
     public function middleware(): array
@@ -62,52 +57,100 @@ class StudentController extends Controller
 
     public function store(StoreStudentRequest $request)
     {
-
         $this->authorize('create', Student::class);
         $student = $this->studentService->storeStudent($request);
-    
+        
         if (!$student || !$student->id) {
             return back()->with('error', 'Failed to create student.');
         }
     
-        $financialDetails = $request->only([
-            'own_property', 'bank_savings', 'tuition_budget', 'bank_funds', 'tuition_payer'
-        ]);
+        $financialDetails = $request->input('FinancialDetails');
         $studentEmployment = $request->input('StudentEmployment');
-
+        
         if (!empty($financialDetails)) {
-            $this->financialDetailsService->storeFinancialDetails($financialDetails, $student);
-        }
-    
-        if (!empty($studentEmployment)) {
-            $this->StudentEmploymentService->storeStudentEmployment($studentEmployment, $student);
+            $this->studentService->storeFinancialDetails($financialDetails, $student);
+        }        
+       if (!empty($studentEmployment)) {
+            $this->studentService->storeStudentEmployment($studentEmployment, $student);
         }
     
         return redirect()->route('students.index')->with('message', 'Student created successfully.');
     }
     
-    
-    
-
     public function edit(Student $student)
     {
         $this->authorize('update', $student);
-        $studentData = $this->financialDetailsService->editFinancialDetails($student);
+        $student->load(['financialDetails', 'studentEmployment']);
+
+        $financialDefaults = [
+            'own_property' => "No",
+            'bank_savings' => "No",
+            'tuition_budget' => "",
+            'bank_funds' => "",
+            'tuition_payer' => "",
+        ];
+
+        $financialData = $student->financialDetails
+            ? array_merge($financialDefaults, $student->financialDetails->toArray())
+            : $financialDefaults;
+
+        $booleanFields = ['own_property', 'bank_savings'];
+        foreach ($booleanFields as $field) {
+            if (isset($financialData[$field])) {
+                $financialData[$field] = ($financialData[$field] === 'yes' || $financialData[$field] === 1) ? 'Yes' : 'No';
+            }
+        }
+
+        $employmentData = $student->studentEmployment
+            ? $student->studentEmployment->toArray()
+            : [];
+        $studentData = $student->toArray();
+        unset($studentData['financial_details']); 
+        unset($studentData['student_employment']); 
+
+    $studentData['financialDetails'] = $financialData;
+        $studentData['studentEmployment'] = $employmentData;
 
         return inertia('Students/Edit', [
             'student' => $studentData,
         ]);
     }
     
-
-    public function update(UpdateStudentRequest $request, Student $student)
+    public function update(Student $student, UpdateStudentRequest $request)
     {
+        
+        Log::info('Update request received:', $request->all());
+    
         $this->authorize('update', $student);
-        $this->studentService->updateStudent($request, $student);
-        $this->financialDetailsService->updateFinancialDetails($request->input('financial_details'), $student);
-        return redirect()->route('students.index')->with('message', 'Student updated successfully.');
-    }
+        if ($student->updated_at !== $request->input('updated_at')) {
+            Log::warning('Conflict detected, timestamps do not match.');
+            return response()->json(['error' => 'Conflict detected. Please refresh the page and try again.'], 409);
+        }
+    
 
+        $this->studentService->updateStudent($request, $student);
+    
+        Log::info('Student after update:', $student->toArray());
+    
+        if ($request->has('financialDetails')) {
+            $this->studentService->updateFinancialDetails($request, $student);
+            Log::info('Financial details updated.');
+        }
+    
+        if ($request->has('studentEmployment')) {
+            $this->studentService->updateStudentEmployment($request, $student);
+            Log::info('Student employment updated.');
+        }
+    
+        return redirect()->route('students.edit', $student->id)
+            ->with('success', 'Student updated successfully.');
+    }
+    
+    
+    
+    
+    
+    
     public function destroy(Student $student)
     {
         $this->authorize('delete', $student);

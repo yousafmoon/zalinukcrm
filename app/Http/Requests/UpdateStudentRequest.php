@@ -29,7 +29,7 @@ class UpdateStudentRequest extends FormRequest
             'middlename' => 'nullable|string|max:255',
             'surname' => 'nullable|string|max:255',
             'nickname' => 'nullable|string|max:255',
-            'email' => 'required|email|max:255|unique:students,email,' . $this->student->id,
+            'email' => 'required|email|unique:students,email,' . $this->route('student')->id,
              'gender' => 'nullable|string|max:10',
             'nationality' => 'nullable|string|max:255',
             'date_of_birth' => 'nullable|date',
@@ -45,6 +45,7 @@ class UpdateStudentRequest extends FormRequest
             'correspondence_address' => 'nullable|string|max:255',
 
             // Financial details (nested array)
+            'FinancialDetails' => 'sometimes|array',
             'own_property' => 'nullable|string|max:255',
             'bank_savings' => 'nullable|string|max:255',
             'tuition_budget' => 'nullable|numeric',

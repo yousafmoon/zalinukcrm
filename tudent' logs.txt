@@ -1,0 +1,830 @@
+laravel.test-1  | 2025-03-14 17:54:56,133 INFO Set uid to user 0 succeeded
+laravel.test-1  | 2025-03-14 17:54:56,136 INFO supervisord started with pid 1
+laravel.test-1  | 2025-03-14 17:54:57,139 INFO spawned: 'php' with pid 16
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  | 2025-03-14 17:54:58,979 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+laravel.test-1  | 2025-03-14 19:11:48,003 INFO reaped unknown pid 55 (exit status 0)
+laravel.test-1  | 2025-03-14 19:15:36,368 INFO reaped unknown pid 165 (exit status 0)
+laravel.test-1  | 2025-03-14 19:23:14,722 INFO reaped unknown pid 215 (exit status 0)
+laravel.test-1  | 2025-03-14 20:12:38,518 INFO reaped unknown pid 291 (exit status 0)
+laravel.test-1  |   2025-03-14 20:50:31 / ................................................ ~ 1s
+laravel.test-1  |   2025-03-14 20:50:32 / .......................................... ~ 506.46ms
+laravel.test-1  |   2025-03-14 20:50:32 .............................................. ~ 1m 17s
+laravel.test-1  | usermod: no changes
+laravel.test-1  | 2025-03-15 12:54:41,368 INFO Set uid to user 0 succeeded
+laravel.test-1  | 2025-03-15 12:54:41,372 INFO supervisord started with pid 1
+laravel.test-1  | 2025-03-15 12:54:42,375 INFO spawned: 'php' with pid 9
+laravel.test-1  | 2025-03-15 12:54:50,742 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  | 
+laravel.test-1  |    INFO  Environment modified. Restarting server...  
+laravel.test-1  | 
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  | usermod: no changes
+laravel.test-1  | 2025-03-15 18:23:34,206 INFO Set uid to user 0 succeeded
+laravel.test-1  | 2025-03-15 18:23:34,212 INFO supervisord started with pid 1
+laravel.test-1  | 2025-03-15 18:23:35,217 INFO spawned: 'php' with pid 9
+laravel.test-1  | 2025-03-15 18:23:36,237 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  | usermod: no changes
+laravel.test-1  | 2025-03-16 10:47:13,907 INFO Set uid to user 0 succeeded
+laravel.test-1  | 2025-03-16 10:47:13,912 INFO supervisord started with pid 1
+laravel.test-1  | 2025-03-16 10:47:14,914 INFO spawned: 'php' with pid 9
+laravel.test-1  | 2025-03-16 10:47:26,509 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  |   2025-03-16 14:17:48 / .......................................... ~ 502.63ms
+laravel.test-1  |   2025-03-16 14:17:49 /favicon.ico ................................. ~ 0.73ms
+laravel.test-1  |   2025-03-16 14:18:29 / ............................................ ~ 0.20ms
+laravel.test-1  |   2025-03-16 14:18:29 /favicon.ico ..................................... ~ 2s
+laravel.test-1  |   2025-03-16 14:20:39 /login ..................................... ~ 505.34ms
+laravel.test-1  |   2025-03-16 15:17:54 / ............................................ ~ 0.21ms
+laravel.test-1  |   2025-03-16 15:17:54 /favicon.ico ............................... ~ 513.37ms
+laravel.test-1  |   2025-03-16 15:18:04 /login ....................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 15:18:08 /register .................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 15:18:08 /login ........................................... ~ 3s
+laravel.test-1  |   2025-03-16 15:18:22 .............................................. ~ 1m 10s
+laravel.test-1  | 2025-03-16 15:22:36,927 INFO reaped unknown pid 193 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:22:43,959 INFO reaped unknown pid 194 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:22:57,556 INFO reaped unknown pid 195 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:23:11,307 INFO reaped unknown pid 196 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:23:23,915 INFO reaped unknown pid 197 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:23:47,206 INFO reaped unknown pid 198 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:24:49,765 INFO reaped unknown pid 199 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:24:53,398 INFO reaped unknown pid 200 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:24:53,399 INFO reaped unknown pid 201 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:24:53,399 INFO reaped unknown pid 202 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:24:53,399 INFO reaped unknown pid 203 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:25:57,606 INFO reaped unknown pid 204 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:26:01,196 INFO reaped unknown pid 205 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:26:45,875 INFO reaped unknown pid 206 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 15:26:56 /login ....................................... ~ 0.62ms
+laravel.test-1  |   2025-03-16 15:26:56 /favicon.ico ................................. ~ 0.41ms
+laravel.test-1  |   2025-03-16 15:27:09 /login ..................................... ~ 500.79ms
+laravel.test-1  |   2025-03-16 15:27:09 /dashboard ................................... ~ 0.19ms
+laravel.test-1  |   2025-03-16 15:27:45 /images/profile-pic.jpg ...................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 15:27:59 /profile ..................................... ~ 0.23ms
+laravel.test-1  |   2025-03-16 15:29:01 /profile ................................... ~ 501.64ms
+laravel.test-1  |   2025-03-16 15:29:11 /logout ...................................... ~ 0.48ms
+laravel.test-1  |   2025-03-16 15:29:12 / ............................................ ~ 0.37ms
+laravel.test-1  |   2025-03-16 15:29:16 / ............................................ ~ 0.17ms
+laravel.test-1  |   2025-03-16 15:29:16 /favicon.ico ............................... ~ 500.87ms
+laravel.test-1  | 2025-03-16 15:31:24,934 INFO reaped unknown pid 209 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 15:31:24,935 INFO reaped unknown pid 212 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 15:31:24,935 INFO reaped unknown pid 192 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 15:32:27 / ............................................ ~ 0.28ms
+laravel.test-1  |   2025-03-16 15:32:27 /favicon.ico ............................... ~ 500.87ms
+laravel.test-1  |   2025-03-16 15:32:38 /login ....................................... ~ 0.20ms
+laravel.test-1  |   2025-03-16 15:32:37 /login ..................................... ~ 501.30ms
+laravel.test-1  |   2025-03-16 15:32:37 /dashboard ................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 15:32:38 /images/profile-pic.jpg ...................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 15:32:40 /profile ..................................... ~ 0.23ms
+laravel.test-1  | 2025-03-16 15:34:06,509 INFO reaped unknown pid 235 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:34:06,509 INFO reaped unknown pid 236 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:34:06,509 INFO reaped unknown pid 237 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 15:34:06,509 INFO reaped unknown pid 240 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 15:34:13 /profile ..................................... ~ 0.51ms
+laravel.test-1  |   2025-03-16 15:34:13 /images/profile-pic.jpg .................... ~ -38.60ms
+laravel.test-1  |   2025-03-16 15:34:23 /favicon.ico ................................. ~ 0.18ms
+laravel.test-1  |   2025-03-16 15:34:15 /dashboard ................................. ~ 505.82ms
+laravel.test-1  |   2025-03-16 15:34:28 /profile ................................ ~ -9,833.50ms
+laravel.test-1  | 2025-03-16 16:01:02,868 INFO reaped unknown pid 243 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 246 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 247 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 248 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 249 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 252 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 253 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:01:02,869 INFO reaped unknown pid 256 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:01:09 /profile ..................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 16:01:09 /images/profile-pic.jpg .................... ~ 501.47ms
+laravel.test-1  |   2025-03-16 16:01:10 /favicon.ico ................................. ~ 0.30ms
+laravel.test-1  |   2025-03-16 16:01:13 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 16:01:16 /profile ..................................... ~ 0.28ms
+laravel.test-1  |   2025-03-16 16:03:17 /profile/upload-image ........................ ~ 0.30ms
+laravel.test-1  |   2025-03-16 16:03:18 /storage//storage/http://localhost/storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.16ms
+laravel.test-1  |   2025-03-16 16:03:19 /profile ..................................... ~ 0.34ms
+laravel.test-1  |   2025-03-16 16:03:19 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.16ms
+laravel.test-1  |   2025-03-16 16:03:19 /favicon.ico ................................. ~ 0.37ms
+laravel.test-1  | 2025-03-16 16:06:13,088 INFO reaped unknown pid 259 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 262 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 263 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 264 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 265 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 266 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 269 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 270 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 271 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 272 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:06:13,089 INFO reaped unknown pid 275 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:06:19 /profile ..................................... ~ 0.22ms
+laravel.test-1  |   2025-03-16 16:06:19 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 501.98ms
+laravel.test-1  |   2025-03-16 16:06:19 /favicon.ico ................................. ~ 0.47ms
+laravel.test-1  |   2025-03-16 16:06:21 /dashboard ................................... ~ 0.34ms
+laravel.test-1  |   2025-03-16 16:06:21 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 503.55ms
+laravel.test-1  |   2025-03-16 16:06:22 /dashboard ................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 16:06:22 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.09ms
+laravel.test-1  |   2025-03-16 16:06:24 /students .................................. ~ 503.72ms
+laravel.test-1  |   2025-03-16 16:06:25 /students ....................................... ~ 25s
+laravel.test-1  |   2025-03-16 16:06:50 /students ....................................... ~ 13s
+laravel.test-1  |   2025-03-16 16:07:03 /favicon.ico ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 16:07:16 / ............................................... ~ 10s
+laravel.test-1  |   2025-03-16 16:07:18 /dashboard ................................... ~ 0.21ms
+laravel.test-1  |   2025-03-16 16:07:19 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.46ms
+laravel.test-1  | 2025-03-16 16:07:56,423 INFO reaped unknown pid 278 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:07:56,423 INFO reaped unknown pid 234 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:07:56,423 INFO reaped unknown pid 281 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 16:08:02 /dashboard ................................... ~ 0.40ms
+laravel.test-1  |   2025-03-16 16:08:02 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ -17.05ms
+laravel.test-1  |   2025-03-16 16:08:12 /favicon.ico ................................. ~ 0.55ms
+laravel.test-1  |   2025-03-16 16:08:17 /profile ..................................... ~ 0.17ms
+laravel.test-1  |   2025-03-16 16:08:09 /dashboard ................................... ~ 0.48ms
+laravel.test-1  | 2025-03-16 16:11:38,227 INFO reaped unknown pid 297 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:11:38,227 INFO reaped unknown pid 298 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:11:38,227 INFO reaped unknown pid 299 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:11:38,228 INFO reaped unknown pid 300 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:11:39,230 INFO reaped unknown pid 301 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:11:47 /dashboard ................................... ~ 0.20ms
+laravel.test-1  |   2025-03-16 16:11:47 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:11:48 /favicon.ico ................................. ~ 0.50ms
+laravel.test-1  | 2025-03-16 16:13:53,041 INFO reaped unknown pid 304 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:13:53,041 INFO reaped unknown pid 307 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:13:53,041 INFO reaped unknown pid 308 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:13:53,041 INFO reaped unknown pid 311 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:13:53,041 INFO reaped unknown pid 312 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:03,096 INFO reaped unknown pid 315 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:04,790 INFO reaped unknown pid 318 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:04,790 INFO reaped unknown pid 321 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:04,790 INFO reaped unknown pid 322 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:04,790 INFO reaped unknown pid 323 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:04,791 INFO reaped unknown pid 324 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:14:06,469 INFO reaped unknown pid 325 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:14:06,470 INFO reaped unknown pid 326 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:14:06,470 INFO reaped unknown pid 296 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:15:03 /dashboard .............................. ~ -9,845.60ms
+laravel.test-1  |   2025-03-16 16:15:03 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.31ms
+laravel.test-1  |   2025-03-16 16:14:53 /favicon.ico ................................. ~ 0.33ms
+laravel.test-1  | 2025-03-16 16:15:18,868 INFO reaped unknown pid 349 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:15:57,437 INFO reaped unknown pid 350 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:15:57,438 INFO reaped unknown pid 351 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:15:57,438 INFO reaped unknown pid 352 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:15:57,438 INFO reaped unknown pid 353 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:16:06 /dashboard ................................. ~ 502.80ms
+laravel.test-1  |   2025-03-16 16:16:06 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.47ms
+laravel.test-1  |   2025-03-16 16:16:06 /favicon.ico ................................. ~ 0.47ms
+laravel.test-1  | 2025-03-16 16:16:23,946 INFO reaped unknown pid 356 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:16:23,946 INFO reaped unknown pid 357 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:16:46,196 INFO reaped unknown pid 358 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:17:18,353 INFO reaped unknown pid 359 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:17:18,353 INFO reaped unknown pid 360 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:17:20,067 INFO reaped unknown pid 361 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:17:32,055 INFO reaped unknown pid 362 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:08,748 INFO reaped unknown pid 363 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:20:08,749 INFO reaped unknown pid 364 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:20:08,749 INFO reaped unknown pid 348 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:08,749 INFO reaped unknown pid 366 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:20:08,749 INFO reaped unknown pid 365 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:20:14,305 INFO reaped unknown pid 377 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:14,305 INFO reaped unknown pid 378 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:14,305 INFO reaped unknown pid 379 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:14,306 INFO reaped unknown pid 380 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,958 INFO reaped unknown pid 381 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,958 INFO reaped unknown pid 382 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 383 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 384 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 387 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 390 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 393 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,959 INFO reaped unknown pid 396 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,960 INFO reaped unknown pid 399 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,960 INFO reaped unknown pid 400 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,960 INFO reaped unknown pid 403 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:20:52,960 INFO reaped unknown pid 406 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:20:58 /dashboard ................................... ~ 0.33ms
+laravel.test-1  |   2025-03-16 16:21:02 /dashboard ................................... ~ 0.20ms
+laravel.test-1  |   2025-03-16 16:21:02 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.16ms
+laravel.test-1  |   2025-03-16 16:21:02 /favicon.ico ................................. ~ 0.52ms
+laravel.test-1  |   2025-03-16 16:21:04 /students .................................. ~ 501.15ms
+laravel.test-1  | 2025-03-16 16:21:29,336 INFO reaped unknown pid 409 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:21:04 /dashboard ...................................... ~ 40s
+laravel.test-1  |   2025-03-16 16:21:07 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 38s
+laravel.test-1  |   2025-03-16 16:21:45 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:22:10 /dashboard ................................. ~ 501.69ms
+laravel.test-1  |   2025-03-16 16:22:12 /dashboard ................................... ~ 0.47ms
+laravel.test-1  |   2025-03-16 16:22:14 /dashboard ................................... ~ 0.45ms
+laravel.test-1  |   2025-03-16 16:22:15 /dashboard ................................... ~ 0.17ms
+laravel.test-1  |   2025-03-16 16:22:16 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.15ms
+laravel.test-1  |   2025-03-16 16:22:16 /favicon.ico ................................. ~ 0.57ms
+laravel.test-1  | 2025-03-16 16:23:55,135 INFO reaped unknown pid 412 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:23:55,135 INFO reaped unknown pid 376 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:23:55,135 INFO reaped unknown pid 414 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:23:55,135 INFO reaped unknown pid 415 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:23:55,136 INFO reaped unknown pid 413 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:23:59,644 INFO reaped unknown pid 432 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:23:59,645 INFO reaped unknown pid 433 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:23:59,645 INFO reaped unknown pid 436 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:24:07,974 INFO reaped unknown pid 437 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:24:07,974 INFO reaped unknown pid 438 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:24:07,974 INFO reaped unknown pid 439 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:24:07,974 INFO reaped unknown pid 440 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:24:07,974 INFO reaped unknown pid 443 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:25:05 /dashboard ................................... ~ 0.31ms
+laravel.test-1  |   2025-03-16 16:25:06 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 16:25:06 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.21ms
+laravel.test-1  |   2025-03-16 16:25:07 /favicon.ico ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 16:25:09 /profile ................................ ~ -9,855.03ms
+laravel.test-1  |   2025-03-16 16:25:10 /dashboard ................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 16:26:14 /dashboard ................................... ~ 0.40ms
+laravel.test-1  |   2025-03-16 16:26:14 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ -9,875.89ms
+laravel.test-1  |   2025-03-16 16:26:14 /favicon.ico ................................. ~ 0.68ms
+laravel.test-1  |   2025-03-16 16:26:19 /dashboard ................................. ~ 501.97ms
+laravel.test-1  |   2025-03-16 16:28:29 /dashboard .................................. ~ 45.73ms
+laravel.test-1  |   2025-03-16 16:28:29 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.19ms
+laravel.test-1  |   2025-03-16 16:28:39 /favicon.ico ................................. ~ 0.28ms
+laravel.test-1  |   2025-03-16 16:28:32 /dashboard ................................... ~ 0.24ms
+laravel.test-1  |   2025-03-16 16:28:33 /dashboard ................................... ~ 0.21ms
+laravel.test-1  |   2025-03-16 16:28:34 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 10s
+laravel.test-1  |   2025-03-16 16:28:34 /favicon.ico ................................. ~ 0.47ms
+laravel.test-1  |   2025-03-16 16:28:36 /profile ................................... ~ 503.72ms
+laravel.test-1  |   2025-03-16 16:28:38 /dashboard ................................... ~ 0.24ms
+laravel.test-1  |   2025-03-16 16:30:21 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 16:30:21 /favicon.ico ................................. ~ 0.16ms
+laravel.test-1  |   2025-03-16 16:30:36 /dashboard ................................. ~ 509.11ms
+laravel.test-1  |   2025-03-16 16:30:36 /favicon.ico ................................. ~ 0.44ms
+laravel.test-1  |   2025-03-16 16:30:55 /dashboard ................................... ~ 0.27ms
+laravel.test-1  |   2025-03-16 16:30:55 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 504.45ms
+laravel.test-1  |   2025-03-16 16:30:45 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:30:52 /students .................................... ~ 0.19ms
+laravel.test-1  |   2025-03-16 16:30:53 /dashboard ....................................... ~ 6s
+laravel.test-1  |   2025-03-16 16:30:54 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 5s
+laravel.test-1  |   2025-03-16 16:31:00 /favicon.ico ................................. ~ 0.33ms
+laravel.test-1  |   2025-03-16 16:31:02 /dashboard ................................... ~ 0.23ms
+laravel.test-1  |   2025-03-16 16:31:03 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.12ms
+laravel.test-1  |   2025-03-16 16:31:03 /favicon.ico ................................. ~ 0.62ms
+laravel.test-1  | 2025-03-16 16:31:19,566 INFO reaped unknown pid 446 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:31:19,567 INFO reaped unknown pid 449 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:31:27,587 INFO reaped unknown pid 450 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:31:27,587 INFO reaped unknown pid 451 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:31:27,587 INFO reaped unknown pid 452 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:31:27,588 INFO reaped unknown pid 453 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:32:08,834 INFO reaped unknown pid 456 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:32:08,834 INFO reaped unknown pid 457 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:33:37,260 INFO reaped unknown pid 458 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:34:24,898 INFO reaped unknown pid 461 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:34:24,898 INFO reaped unknown pid 462 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:09,512 INFO reaped unknown pid 463 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:09,512 INFO reaped unknown pid 467 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:17,584 INFO reaped unknown pid 468 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:17,585 INFO reaped unknown pid 471 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:17,585 INFO reaped unknown pid 472 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:25,562 INFO reaped unknown pid 475 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:45,648 INFO reaped unknown pid 478 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:35:52,174 INFO reaped unknown pid 481 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:35:58 /dashboard ................................... ~ 0.33ms
+laravel.test-1  |   2025-03-16 16:35:59 /dashboard ................................... ~ 0.29ms
+laravel.test-1  |   2025-03-16 16:36:00 /dashboard ................................... ~ 0.47ms
+laravel.test-1  |   2025-03-16 16:36:02 /profile ................................... ~ 501.83ms
+laravel.test-1  |   2025-03-16 16:36:05 /dashboard ................................... ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:36:07 /students .................................... ~ 0.24ms
+laravel.test-1  |   2025-03-16 16:36:08 /dashboard ....................................... ~ 2s
+laravel.test-1  | 2025-03-16 16:36:47,398 INFO reaped unknown pid 484 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:36:47,398 INFO reaped unknown pid 487 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:36:47,398 INFO reaped unknown pid 488 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:37:11,984 INFO reaped unknown pid 491 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:36:10 .............................................. ~ 1m 11s
+laravel.test-1  | 2025-03-16 16:37:28,758 INFO reaped unknown pid 494 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:37:28,759 INFO reaped unknown pid 495 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:38:49,082 INFO reaped unknown pid 496 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:39:50,845 INFO reaped unknown pid 500 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:39:50,845 INFO reaped unknown pid 504 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:39:50,845 INFO reaped unknown pid 505 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:39:50,846 INFO reaped unknown pid 508 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:39:50,846 INFO reaped unknown pid 511 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:40:00,823 INFO reaped unknown pid 514 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:40:15,742 INFO reaped unknown pid 517 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:40:23,931 INFO reaped unknown pid 520 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:40:24 /dashboard ................................. ~ 502.93ms
+laravel.test-1  |   2025-03-16 16:40:24 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.12ms
+laravel.test-1  |   2025-03-16 16:40:24 /favicon.ico ................................. ~ 0.32ms
+laravel.test-1  | 2025-03-16 16:41:00,689 INFO reaped unknown pid 521 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:41:00,689 INFO reaped unknown pid 522 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:41:00,689 INFO reaped unknown pid 431 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:41:00,690 INFO reaped unknown pid 524 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:41:00,690 INFO reaped unknown pid 523 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:41:18,735 INFO reaped unknown pid 534 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:41:22,186 INFO reaped unknown pid 535 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:41:22,186 INFO reaped unknown pid 539 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:41:22,187 INFO reaped unknown pid 533 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:42:53,655 INFO reaped unknown pid 548 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:42:53,656 INFO reaped unknown pid 549 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 16:42:53,657 INFO reaped unknown pid 550 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:42:53,657 INFO reaped unknown pid 547 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:42:53,657 INFO reaped unknown pid 551 (terminated by SIGHUP)
+laravel.test-1  | 2025-03-16 16:42:58,250 INFO reaped unknown pid 563 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:42:58,250 INFO reaped unknown pid 564 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:42:58,250 INFO reaped unknown pid 565 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:43:03 /dashboard ................................... ~ 0.55ms
+laravel.test-1  |   2025-03-16 16:43:03 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.41ms
+laravel.test-1  |   2025-03-16 16:43:03 /favicon.ico ................................. ~ 0.40ms
+laravel.test-1  |   2025-03-16 16:43:05 /profile ..................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 16:43:07 /dashboard ................................... ~ 0.53ms
+laravel.test-1  | 2025-03-16 16:43:38,530 INFO reaped unknown pid 568 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 571 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 572 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 573 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 576 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 577 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:43:38,531 INFO reaped unknown pid 580 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:43:41 /dashboard ................................... ~ 0.29ms
+laravel.test-1  |   2025-03-16 16:43:42 /dashboard ................................. ~ 503.78ms
+laravel.test-1  | 2025-03-16 16:44:22,223 INFO reaped unknown pid 581 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:44:22,223 INFO reaped unknown pid 584 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:44:31 /dashboard ................................. ~ 501.59ms
+laravel.test-1  |   2025-03-16 16:44:32 /dashboard ................................... ~ 0.13ms
+laravel.test-1  |   2025-03-16 16:44:32 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.20ms
+laravel.test-1  |   2025-03-16 16:44:32 /favicon.ico ................................. ~ 0.15ms
+laravel.test-1  | 2025-03-16 16:44:43,630 INFO reaped unknown pid 585 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:44:43,630 INFO reaped unknown pid 589 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 590 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 592 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 593 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 594 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 597 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:45:12,854 INFO reaped unknown pid 600 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:45:43 /dashboard ................................... ~ 0.30ms
+laravel.test-1  | 2025-03-16 16:46:41,786 INFO reaped unknown pid 601 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:46:41,787 INFO reaped unknown pid 605 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:46:41,787 INFO reaped unknown pid 606 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:46:41,787 INFO reaped unknown pid 607 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:53:23,633 INFO reaped unknown pid 608 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:53:23,633 INFO reaped unknown pid 612 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:53:23,633 INFO reaped unknown pid 613 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:53:23,633 INFO reaped unknown pid 614 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:54:29,551 INFO reaped unknown pid 615 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:56:21 /dashboard ................................... ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:56:21 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 10s
+laravel.test-1  |   2025-03-16 16:56:21 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  |   2025-03-16 16:56:23 /students .................................. ~ 501.73ms
+laravel.test-1  |   2025-03-16 16:56:23 /roles ........................................... ~ 9s
+laravel.test-1  |   2025-03-16 16:56:25 /roles ........................................... ~ 7s
+laravel.test-1  | 2025-03-16 16:57:20,606 INFO reaped unknown pid 620 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:57:20,606 INFO reaped unknown pid 624 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:56:33 ............................................... ~ 1m 9s
+laravel.test-1  | 2025-03-16 16:58:42,320 INFO reaped unknown pid 625 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:58:42,321 INFO reaped unknown pid 630 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 16:58:42,321 INFO reaped unknown pid 631 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:58:42 /permissions ................................. ~ 0.21ms
+laravel.test-1  |   2025-03-16 16:58:43 /permissions ............................... ~ 500.98ms
+laravel.test-1  |   2025-03-16 16:58:43 / ................................................ ~ 5s
+laravel.test-1  |   2025-03-16 16:58:52 /users ..................................... ~ 500.94ms
+laravel.test-1  |   2025-03-16 16:58:52 /students/ ...................................... ~ 14s
+laravel.test-1  |   2025-03-16 16:58:57 / ....................................... ~ -6,323.44ms
+laravel.test-1  |   2025-03-16 16:59:03 /roles ........................................... ~ 1s
+laravel.test-1  | 2025-03-16 17:00:09,892 INFO reaped unknown pid 634 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 17:00:09,892 INFO reaped unknown pid 635 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 17:00:09,892 INFO reaped unknown pid 562 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 16:59:03 .............................................. ~ 1m 13s
+laravel.test-1  |   2025-03-16 17:02:45 /roles ..................................... ~ 500.76ms
+laravel.test-1  |   2025-03-16 17:02:46 / ................................................ ~ 5s
+laravel.test-1  |   2025-03-16 17:02:52 /roles ..................................... ~ 501.12ms
+laravel.test-1  |   2025-03-16 17:02:52 /dashboard ....................................... ~ 2s
+laravel.test-1  |   2025-03-16 17:02:54 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.30ms
+laravel.test-1  |   2025-03-16 17:02:57 /profile ..................................... ~ 0.35ms
+laravel.test-1  |   2025-03-16 17:03:02 /dashboard ................................... ~ 0.31ms
+laravel.test-1  |   2025-03-16 17:03:05 /students .................................... ~ 0.19ms
+laravel.test-1  |   2025-03-16 17:03:05 /dashboard ....................................... ~ 3s
+laravel.test-1  |   2025-03-16 17:03:08 .............................................. ~ 1m 14s
+laravel.test-1  |   2025-03-16 17:04:48 /dashboard ................................... ~ 0.20ms
+laravel.test-1  |   2025-03-16 17:04:48 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 501.16ms
+laravel.test-1  |   2025-03-16 17:04:48 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  |   2025-03-16 17:04:57 /dashboard ................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:04:57 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 501.38ms
+laravel.test-1  |   2025-03-16 17:04:58 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  | 2025-03-16 17:05:57,994 INFO reaped unknown pid 672 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 17:05:57,995 INFO reaped unknown pid 673 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 17:05:57,995 INFO reaped unknown pid 676 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 17:06:52 /dashboard ................................... ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:07:03 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ -9,947.09ms
+laravel.test-1  |   2025-03-16 17:07:03 /favicon.ico ................................. ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:07:08 /dashboard ................................... ~ 0.43ms
+laravel.test-1  |   2025-03-16 17:07:08 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.51ms
+laravel.test-1  |   2025-03-16 17:07:08 /favicon.ico ................................. ~ 0.52ms
+laravel.test-1  |   2025-03-16 17:07:03 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:07:03 /favicon.ico ............................... ~ 503.81ms
+laravel.test-1  |   2025-03-16 17:07:04 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.09ms
+laravel.test-1  |   2025-03-16 17:07:07 /logout ...................................... ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:07:07 / ............................................ ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:07:13 /register .................................... ~ 0.19ms
+laravel.test-1  |   2025-03-16 17:07:13 / ....................................... ~ -2,796.48ms
+laravel.test-1  |   2025-03-16 17:07:20 /login ........................................... ~ 4s
+laravel.test-1  |   2025-03-16 17:07:47 /login ..................................... ~ 150.88ms
+laravel.test-1  |   2025-03-16 17:07:58 /dashboard ................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:07:48 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:07:53 /profile ..................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 17:07:54 /dashboard ................................... ~ 0.45ms
+laravel.test-1  |   2025-03-16 17:07:56 /students .................................... ~ 0.25ms
+laravel.test-1  |   2025-03-16 17:07:56 /dashboard ....................................... ~ 1s
+laravel.test-1  |   2025-03-16 17:07:58 /dashboard ....................................... ~ 7s
+laravel.test-1  |   2025-03-16 17:08:05 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.68ms
+laravel.test-1  |   2025-03-16 17:08:06 /favicon.ico ................................. ~ 0.34ms
+laravel.test-1  | 2025-03-16 17:09:23,031 INFO reaped unknown pid 679 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 17:09:23,031 INFO reaped unknown pid 680 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 17:09:44,742 INFO reaped unknown pid 681 (terminated by SIGKILL)
+laravel.test-1  |   2025-03-16 17:12:23 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:12:23 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 10s
+laravel.test-1  |   2025-03-16 17:12:23 /favicon.ico ................................. ~ 0.15ms
+laravel.test-1  |   2025-03-16 17:12:37 /students .................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:12:30 /profile ..................................... ~ 0.28ms
+laravel.test-1  |   2025-03-16 17:12:30 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 500.86ms
+laravel.test-1  |   2025-03-16 17:12:31 /favicon.ico ................................. ~ 0.25ms
+laravel.test-1  |   2025-03-16 17:12:36 /profile ................................... ~ 506.69ms
+laravel.test-1  |   2025-03-16 17:12:43 /profile ..................................... ~ 0.28ms
+laravel.test-1  |   2025-03-16 17:12:43 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1.73ms
+laravel.test-1  |   2025-03-16 17:12:43 /favicon.ico ................................. ~ 0.13ms
+laravel.test-1  | 2025-03-16 17:14:36,274 INFO reaped unknown pid 716 (exit status 0)
+laravel.test-1  |   2025-03-16 17:15:35 / .......................................... ~ 501.35ms
+laravel.test-1  |   2025-03-16 17:15:35 /build/assets/app-DSP5uMwR.css ............... ~ 0.24ms
+laravel.test-1  |   2025-03-16 17:15:35 /build/assets/app-D2Eo9eW4.js ................ ~ 0.28ms
+laravel.test-1  |   2025-03-16 17:15:35 /build/assets/Welcome-BF8wpnTA.js ............ ~ 1.48ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/ConfirmPassword-jh3KvpSb.js .... ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/ForgotPassword-CoxRXEel.js ..... ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/Login-BmlPwJ3-.js .............. ~ 0.28ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/Register-BvZIN58V.js ........... ~ 0.38ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/ResetPassword-D6ubcP6D.js ...... ~ 1.55ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/VerifyEmail-nHCphbjW.js ........ ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/Dashboard-DgUFRMTO.js .......... ~ 0.39ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/AuthenticatedLayout-By6Ur5aS.js  ~ 1.76ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/Edit-CK2IGWvb.js ............... ~ 1.04ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/DeleteUserForm-Dkqy_pdr.js ..... ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/UpdatePasswordForm-CjdrJk2b.js . ~ 0.25ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/UpdateProfileInformationForm-DP_qD95O.js  ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/GuestLayout-CwNKy0il.js ........ ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/TextInput-DRTx-Xhx.js .......... ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/PrimaryButton-D2gCNqRb.js ...... ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/ApplicationLogo-DywMcp_z.js .... ~ 0.31ms
+laravel.test-1  |   2025-03-16 17:15:36 /build/assets/_plugin-vue_export-helper-DlAUqK2U.js  ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:15:49 /dashboard ................................. ~ 513.68ms
+laravel.test-1  |   2025-03-16 17:15:49 /build/assets/Dashboard-DgUFRMTO.js .......... ~ 0.29ms
+laravel.test-1  |   2025-03-16 17:15:49 /build/assets/AuthenticatedLayout-By6Ur5aS.js  ~ 0.40ms
+laravel.test-1  |   2025-03-16 17:15:49 /build/assets/ApplicationLogo-DywMcp_z.js .... ~ 0.36ms
+laravel.test-1  |   2025-03-16 17:15:49 /build/assets/_plugin-vue_export-helper-DlAUqK2U.js  ~ 0.36ms
+laravel.test-1  | 2025-03-16 17:15:47,190 INFO reaped unknown pid 684 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 17:15:47,190 INFO reaped unknown pid 687 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 17:15:47,190 INFO reaped unknown pid 671 (terminated by SIGKILL)
+laravel.test-1  | 2025-03-16 17:16:06,336 INFO reaped unknown pid 750 (exit status 0)
+laravel.test-1  | usermod: no changes
+laravel.test-1  | 2025-03-16 17:18:28,247 INFO Set uid to user 0 succeeded
+laravel.test-1  | 2025-03-16 17:18:28,253 INFO supervisord started with pid 1
+laravel.test-1  | 2025-03-16 17:18:39,737 INFO spawned: 'php' with pid 9
+laravel.test-1  |   PHP Warning:  JIT is incompatible with third party extensions that override zend_execute_ex(). JIT disabled. in Unknown on line 0
+laravel.test-1  | 
+laravel.test-1  |    INFO  Server running on [http://0.0.0.0:80].  
+laravel.test-1  | 
+laravel.test-1  |   Press Ctrl+C to stop the server
+laravel.test-1  | 
+laravel.test-1  | 2025-03-16 17:18:32,211 INFO success: php entered RUNNING state, process has stayed up for > than 1 seconds (startsecs)
+laravel.test-1  |   2025-03-16 17:18:38 /dashboard ................................. ~ 500.82ms
+laravel.test-1  |   2025-03-16 17:18:39 /dashboard ....................................... ~ 1s
+laravel.test-1  |   2025-03-16 17:18:39 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1s
+laravel.test-1  |   2025-03-16 17:18:41 /favicon.ico ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:18:46 /students .................................... ~ 0.26ms
+laravel.test-1  |   2025-03-16 17:18:48 /build/assets/app-DSP5uMwR.css ............... ~ 0.52ms
+laravel.test-1  |   2025-03-16 17:18:48 /build/assets/app-D2Eo9eW4.js ................ ~ 2.48ms
+laravel.test-1  |   2025-03-16 17:18:48 /build/assets/Welcome-BF8wpnTA.js ............ ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:18:48 /build/assets/ConfirmPassword-jh3KvpSb.js .... ~ 0.37ms
+laravel.test-1  |   2025-03-16 17:18:48 /build/assets/ForgotPassword-CoxRXEel.js ..... ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/Login-BmlPwJ3-.js .............. ~ 0.28ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/Register-BvZIN58V.js ........... ~ 0.45ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/ResetPassword-D6ubcP6D.js ...... ~ 0.41ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/VerifyEmail-nHCphbjW.js ........ ~ 1.58ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/Dashboard-DgUFRMTO.js .......... ~ 0.38ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/AuthenticatedLayout-By6Ur5aS.js  ~ 0.62ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/Edit-CK2IGWvb.js ............... ~ 1.40ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/DeleteUserForm-Dkqy_pdr.js ..... ~ 0.46ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/UpdatePasswordForm-CjdrJk2b.js . ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/UpdateProfileInformationForm-DP_qD95O.js  ~ 0.32ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/GuestLayout-CwNKy0il.js ........ ~ 0.48ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/TextInput-DRTx-Xhx.js .......... ~ 0.50ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/PrimaryButton-D2gCNqRb.js ...... ~ 0.60ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/ApplicationLogo-DywMcp_z.js .... ~ 0.36ms
+laravel.test-1  |   2025-03-16 17:18:49 /build/assets/_plugin-vue_export-helper-DlAUqK2U.js  ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:19:08 / .......................................... ~ 500.64ms
+laravel.test-1  |   2025-03-16 17:19:08 /dashboard ....................................... ~ 2s
+laravel.test-1  |   2025-03-16 17:19:11 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:20:04 /dashboard ................................... ~ 0.27ms
+laravel.test-1  |   2025-03-16 17:20:04 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:20:04 /favicon.ico ................................. ~ 0.34ms
+laravel.test-1  |   2025-03-16 17:20:07 /permissions ............................... ~ 951.52ms
+laravel.test-1  | 2025-03-16 17:22:57,570 INFO reaped unknown pid 42 (terminated by SIGINT)
+laravel.test-1  | 2025-03-16 17:23:12,605 INFO reaped unknown pid 59 (exit status 0)
+laravel.test-1  |   2025-03-16 17:23:20 /dashboard ................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:23:20 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1s
+laravel.test-1  |   2025-03-16 17:23:21 /favicon.ico ................................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:23:25 /roles ....................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:23:30 / ............................................ ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:23:30 /favicon.ico ................................. ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:23:32 /dashboard ...................................... ~ 10s
+laravel.test-1  |   2025-03-16 17:23:32 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:23:33 /students .................................... ~ 0.43ms
+laravel.test-1  |   2025-03-16 17:23:39 / ............................................ ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:23:39 /favicon.ico ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:24:00 /dashboard ................................... ~ 0.48ms
+laravel.test-1  |   2025-03-16 17:24:00 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.34ms
+laravel.test-1  |   2025-03-16 17:24:49 /dashboard ................................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:24:49 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 500.36ms
+laravel.test-1  |   2025-03-16 17:24:49 /favicon.ico ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:24:50 /dashboard ................................. ~ 500.33ms
+laravel.test-1  |   2025-03-16 17:24:50 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:24:50 /favicon.ico ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:24:53 /dashboard ................................. ~ 500.30ms
+laravel.test-1  |   2025-03-16 17:24:53 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 501.19ms
+laravel.test-1  |   2025-03-16 17:24:53 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:24:55 /students .................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:25:09 /profile ..................................... ~ 0.42ms
+laravel.test-1  |   2025-03-16 17:25:12 /permissions ................................. ~ 0.15ms
+laravel.test-1  |   2025-03-16 17:25:14 /users ....................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:25:28 /users ....................................... ~ 0.40ms
+laravel.test-1  |   2025-03-16 17:25:19 /students .................................. ~ 501.29ms
+laravel.test-1  |   2025-03-16 17:25:20 /dashboard ................................... ~ 0.42ms
+laravel.test-1  | 2025-03-16 17:26:02,225 INFO reaped unknown pid 91 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 17:26:06 /dashboard ................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:26:06 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 11s
+laravel.test-1  |   2025-03-16 17:26:07 /favicon.ico ................................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:26:09 /students .................................. ~ 501.32ms
+laravel.test-1  |   2025-03-16 17:26:14 /permissions ............................... ~ 500.42ms
+laravel.test-1  |   2025-03-16 17:26:17 /dashboard ................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:26:17 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:26:28 /favicon.ico ................................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:26:19 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:26:42 /permissions .................................... ~ 11s
+laravel.test-1  |   2025-03-16 17:28:49 /students .................................... ~ 0.15ms
+laravel.test-1  |   2025-03-16 17:29:55 /users ..................................... ~ 500.99ms
+laravel.test-1  |   2025-03-16 17:30:50 /dashboard ................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:30:50 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 500.88ms
+laravel.test-1  |   2025-03-16 17:30:50 /favicon.ico ................................. ~ 0.09ms
+laravel.test-1  |   2025-03-16 17:30:52 /permissions ................................. ~ 0.10ms
+laravel.test-1  |   2025-03-16 17:30:57 /users ....................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:31:02 /permissions ............................... ~ 500.82ms
+laravel.test-1  |   2025-03-16 17:31:06 /profile ..................................... ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:31:09 /permissions ............................... ~ 500.62ms
+laravel.test-1  |   2025-03-16 17:33:06 /profile ................................... ~ 500.49ms
+laravel.test-1  |   2025-03-16 17:33:06 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:33:06 /favicon.ico ................................. ~ 0.17ms
+laravel.test-1  |   2025-03-16 17:33:14 /profile ..................................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:33:14 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:33:14 /favicon.ico ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:33:16 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:33:17 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:33:22 /roles ..................................... ~ 500.35ms
+laravel.test-1  |   2025-03-16 17:33:22 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:33:24 /users ....................................... ~ 0.46ms
+laravel.test-1  |   2025-03-16 17:33:24 /favicon.ico ................................. ~ 0.07ms
+laravel.test-1  |   2025-03-16 17:33:29 /profile ..................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:33:33 /students .................................... ~ 0.41ms
+laravel.test-1  |   2025-03-16 17:33:40 /permissions ................................. ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:33:42 /profile ..................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:33:44 /roles ....................................... ~ 0.31ms
+laravel.test-1  |   2025-03-16 17:33:46 /dashboard ................................... ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:33:47 /dashboard ................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:33:48 /dashboard ................................... ~ 0.19ms
+laravel.test-1  |   2025-03-16 17:33:48 /students .................................... ~ 0.37ms
+laravel.test-1  |   2025-03-16 17:33:50 /profile ................................... ~ 501.17ms
+laravel.test-1  |   2025-03-16 17:33:50 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.37ms
+laravel.test-1  |   2025-03-16 17:33:50 /favicon.ico ................................. ~ 0.35ms
+laravel.test-1  |   2025-03-16 17:33:51 /students .................................... ~ 0.24ms
+laravel.test-1  |   2025-03-16 17:35:37 /profile ..................................... ~ 0.15ms
+laravel.test-1  |   2025-03-16 17:35:37 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.07ms
+laravel.test-1  |   2025-03-16 17:35:37 /favicon.ico ................................. ~ 0.26ms
+laravel.test-1  |   2025-03-16 17:35:41 /students .................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:35:50 /profile ..................................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:35:50 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:35:50 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:35:54 /students .................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:36:07 /profile ..................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:36:07 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:36:07 /favicon.ico ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:36:30 /profile ..................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:36:30 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.07ms
+laravel.test-1  |   2025-03-16 17:36:30 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:36:33 /students .................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:37:23 /profile ..................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:37:23 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:37:23 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:37:50 /profile ..................................... ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:37:50 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:37:50 /favicon.ico ................................. ~ 0.10ms
+laravel.test-1  |   2025-03-16 17:37:55 /students .................................... ~ 0.33ms
+laravel.test-1  |   2025-03-16 17:38:07 /profile ..................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:38:07 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:38:07 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:38:10 /students .................................. ~ 500.37ms
+laravel.test-1  |   2025-03-16 17:38:24 /students/create ............................. ~ 0.20ms
+laravel.test-1  |   2025-03-16 17:38:24 .............................................. ~ 1m 15s
+laravel.test-1  |   2025-03-16 17:39:33 /students/create ............................. ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:39:33 /favicon.ico ................................. ~ 0.12ms
+laravel.test-1  | 2025-03-16 17:40:08,622 INFO reaped unknown pid 125 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 17:40:15 /students/create ............................. ~ 0.19ms
+laravel.test-1  |   2025-03-16 17:40:15 /favicon.ico ..................................... ~ 1s
+laravel.test-1  |   2025-03-16 17:40:26 /students/ ................................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:40:26 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.44ms
+laravel.test-1  |   2025-03-16 17:40:30 /students/create ............................. ~ 0.10ms
+laravel.test-1  |   2025-03-16 17:40:31 /students/ ....................................... ~ 5s
+laravel.test-1  |   2025-03-16 17:40:36 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:40:37 /students/edit ............................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:40:37 /students/ ....................................... ~ 2s
+laravel.test-1  |   2025-03-16 17:40:40 /students .................................... ~ 0.30ms
+laravel.test-1  |   2025-03-16 17:40:40 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.09ms
+laravel.test-1  |   2025-03-16 17:40:47 /permissions ................................. ~ 0.27ms
+laravel.test-1  |   2025-03-16 17:40:49 /permissions/26/edit ......................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:40:51 /permissions ................................. ~ 0.43ms
+laravel.test-1  |   2025-03-16 17:41:05 /roles ....................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:40:56 /roles/1/edit ................................ ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:41:06 /roles ....................................... ~ 0.47ms
+laravel.test-1  |   2025-03-16 17:41:10 /permissions ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:41:17 /permissions/5 ............................... ~ 0.15ms
+laravel.test-1  |   2025-03-16 17:41:17 /permissions ................................. ~ 0.07ms
+laravel.test-1  |   2025-03-16 17:41:17 /permissions ................................. ~ 0.07ms
+laravel.test-1  |   2025-03-16 17:41:34 /permissions ................................. ~ 0.20ms
+laravel.test-1  |   2025-03-16 17:41:34 /permissions ................................. ~ 0.20ms
+laravel.test-1  |   2025-03-16 17:41:47 /permissions/27 .............................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:41:47 /permissions ................................. ~ 0.10ms
+laravel.test-1  |   2025-03-16 17:41:47 /permissions ............................... ~ 500.34ms
+laravel.test-1  |   2025-03-16 17:42:02 /permissions ............................... ~ 500.59ms
+laravel.test-1  |   2025-03-16 17:42:02 /permissions ................................. ~ 0.05ms
+laravel.test-1  |   2025-03-16 17:42:16 /permissions/29 .............................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:42:16 /permissions ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:42:16 /permissions ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:42:30 /permissions/20 .............................. ~ 0.43ms
+laravel.test-1  |   2025-03-16 17:42:30 /permissions ................................. ~ 0.24ms
+laravel.test-1  |   2025-03-16 17:42:30 /permissions ................................. ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:42:48 /permissions/28 .............................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:42:48 /permissions ................................. ~ 0.05ms
+laravel.test-1  |   2025-03-16 17:42:48 /permissions ................................. ~ 0.05ms
+laravel.test-1  |   2025-03-16 17:42:52 /permissions ................................. ~ 0.27ms
+laravel.test-1  |   2025-03-16 17:42:52 /permissions ................................. ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:42:55 /permissions ................................. ~ 0.44ms
+laravel.test-1  |   2025-03-16 17:42:55 /permissions ................................. ~ 0.29ms
+laravel.test-1  |   2025-03-16 17:43:10 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:43:10 /permissions ................................. ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:43:39 /permissions ................................. ~ 0.30ms
+laravel.test-1  |   2025-03-16 17:43:39 /permissions ................................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:43:57 /roles ....................................... ~ 0.10ms
+laravel.test-1  |   2025-03-16 17:43:58 /roles/1/edit ................................ ~ 0.48ms
+laravel.test-1  |   2025-03-16 17:44:09 /roles ....................................... ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:44:13 /students .................................... ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:44:18 /roles ....................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:21 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:25 /permissions/26 .............................. ~ 0.18ms
+laravel.test-1  |   2025-03-16 17:44:26 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:26 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:29 /permissions ................................. ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:44:29 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:33 /permissions/create .......................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:44:33 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:44:35 /permissions ............................... ~ 501.05ms
+laravel.test-1  |   2025-03-16 17:44:37 /roles ....................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:44:39 /roles/create ................................ ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:44:39 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 10s
+laravel.test-1  |   2025-03-16 17:45:05 /roles ....................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:45:08 /profile ..................................... ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:45:10 /users ....................................... ~ 0.23ms
+laravel.test-1  |   2025-03-16 17:45:11 /dashboard ................................. ~ 501.21ms
+laravel.test-1  |   2025-03-16 17:45:12 /students .................................... ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:45:16 /students/create ............................. ~ 0.46ms
+laravel.test-1  |   2025-03-16 17:45:16 /students/create ................................ ~ 54s
+laravel.test-1  |   2025-03-16 17:46:10 /favicon.ico ................................. ~ 0.39ms
+laravel.test-1  |   2025-03-16 17:46:35 /students/create ........................... ~ 500.37ms
+laravel.test-1  |   2025-03-16 17:46:35 /favicon.ico ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:46:42 /students/create ........................... ~ 500.59ms
+laravel.test-1  |   2025-03-16 17:46:42 /favicon.ico ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:46:46 /students/create ............................. ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:46:46 /favicon.ico ............................... ~ 500.43ms
+laravel.test-1  |   2025-03-16 17:46:51 /students/create ............................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:46:51 /favicon.ico ............................... ~ 500.35ms
+laravel.test-1  |   2025-03-16 17:47:10 /students/create ............................. ~ 0.16ms
+laravel.test-1  |   2025-03-16 17:47:10 /favicon.ico ............................ ~ -9,928.43ms
+laravel.test-1  |   2025-03-16 17:47:15 /students/create ............................. ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:47:15 /favicon.ico ................................. ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:47:20 /students/create ............................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:47:20 /favicon.ico ............................... ~ 500.40ms
+laravel.test-1  |   2025-03-16 17:47:35 /students/create ............................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:47:35 /favicon.ico ............................... ~ 459.13ms
+laravel.test-1  |   2025-03-16 17:47:38 /students/create ............................. ~ 0.13ms
+laravel.test-1  |   2025-03-16 17:47:38 /favicon.ico ............................... ~ 500.40ms
+laravel.test-1  |   2025-03-16 17:47:41 /students/ ................................. ~ 500.33ms
+laravel.test-1  |   2025-03-16 17:47:41 /students .................................... ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:47:47 /students .................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:47:47 /students ....................................... ~ 37s
+laravel.test-1  |   2025-03-16 17:48:24 /favicon.ico ............................... ~ 500.35ms
+laravel.test-1  |   2025-03-16 17:48:25 /students .................................... ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:48:25 /favicon.ico ............................... ~ 500.57ms
+laravel.test-1  |   2025-03-16 17:50:39 /students .................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:50:39 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:50:42 /students .................................... ~ 0.42ms
+laravel.test-1  | 2025-03-16 17:50:56,389 INFO reaped unknown pid 159 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 17:50:43 /students ....................................... ~ 22s
+laravel.test-1  |   2025-03-16 17:51:16 .............................................. ~ 1m 54s
+laravel.test-1  |   2025-03-16 17:53:00 /students ....................................... ~ 10s
+laravel.test-1  |   2025-03-16 17:53:00 /favicon.ico ............................ ~ -9,440.96ms
+laravel.test-1  |   2025-03-16 17:53:16 / ............................................ ~ 0.21ms
+laravel.test-1  |   2025-03-16 17:53:16 /dashboard ....................................... ~ 2s
+laravel.test-1  |   2025-03-16 17:53:18 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:53:22 /permissions ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 17:53:25 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:53:25 /permissions ................................. ~ 0.06ms
+laravel.test-1  |   2025-03-16 17:53:36 /permissions ................................. ~ 0.05ms
+laravel.test-1  |   2025-03-16 17:53:36 /permissions ................................. ~ 0.41ms
+laravel.test-1  |   2025-03-16 17:53:26 /permissions ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:53:26 /permissions ................................. ~ 0.22ms
+laravel.test-1  |   2025-03-16 17:53:29 /permissions ................................. ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:53:29 /permissions ................................. ~ 0.05ms
+laravel.test-1  |   2025-03-16 17:53:40 /permissions ................................. ~ 0.43ms
+laravel.test-1  |   2025-03-16 17:53:40 /permissions ................................. ~ 0.24ms
+laravel.test-1  |   2025-03-16 17:53:40 /permissions ................................. ~ 0.42ms
+laravel.test-1  |   2025-03-16 17:53:40 /permissions ................................. ~ 0.41ms
+laravel.test-1  |   2025-03-16 17:53:48 /roles ..................................... ~ 500.40ms
+laravel.test-1  |   2025-03-16 17:53:49 /roles/1/edit ................................ ~ 0.14ms
+laravel.test-1  |   2025-03-16 17:54:02 /roles ....................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:54:05 /students .................................... ~ 0.31ms
+laravel.test-1  |   2025-03-16 17:55:30 /roles ....................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 17:55:30 /favicon.ico .................................... ~ 10s
+laravel.test-1  |   2025-03-16 17:55:38 /roles ..................................... ~ 500.34ms
+laravel.test-1  |   2025-03-16 17:55:38 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.09ms
+laravel.test-1  |   2025-03-16 17:55:39 /favicon.ico ................................. ~ 0.08ms
+laravel.test-1  |   2025-03-16 17:55:51 /students .................................... ~ 0.12ms
+laravel.test-1  | 2025-03-16 17:56:27,758 INFO reaped unknown pid 195 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 18:14:00 /roles ..................................... ~ 500.38ms
+laravel.test-1  |   2025-03-16 18:14:00 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1s
+laravel.test-1  |   2025-03-16 18:14:01 /favicon.ico ................................. ~ 0.10ms
+laravel.test-1  |   2025-03-16 18:14:14 /students .................................... ~ 0.11ms
+laravel.test-1  |   2025-03-16 18:14:14 /roles ....................................... ~ 0.18ms
+laravel.test-1  |   2025-03-16 18:14:14 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 0.09ms
+laravel.test-1  |   2025-03-16 18:14:15 /favicon.ico ................................. ~ 0.12ms
+laravel.test-1  |   2025-03-16 18:14:17 /dashboard ................................. ~ 501.71ms
+laravel.test-1  |   2025-03-16 18:28:22 /students .................................... ~ 0.46ms
+laravel.test-1  |   2025-03-16 18:28:23 /students .................................... ~ 0.43ms
+laravel.test-1  |   2025-03-16 18:28:24 /students .................................... ~ 0.24ms
+laravel.test-1  |   2025-03-16 18:28:25 /dashboard ................................. ~ 501.14ms
+laravel.test-1  |   2025-03-16 18:28:25 /favicon.ico ................................. ~ 0.34ms
+laravel.test-1  |   2025-03-16 18:28:45 /dashboard ................................... ~ 0.17ms
+laravel.test-1  |   2025-03-16 18:28:45 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1s
+laravel.test-1  |   2025-03-16 18:28:46 /favicon.ico ................................. ~ 0.23ms
+laravel.test-1  |   2025-03-16 18:28:48 /students .................................... ~ 0.28ms
+laravel.test-1  |   2025-03-16 18:28:49 /dashboard ................................... ~ 0.41ms
+laravel.test-1  |   2025-03-16 18:28:49 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 501.03ms
+laravel.test-1  |   2025-03-16 18:28:50 /favicon.ico ................................. ~ 0.38ms
+laravel.test-1  |   2025-03-16 18:28:59 /students .................................... ~ 0.43ms
+laravel.test-1  | 2025-03-16 18:29:19,935 INFO reaped unknown pid 257 (terminated by SIGINT)
+laravel.test-1  |   2025-03-16 18:29:48 /dashboard ................................... ~ 0.25ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/app-DSP5uMwR.css ............... ~ 0.30ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/app-D2Eo9eW4.js ................ ~ 0.18ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/Dashboard-DgUFRMTO.js .......... ~ 0.69ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/AuthenticatedLayout-By6Ur5aS.js  ~ 1.65ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/ApplicationLogo-DywMcp_z.js .... ~ 0.54ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/_plugin-vue_export-helper-DlAUqK2U.js  ~ 0.20ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/ConfirmPassword-jh3KvpSb.js .. ~ 501.17ms
+laravel.test-1  |   2025-03-16 18:29:48 /favicon.ico ................................. ~ 1.85ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/ForgotPassword-CoxRXEel.js ..... ~ 5.22ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/Login-BmlPwJ3-.js .............. ~ 6.22ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/Register-BvZIN58V.js ........... ~ 0.50ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/ResetPassword-D6ubcP6D.js ...... ~ 0.31ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/VerifyEmail-nHCphbjW.js ........ ~ 0.42ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/Edit-CK2IGWvb.js ............... ~ 0.47ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/DeleteUserForm-Dkqy_pdr.js ..... ~ 2.89ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/UpdatePasswordForm-CjdrJk2b.js . ~ 0.37ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/UpdateProfileInformationForm-DP_qD95O.js  ~ 0.35ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/Welcome-BF8wpnTA.js ............ ~ 0.34ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/GuestLayout-CwNKy0il.js ........ ~ 0.18ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/TextInput-DRTx-Xhx.js .......... ~ 0.24ms
+laravel.test-1  |   2025-03-16 18:29:48 /build/assets/PrimaryButton-D2gCNqRb.js ...... ~ 0.24ms
+laravel.test-1  |   2025-03-16 18:29:58 /dashboard ................................... ~ 0.21ms
+laravel.test-1  |   2025-03-16 18:29:58 /storage/profile_images/mAn99fHFpWhxtMwcviCbSa9wll3dMwe4Ljb3Iflx.jpg  ~ 1s
+laravel.test-1  |   2025-03-16 18:30:11 /favicon.ico ................................. ~ 0.23ms
+laravel.test-1  |   2025-03-16 18:30:12 /students .................................. ~ 500.44ms
+laravel.test-1  |   2025-03-16 18:30:13 /students .................................... ~ 0.28ms
+laravel.test-1  |   2025-03-16 18:30:13 /favicon.ico ................................. ~ 0.17ms
+laravel.test-1  |   2025-03-16 18:31:30 /students .................................... ~ 0.17ms

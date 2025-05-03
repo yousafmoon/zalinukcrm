@@ -30,6 +30,8 @@ class ProfileController extends Controller
                 'name' => $user->name,
                 'email' => $user->email,
                 'image_url' => $imageUrl,
+                'roles' => $user->roles->pluck('name'),
+            'permissions' => $user->getAllPermissions()->pluck('name')
             ],
             'defaultImage' => $defaultImage,
         ]);

@@ -18,8 +18,8 @@ class UserResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'email' => $this->email,
-            'image' => $this->image,
-            'roles' => RoleResource::collection($this->roles),
+            'image' => $this->image ? asset('storage/' . $this->image) : null,
+            'roles' => RoleResource::collection($this->whenLoaded('roles')), 
         ];
         
     }

@@ -11,7 +11,7 @@ class StoreUserRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return auth()->check();  // Only authorized users can make this request.
+        return auth()->check();  
     }
 
     /**
@@ -24,7 +24,7 @@ class StoreUserRequest extends FormRequest
         return [
            'name' => 'required|string|max:255',
             'email' => 'required|email|unique:users,email',
-            'image' => 'required|file|image|mimes:jpeg,png,jpg,gif|max:2048', 
+            'image' => 'nullable|file|image|mimes:jpeg,png,jpg,gif|max:2048', 
             'password' => 'required|string|min:6|confirmed',           
             'roles' => 'required', 'array',                   
             'roles.*' => 'exists:roles,name',         

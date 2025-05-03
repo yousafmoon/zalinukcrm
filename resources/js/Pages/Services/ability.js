@@ -22,7 +22,7 @@ export function defineAbilitiesFor(roles) {
       can('view', 'Permissions');
       can('view', 'Roles');
       can('view', 'Users');
-    } else if (roleName === 'editor') {
+    } else if (roleName === 'Editor') {
       can('view', 'Dashboard');
       can('view', 'Students');
     } else if(roleName === 'staff') {

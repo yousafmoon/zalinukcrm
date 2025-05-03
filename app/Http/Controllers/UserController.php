@@ -55,9 +55,6 @@ class UserController extends Controller
     {
         $this->authorize('create', User::class); 
         $user = User::create($request->validated());
-        if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->store('profile_images', 'public');
-        }
         $roles = Role::all()->map(function ($role) use ($user) {
             return [
                 'id' => $role->id,
