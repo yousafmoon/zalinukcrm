@@ -11,12 +11,9 @@ class StudentRepository
     public function saveStudent(array $data, Student $student = null): Student
     {
         $student = $student ?? new Student();
-
-        $studentFields = collect($data)->except([
-            
-            'financialDetails',
-            'studentEmployment'
-        ])->toArray();
+        $studentFields = array_filter($data, function($value) {
+            return $value !== null;
+        });
 
         $student->fill($studentFields);
         $student->save();
@@ -42,7 +39,6 @@ class StudentRepository
         );
     }
     
-
     public function saveStudentEmployment(Student $student, array $employmentData): void
     {
         $student->studentEmployment()->delete();

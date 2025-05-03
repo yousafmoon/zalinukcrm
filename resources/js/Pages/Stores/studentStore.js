@@ -30,6 +30,7 @@ export const useStudentStore = defineStore("student", {
       fircopy: "",
       living_situation: "",
       correspondence_address: "",
+      updated_at:"",
       financialDetails: {
         own_property: "",
         bank_savings: "",
@@ -271,7 +272,6 @@ export const useStudentStore = defineStore("student", {
       const toast = useToast();
       const formData = new FormData();
     
-      // Append student fields
       for (const key in this.student) {
         const value = this.student[key];
         if (key === 'fircopy') {
@@ -342,40 +342,29 @@ export const useStudentStore = defineStore("student", {
     const toast = useToast();
 
     if (!this.student || !this.student.id) {
-        toast.error("Student data is missing or invalid.");
-        return;
+      toast.error("Student data is missing.");
+      return;
     }
 
-    const formData = new FormData();
-    formData.append('_method', 'PUT');
-
-    for (const key in this.student) {
-        const value = this.student[key];
-
-        if (value === null || value === undefined) continue;
-
-        if (key === 'fircopy' && value instanceof File) {
-            formData.append(key, value);
-        } else if (Array.isArray(value) || typeof value === 'object') {
-            formData.append(key, JSON.stringify(value));
+    Inertia.post(route('students.update', this.student.id), {
+      ...this.student,
+      _method: 'PUT',
+    }, {
+      preserveScroll: true,
+      preserveState: true,
+      onSuccess: () => {
+        toast.success("Student updated successfully.");
+      },
+      onError: (errors) => {
+        if (errors.conflict) {
+          toast.error(errors.conflict);
         } else {
-            formData.append(key, value);
+          toast.error("Validation failed.");
+          console.error(errors);
         }
-    }
-
-    Inertia.post(route('students.update', this.student.id), formData, {
-        preserveScroll: true,
-        onSuccess: () => toast.success("Student updated successfully."),
-        onError: (errors) => {
-            toast.error("Validation failed.");
-            console.error(errors);
-        },
-        onFinish: () => {
-            console.log("Student update request finished.");
-        }
+      }
     });
-},
-
+  },
       updateStudentField(field, value) {
         this.student[field] = value;
       },

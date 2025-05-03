@@ -359,5 +359,7 @@ watch(() => formStore.countries, (newCountries) => {
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.correspondence_address }"></textarea>
             <InputError :message="formStore.student.errors.correspondence_address" class="mt-2" />
         </div>
+        <input type="hidden" v-model="formStore.student.updated_at" />
+
     </div>
 </template>

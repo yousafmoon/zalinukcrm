@@ -10,6 +10,7 @@ use App\Services\StudentService;
 use Illuminate\Http\Request;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Log;
+use Carbon\Carbon;
 
 class StudentController extends Controller
 {
@@ -116,39 +117,34 @@ class StudentController extends Controller
         ]);
     }
     
-    public function update(Student $student, UpdateStudentRequest $request)
+    public function update(UpdateStudentRequest $request, Student $student)
     {
         
-        Log::info('Update request received:', $request->all());
-    
-        $this->authorize('update', $student);
-        if ($student->updated_at !== $request->input('updated_at')) {
-            Log::warning('Conflict detected, timestamps do not match.');
-            return response()->json(['error' => 'Conflict detected. Please refresh the page and try again.'], 409);
+        if (Carbon::parse($request->updated_at)->timestamp !== $student->updated_at->timestamp) {
+            return back()->withErrors([
+                'conflict' => 'This record was updated by someone else. Please refresh the page and try again.'
+            ]);
         }
-    
-
+            
         $this->studentService->updateStudent($request, $student);
-    
-        Log::info('Student after update:', $student->toArray());
-    
+        
         if ($request->has('financialDetails')) {
-            $this->studentService->updateFinancialDetails($request, $student);
-            Log::info('Financial details updated.');
+            $this->studentService->updateFinancialDetails($request->input('financialDetails'), $student);
         }
     
         if ($request->has('studentEmployment')) {
-            $this->studentService->updateStudentEmployment($request, $student);
-            Log::info('Student employment updated.');
+            $this->studentService->updateStudentEmployment($request->input('studentEmployment'), $student);
         }
-    
-        return redirect()->route('students.edit', $student->id)
-            ->with('success', 'Student updated successfully.');
+        
+        $studentData = $student->toArray();
+        $studentData['updated_at'] = $student->updated_at->toISOString();
+            
+        return inertia('Students/Edit', [
+            'student' => $studentData,
+            'message' => 'Student updated successfully!',
+            ]);
+        
     }
-    
-    
-    
-    
     
     
     public function destroy(Student $student)

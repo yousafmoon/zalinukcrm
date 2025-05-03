@@ -1,10 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link, usePage } from '@inertiajs/vue3';
+import { Head, Link } from '@inertiajs/vue3';
 import { onMounted, watch } from 'vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 
-// Importing form components
 import PersonalDetails from '@/Pages/Students/Components/PersonalDetails.vue';
 import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
 import StudentEmployment from '@/Pages/Students/Components/StudentEmployment.vue';
@@ -30,6 +29,11 @@ import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
 
 const props = defineProps({
     student: Object,
+    message: String,
+    errors: {
+        type: Object,
+        default: () => ({})
+    }
 });
 
 const formStore = useStudentStore();
@@ -38,22 +42,18 @@ onMounted(() => {
     if (props.student) {
         formStore.setStudent(props.student);
     }
+
 });
 
-watch(
-    () => props.student,
-    (newStudent) => {
-        if (newStudent) {
-            formStore.setStudent(newStudent);
-        }
-    },
-    { deep: true, immediate: true }
-);
+watch(() => props.student, (newStudent) => {
+    if (newStudent) {
+        formStore.setStudent(newStudent);
+    }
+}, { deep: true });
 
 const updateStudent = () => {
     formStore.updateStudentForm();
-}
-
+};
 
 </script>
 

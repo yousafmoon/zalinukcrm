@@ -55,12 +55,12 @@ const removeJob = (index) => formStore.removestudentEmployment(index);
                     <label class="inline-flex items-center">
                         <input type="radio" v-model="job.personal_circumstances" value="Employed full time"
                             class="form-radio text-red-500">
-                        <span class="ml-2 text-sm">Employed full time</span>
+                        <span class="ml-2 text-sm mr-2">Employed full time</span>
                     </label>
                     <label class="inline-flex items-center">
                         <input type="radio" v-model="job.personal_circumstances" value="Self employed"
                             class="form-radio text-red-500">
-                        <span class="ml-2 text-sm">Self employed</span>
+                        <span class="ml-2 text-sm mr-2">Self employed</span>
                     </label>
                     <label class="inline-flex items-center">
                         <input type="radio" v-model="job.personal_circumstances" value="Student"

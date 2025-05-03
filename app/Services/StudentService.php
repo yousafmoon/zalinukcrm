@@ -34,20 +34,32 @@ class StudentService
     {
         $this->studentRepository->saveStudent($request->all(), $student);
     }
-
-    public function updateFinancialDetails(array $financialDetails, Student $student): void
+    public function updateFinancialDetails($requestData, Student $student): void
     {
-        foreach ($financialDetails as $details) {
-            $this->studentRepository->saveFinancialDetails($student, $details);
+        $financialDetails = is_array($requestData)
+            ? $requestData
+            : json_decode($requestData, true);
+    
+        if (!is_array($financialDetails) || json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException('Invalid financialDetails data.');
         }
+    
+        $this->studentRepository->saveFinancialDetails($student, $financialDetails);
     }
-
-    public function updateStudentEmployment(array $employmentData, Student $student): void
+    
+    public function updateStudentEmployment($requestData, Student $student): void
     {
-        foreach ($employmentData as $employment) {
-            $this->studentRepository->saveStudentEmployment($student, $employment);
+        $employmentData = is_array($requestData)
+            ? $requestData
+            : json_decode($requestData, true);
+    
+        if (!is_array($employmentData) || json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException('Invalid studentEmployment data.');
         }
+    
+        $this->studentRepository->saveStudentEmployment($student, $employmentData);
     }
+    
 
     public function deleteStudent(Student $student): void
     {
@@ -69,12 +81,7 @@ class StudentService
     public function editStudent(Student $student): Student
     {
         
-        return $student->load([
-            'financialDetails',
-            'studentEmployment' => function($query) {
-                $query->orderBy('created_at', 'desc');
-            } 
-        ]);
+        return $student->load(['financialDetails','studentEmployment']);
     }
     
     

@@ -13,8 +13,17 @@ class Student extends Model implements HasMedia
         'choice_of_country', 'intake', 'intended_course','firstname', 'middlename', 'surname', 'nickname', 'email', 
         'gender', 'nationality', 'date_of_birth', 'place_of_birth', 'national_insurance', 'other_nationalities', 
         'marital_status', 'criminal_conviction', 'police_clearance', 'disability', 'fircopy', 
-        'living_situation', 'correspondence_address'
+        'living_situation', 'correspondence_address', 'updated_at'
     ];
+
+    public function registerMediaCollections(): void
+    {
+        $this->addMediaCollection('fircopy')
+             ->singleFile()
+             ->acceptsFile(function (File $file) {
+                 return $file->mimeType === 'application/pdf'; 
+             });
+    }
 
     public function financialDetails()
     {
