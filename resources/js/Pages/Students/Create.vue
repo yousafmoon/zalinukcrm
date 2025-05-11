@@ -5,7 +5,7 @@ import PersonalDetails from '@/Pages/Students/Components/PersonalDetails.vue';
 import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
 import StudentEmployment from '@/Pages/Students/Components/StudentEmployment.vue';
 import IncomeDetails from '@/Pages/Students/Components/IncomeDetails.vue';
-import References from '@/Pages/Students/Components/References.vue';
+import studentReferences from '@/Pages/Students/Components/StudentReferences.vue';
 import FinancialDocuments from '@/Pages/Students/Components/FinancialDocuments.vue';
 import ParentsDetails from '@/Pages/Students/Components/ParentsDetails.vue';
 import PassportDetails from '@/Pages/Students/Components/PassportDetails.vue';
@@ -77,7 +77,7 @@ const createStudent = async () => {
                                 <FinancialDetails :student="student" />
                                 <StudentEmployment :student="student" />
                                 <IncomeDetails :student="student" />
-                                <References :student="student" />
+                                <studentReferences :student="student" />
                                 <FinancialDocuments :student="student" />
                                 <PassportDetails :student="student" />
                                 <FirstPassportDetails :student="student" />

@@ -27,10 +27,8 @@ export const useStudentStore = defineStore("student", {
       criminal_conviction: "",
       police_clearance: "",
       disability: "",
-      fircopy: "",
       living_situation: "",
       correspondence_address: "",
-      updated_at:"",
       financialDetails: {
         own_property: "",
         bank_savings: "",
@@ -53,14 +51,14 @@ export const useStudentStore = defineStore("student", {
           additional_jobs: ""
         }
       ],
-      IncomeDetails: {
-        monthly_income: 0,
+      incomeDetails: {
+        monthly_income: "",
         income_from_others: "",
         other_income_sources: "",
-        monthly_income_given_to_family: 0,
-        monthly_living_costs: 0,
+        monthly_income_given_to_family: "",
+        monthly_living_costs: "",
       },
-      References: [{ name: "", phone: "", email: "", position: "", relationship: "", duration: "" }],
+      studentReferences: [{ name: "", phone: "", email: "", position: "", relationship: "", duration: "" }],
       FinancialDocuments: [
         { document_title: "", document_name: "", document_path: "" }
     ],
@@ -219,114 +217,59 @@ export const useStudentStore = defineStore("student", {
     isOpen: ref(false),
     selectedCountry: ref(null),
     totalStudents: ref(0),
+    isRemoving: ref(false),
+    selectedFile: null,
+    fileSizeError: null,
     
   }),
   
-
   actions: {
+  setStudent(student) {
+  if (!student) {
+    this.student = {
+      ...this.student, 
+    };
+    return;
+  }
 
-    handleFileUpload(event) {
-      const file = event.target.files[0];
+  const financialDetails = {
+    ...this.defaultFinancialDetails(),
+    ...(this.student.financialDetails || {}),
+    ...(student.financialDetails || {}),
+  };
 
-      if (!file) {
-        this.clearFile();
-        return;
-      }
+  const incomeDetails = {
+    ...this.defaulIncomeDetails(),
+    ...(this.student.incomeDetails || {}),
+    ...(student.incomeDetails || {}),
+  };
 
-      const maxSize = 2 * 1024 * 1024; 
-      if (file.size > maxSize) {
-        this.fileSizeError = "File size must be less than 2MB.";
-        this.clearFile();
-        event.target.value = ""; 
-        return;
-      }
+  const studentEmployment = Array.isArray(student.studentEmployment)
+    ? student.studentEmployment.map((job, index) => ({
+        ...this.defaultStudentEmployment(),
+        ...(this.student.studentEmployment?.[index] || {}),
+        ...job,
+      }))
+    : (this.student.studentEmployment || []);
 
-      this.fileSizeError = null;
-      this.selectedFile = file;
-      this.student.fircopy = file; 
-    },
-  
-    removeFile() {
-      this.clearFile();
-      const fileInput = document.querySelector("#fircopy");
-      if (fileInput) {
-        fileInput.value = "";
-      }
-    },
+      const studentReferences = Array.isArray(student.studentReferences)
+    ? student.studentReferences.map((reference,index) => ({
+        ...this.defaultstudentReferences(),
+        ...(this.student.studentReferences?.[index] || {}),
+        ...reference
+      }))
+    : (this.student.studentReferences || []);
+
+  this.student = {
+    ...this.student,
+    ...student,
+    financialDetails,
+    incomeDetails,
+    studentEmployment,
+    studentReferences,
+  };
+},
     
-    clearFile() {
-      this.selectedFile = null;
-      this.student.fircopy = null;
-      this.fileSizeError = null;
-    },
-  
-    getFileUrl() {
-      if (this.selectedFile) {
-        return URL.createObjectURL(this.selectedFile); 
-      } else if (typeof this.student.fircopy === "string" && this.student.fircopy.trim() !== "") {
-        return `/storage/${this.student.fircopy}`; 
-      }
-    },
-
-    async addStudentForm() {
-      const toast = useToast();
-      const formData = new FormData();
-    
-      for (const key in this.student) {
-        const value = this.student[key];
-        if (key === 'fircopy') {
-          if (value instanceof File) {
-            formData.append('fircopy', value);
-          }
-        } else if (value !== null && value !== undefined) {
-          formData.append(key, value);
-        }
-      }
-    
-      try {
-        await this.student.post(route("students.store"), formData, {
-          headers: {
-            'Content-Type': 'multipart/form-data',
-          },
-        });
-        toast.success("Student added successfully!");
-      } catch (error) {
-        toast.error("Failed to add student.");
-        if (error.response?.data?.errors) {
-          console.error("Validation errors:", error.response.data.errors);
-        } else {
-          console.error("Error adding student:", error);
-        }
-      }
-    },
-    
-    computed: {
-      isEditMode() {
-        return !!this.student?.id; 
-      }
-    },
-
-    setStudent(student) {
-      if (!student) {
-        this.student = {
-          ...this.student, 
-        };
-        return;
-      }
-      const financialDetails = student.financialDetails || {};
-      this.student = {
-        ...this.student,
-        ...student,
-        ...(this.isEditMode ? { errors: student.errors || {} } : {}),
-    
-        financialDetails: {
-          ...this.defaultFinancialDetails(),
-          ...financialDetails,
-          ...(this.isEditMode ? { errors: financialDetails.errors || {} } : {}),
-        },
-      };
-    }
-    ,
   defaultFinancialDetails() {
       return {
           own_property: '',
@@ -338,6 +281,74 @@ export const useStudentStore = defineStore("student", {
       };
   },
 
+    defaulIncomeDetails() {
+      return {
+          monthly_income: '',
+          income_from_others: '',
+          monthly_income_given_to_family: '',
+          monthly_income_given_to_family: '',
+          monthly_living_costs: '',
+          errors: {}
+      };
+  },
+  defaultStudentEmployment() {
+  return {
+    personal_circumstances: '',
+    employment_details: '',
+    present_work: '',
+    company_name: '',
+    job_start_date: '',
+    work_address: '',
+    employer_phone: '',
+    employer_email: '',
+    additional_jobs: '',
+    errors: {}
+  };
+},
+ defaultstudentReferences() {
+  return {
+    name: '',
+    phone: '',
+    email: '',
+    position: '',
+    relationship: '',
+    duration: '',
+    errors: {}
+  };
+},
+
+
+ async addStudentForm() {
+      const toast = useToast();
+      const formData = new FormData();
+      for (const key in this.student) {
+        if (key === "FinancialDetails") {
+          formData.append("FinancialDetails", JSON.stringify(this.student.financialDetails));
+        } else if (key === "StudentEmployment") {
+          formData.append("StudentEmployment", JSON.stringify(this.student.studentEmployment));
+        } else if (key==='IncomeDetails') {
+          formData.append("IncomeDetails", JSON.stringify(this.student.incomeDetails));
+        } else if(key==='studentReferences') {
+          formData.append("studentReferences".JSON.stringify(this.student.studentReferences));
+        } else {
+          formData.append(key, this.student[key]);
+        }
+      }
+
+      try {
+        this.student.post(route("students.store"), formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+
+        toast.success("Student added successfully!");
+      } catch (error) {
+        toast.error("Failed to add student.");
+        console.error("Form submission error:", error);
+      }
+    },
+
   updateStudentForm() {
     const toast = useToast();
 
@@ -346,22 +357,17 @@ export const useStudentStore = defineStore("student", {
       return;
     }
 
-    Inertia.post(route('students.update', this.student.id), {
-      ...this.student,
-      _method: 'PUT',
-    }, {
-      preserveScroll: true,
-      preserveState: true,
+    Inertia.put(route('students.update', this.student.id), this.student, {
       onSuccess: () => {
         toast.success("Student updated successfully.");
+         router.visit(route('students.edit'), {
+                      preserveScroll: true,
+                      replace: true,
+                  });
       },
       onError: (errors) => {
-        if (errors.conflict) {
-          toast.error(errors.conflict);
-        } else {
-          toast.error("Validation failed.");
-          console.error(errors);
-        }
+        console.error(errors);
+        toast.error("Failed to update student.");
       }
     });
   },
@@ -456,8 +462,33 @@ export const useStudentStore = defineStore("student", {
         this.isOpen = !this.isOpen;
       },
 
-      addReference() {
-        this.student.References.push({
+          addstudentEmployment() {
+        this.student.studentEmployment.push(this.emptyJob());
+    },
+
+    removestudentEmployment(index) {
+        if (this.student.studentEmployment.length > 1) {
+            this.student.studentEmployment.splice(index, 1);
+        }
+    },
+
+
+  emptyJob() {
+      return {
+          personal_circumstances: '',
+          employment_details: '',
+          present_work: '',
+          company_name: '',
+          job_start_date: '',
+          work_address: '',
+          employer_phone: '',
+          employer_email: '',
+          additional_jobs: ''
+      };
+  },
+
+      addstudentReference() {
+        this.student.studentReferences.push({
           name: "",
           phone: "",
           email: "",
@@ -467,8 +498,8 @@ export const useStudentStore = defineStore("student", {
         });
       },
       
-      removeReference(index) {
-          this.student.References.splice(index, 1);
+      removestudentReference(index) {
+          this.student.studentReferences.splice(index, 1);
       },
 
       addChild() {
@@ -537,33 +568,5 @@ export const useStudentStore = defineStore("student", {
         }
       },
 
-      addstudentEmployment() {
-        this.student.studentEmployment.push({
-            personal_circumstances: '',
-            employment_details: '',
-            present_work: '',
-            company_name: '',
-            job_start_date: '',
-            work_address: '',
-            employer_phone: '',
-            employer_email: '',
-            additional_jobs: '',
-        });
-    },
-    removestudentEmployment(index) {
-        this.student.studentEmployment.splice(index, 1);
-    },
-
-      persist: {
-        enabled: true,
-        strategies: [
-          {
-            key: "student",
-            storage: localStorage,
-          },
-        ],
-      },
-     
-      
   },
 });

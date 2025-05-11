@@ -1,5 +1,6 @@
 import '../css/app.css';
 import './bootstrap';
+import axios from 'axios';
 
 import { createInertiaApp } from '@inertiajs/vue3';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
@@ -37,3 +38,22 @@ createInertiaApp({
         color: '#4B5563',
     },
 });
+
+
+const idleLimit = 30 * 60 * 1000;
+let idleTimer;
+
+const resetIdleTimer = () => {
+    clearTimeout(idleTimer);
+    idleTimer = setTimeout(() => {
+        axios.post('/logout').then(() => {
+            window.location.href = '/';
+        });
+    }, idleLimit);
+};
+
+['click', 'mousemove', 'keydown', 'scroll', 'touchstart'].forEach(event => {
+    window.addEventListener(event, resetIdleTimer);
+});
+
+resetIdleTimer();

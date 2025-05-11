@@ -2,7 +2,6 @@
 
 namespace App\Policies;
 
-use App\Models\Permission;
 use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
@@ -22,7 +21,7 @@ class UserPolicy
     
     public function viewAny(User $user): bool
     {
-        return $this->hasAccess($user, 'view Users');
+        return $this->hasAccess($user, 'View Users');
     }
 
     public function create(User $user): bool

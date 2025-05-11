@@ -46,6 +46,11 @@ return [
             'throw' => false,
             'report' => false,
         ],
+        
+        'temp' => [
+            'driver' => 'local',
+            'root' => storage_path('app/temp'),
+    ],
 
         's3' => [
             'driver' => 's3',

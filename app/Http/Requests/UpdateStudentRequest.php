@@ -29,7 +29,7 @@ class UpdateStudentRequest extends FormRequest
             'middlename' => 'nullable|string|max:255',
             'surname' => 'nullable|string|max:255',
             'nickname' => 'nullable|string|max:255',
-            'email' => 'required|email|unique:students,email,' . $this->route('student')->id,
+            'email' => 'required|email|unique:students,email,' . $this->student->id,
              'gender' => 'nullable|string|max:10',
             'nationality' => 'nullable|string|max:255',
             'date_of_birth' => 'nullable|date',
@@ -40,17 +40,16 @@ class UpdateStudentRequest extends FormRequest
             'criminal_conviction' => 'nullable|string|max:255',
             'police_clearance' => 'nullable|string|max:255',
             'disability' => 'nullable|string|max:255',
-            'fircopy' => 'nullable|file|mimes:pdf,jpg,jpeg,png|max:2048',
             'living_situation' => 'nullable|string|max:255',
             'correspondence_address' => 'nullable|string|max:255',
 
             // Financial details (nested array)
-            'FinancialDetails' => 'sometimes|array',
-            'own_property' => 'nullable|string|max:255',
-            'bank_savings' => 'nullable|string|max:255',
-            'tuition_budget' => 'nullable|numeric',
-            'bank_funds' => 'nullable|string|max:255',
-            'tuition_payer' => 'nullable|string|max:255',
+            'financialDetails' => 'sometimes|array',
+            'financialDetails.own_property' => 'nullable|string|max:255',
+            'financialDetails.bank_savings' => 'nullable|string|max:255',
+            'financialDetails.tuition_budget' => 'nullable|numeric',
+            'financialDetails.bank_funds' => 'nullable|string|max:255',
+            'financialDetails.tuition_payer' => 'nullable|string|max:255',
 
             // Student Employment (nested array)
             'StudentEmployment' => 'sometimes|array',
@@ -65,21 +64,21 @@ class UpdateStudentRequest extends FormRequest
             'StudentEmployment.*.additional_jobs' => 'nullable|string|max:255',
 
             // Income details (nested array)
-            'IncomeDetails' => 'nullable|array',
-            'IncomeDetails.monthly_income' => 'nullable|numeric',
-            'IncomeDetails.income_from_others' => 'nullable|string|max:255',
-            'IncomeDetails.other_income_sources' => 'nullable|string|max:255',
-            'IncomeDetails.monthly_income_given_to_family' => 'nullable|numeric',
-            'IncomeDetails.monthly_living_costs' => 'nullable|numeric',
+            'incomeDetails' => 'nullable|array',
+            'incomeDetails.monthly_income' => 'nullable|numeric',
+            'incomeDetails.income_from_others' => 'nullable|string|max:255',
+            'incomeDetails.other_income_sources' => 'nullable|string|max:255',
+            'incomeDetails.monthly_income_given_to_family' => 'nullable|numeric',
+            'incomeDetails.monthly_living_costs' => 'nullable|numeric',
 
-            // References (nested array)
-            'References' => 'nullable|array',
-            'References.*.name' => 'nullable|string|max:255',
-            'References.*.phone' => 'nullable|string|max:20',
-            'References.*.email' => 'nullable|email|max:255',
-            'References.*.position' => 'nullable|string|max:255',
-            'References.*.relationship' => 'nullable|string|max:255',
-            'References.*.duration' => 'nullable|string|max:255',
+            // studentReferences (nested array)
+            'studentReferences' => 'nullable|array',
+            'studentReferences.*.name' => 'nullable|string|max:255',
+            'studentReferences.*.phone' => 'nullable|string|max:20',
+            'studentReferences.*.email' => 'nullable|email|max:255',
+            'studentReferences.*.position' => 'nullable|string|max:255',
+            'studentReferences.*.relationship' => 'nullable|string|max:255',
+            'studentReferences.*.duration' => 'nullable|string|max:255',
 
             // Financial documents (nested array)
             'FinancialDocuments' => 'nullable|array',

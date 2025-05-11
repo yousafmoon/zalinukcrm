@@ -4,11 +4,11 @@ import { useStudentStore } from '@/Pages/Stores/studentStore';
 const formStore = useStudentStore();
 
 const addRef = () => {
-  formStore.addReference();
+  formStore.addstudentReference();
 };
 
 const removeRef = (index) => {
-  formStore.removeReference(index);
+  formStore.removestudentReference(index);
 };
 </script>
 
@@ -18,12 +18,12 @@ const removeRef = (index) => {
       Academic / Job References
     </h3>
 
-    <div v-for="(reference, index) in formStore.student.References" :key="index"
+    <div v-for="(reference, index) in formStore.student.studentReferences" :key="index"
       class="relative border p-4 rounded-lg shadow-md bg-white mt-4">
       <!-- Add and Remove Buttons -->
       <div class="absolute top-1 right-1 flex space-x-2">
         <button @click="addRef()" type="button" class="bg-red-500 text-white px-3 py-1 rounded-md">+</button>
-        <button @click="removeRef(index)" type="button" v-if="formStore.student.References.length > 1"
+        <button @click="removeRef(index)" type="button" v-if="formStore.student.studentReferences.length > 1"
           class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
       </div>
 

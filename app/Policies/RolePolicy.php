@@ -21,7 +21,7 @@ class RolePolicy
     }
     public function viewAny(User $user): bool
     {
-        return $this->hasAccess($user, 'view Roles');
+        return $this->hasAccess($user, 'View Roles');
     }
     public function create(User $user): bool
     {

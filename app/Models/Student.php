@@ -1,29 +1,16 @@
 <?php
 namespace App\Models;
-use Spatie\MediaLibrary\InteractsWithMedia;
-use Spatie\MediaLibrary\HasMedia;
 use Illuminate\Database\Eloquent\Model;
 
-class Student extends Model implements HasMedia
+class Student extends Model
 {
-    use InteractsWithMedia;
 
-    
     protected $fillable = [
         'choice_of_country', 'intake', 'intended_course','firstname', 'middlename', 'surname', 'nickname', 'email', 
         'gender', 'nationality', 'date_of_birth', 'place_of_birth', 'national_insurance', 'other_nationalities', 
-        'marital_status', 'criminal_conviction', 'police_clearance', 'disability', 'fircopy', 
-        'living_situation', 'correspondence_address', 'updated_at'
+        'marital_status', 'criminal_conviction', 'police_clearance', 'disability', 
+        'living_situation', 'correspondence_address'
     ];
-
-    public function registerMediaCollections(): void
-    {
-        $this->addMediaCollection('fircopy')
-             ->singleFile()
-             ->acceptsFile(function (File $file) {
-                 return $file->mimeType === 'application/pdf'; 
-             });
-    }
 
     public function financialDetails()
     {
@@ -35,97 +22,97 @@ class Student extends Model implements HasMedia
         return $this->hasMany(StudentEmployment::class);
     }
     
-    public function IncomeDetails()
+    public function incomeDetails()
     {
         return $this->hasOne(IncomeDetails::class);
     }
+    
+    public function studentReferences()
+    {
+        return $this->hasMany(studentReferences::class);
+    }
 
-    public function ContactDetails()
+    public function contactDetails()
     {
         return $this->hasOne(ContactDetails::class);
     }
 
-    public function ParentsDetails()
+    public function parentsDetails()
     {
         return $this->hasOne(ParentsDetails::class);
     }
 
-    public function PassportDetails()
+    public function passportDetails()
     {
         return $this->hasOne(PassportDetails::class);
     }
 
-    public function References()
-    {
-        return $this->hasMany(References::class);
-    }
-
-    public function FinancialDocuments()
+    public function financialDocuments()
     {
         return $this->hasMany(FinancialDocuments::class);
     }
 
-    public function FirstPassportDetails()
+    public function firstPassportDetails()
     {
         return $this->hasOne(FirstPassportDetails::class);
     }
 
-    public function TravelDetails()
+    public function travelDetails()
     {
         return $this->hasOne(TravelDetails::class);
     }
 
-    public function OtherInformationDetails()
+    public function otherInformationDetails()
     {
         return $this->hasOne(OtherInformationDetails::class);
     }
 
-    public function QualificationDetails()
+    public function qualificationDetails()
     {
         return $this->hasOne(QualificationDetails::class);
     }
 
-    public function ImmigrationDetails()
+    public function immigrationDetails()
     {
         return $this->hasOne(ImmigrationDetails::class);
     }
 
-    public function UkVisaHistoryDetails()
+    public function ukVisaHistoryDetails()
     {
         return $this->hasOne(UkVisaHistoryDetails::class);
     }
 
-    public function OverseasTravelHistoryDetails()
+    public function overseasTravelHistoryDetails()
     {
         return $this->hasOne(OverseasTravelHistoryDetails::class);
     }
 
-    public function SpouseParnersNotAccompanyingDetails()
+    public function spouseParnersNotAccompanyingDetails()
     {
         return $this->hasOne(SpousePartnersNotAccompanyingDetails::class);
     }
 
-    public function Childrens()
+    public function childrens()
     {
         return $this->hasMany(Childrens::class);
     }
 
-    public function SpouseParnersAccompanyingDetails()
+    public function spouseParnersAccompanyingDetails()
     {
         return $this->hasOne(SpousePartnersAccompanyingDetails::class);
     }
 
-    public function RequirmentsForEuropeDetails()
+    public function requirmentsForEuropeDetails()
     {
         return $this->hasOne(RequirmentsForEuropeDetails::class);
     }
 
-    public function DocumentsRequired()
+    public function documentsRequired()
     {
         return $this->hasOne(DocumentsRequired::class);
     }
 
-    public function CheckCopyDetails()
+    public function checkCopyDetails()
     {
         return $this->hasOne(CheckCopyDetails::class);
     }

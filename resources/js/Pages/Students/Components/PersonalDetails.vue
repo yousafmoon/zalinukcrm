@@ -83,6 +83,7 @@ watch(() => formStore.countries, (newCountries) => {
 
 <template v-bind="$attrs">
     <div class="grid grid-cols-12 gap-6">
+
         <!-- Country Selection -->
         <div class="col-span-6 sm:col-span-3 md:col-span-4 relative">
             <label for="choice_of_country" class="block text-sm font-medium text-gray-700">
@@ -275,7 +276,7 @@ watch(() => formStore.countries, (newCountries) => {
             <InputError :message="formStore.student.errors.police_clearance" class="mt-2" />
         </div>
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-6">
+        <div class="col-span-6 sm:col-span-3 md:col-span-4">
             <label for="disability" class="block text-sm font-medium text-gray-700">
                 Do you have any Disability? (If yes, please specify)
             </label>
@@ -293,48 +294,43 @@ watch(() => formStore.countries, (newCountries) => {
         </div>
 
 
-        <div class="col-span-6 sm:col-span-3 md:col-span-6">
+        <!-- <div class="col-span-6 sm:col-span-3 md:col-span-6">
             <label for="fircopy" class="block text-sm font-medium text-gray-700">
                 If you lost/stolen your passport (please upload police complaint report/FIR)?
             </label>
 
-            <!-- File Input -->
             <input type="file" id="fircopy" name="fircopy" @change="formStore.handleFileUpload" class="mt-1 block w-full text-gray-700 bg-white border border-gray-300 rounded-md shadow-sm py-2 px-3 
-        focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
-                :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.fileSizeError }"
-                accept=".pdf,.jpg,.jpeg,.png" />
+            focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" :class="{
+                'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.fileSizeError,
+                'opacity-50': formStore.isRemoving
+            }" :disabled="formStore.isRemoving" accept=".pdf,.jpg,.jpeg,.png" />
 
-            <small class="text-gray-500">Accepted formats: PDF, JPG, JPEG, PNG</small>
+            <small class="text-gray-500">Accepted formats: PDF, JPG, JPEG, PNG (Max 2MB)</small>
 
-            <!-- File Size Error Message -->
             <p v-if="formStore.fileSizeError" class="mt-2 text-sm text-red-500">
                 {{ formStore.fileSizeError }}
             </p>
 
-            <!-- Show Uploaded File Link & File Name -->
             <template v-if="formStore.getFileUrl()">
-                <a :href="formStore.getFileUrl()" target="_blank" class="text-blue-500 hover:underline">
-                    View Uploaded File
-                </a>
-
                 <div class="mt-2 flex items-center space-x-2">
-                    <span class="text-sm text-gray-700">
-                        {{ formStore.selectedFile?.name || formStore.student?.fircopy?.split('/').pop() ||
-                            'No file uploaded' }}
-                    </span>
-
-                    <button type="button" @click="formStore.removeFile" class="text-red-500 text-sm underline"
-                        :disabled="!formStore.selectedFile && !formStore.student?.fircopy">
-                        Remove File
+                    <a :href="formStore.getFileUrl()" target="_blank" class="text-blue-500 hover:underline">
+                        View Uploaded File
+                    </a>
+                    <span class="text-gray-400">|</span>
+                    <button type="button" @click="formStore.removeFile" class="text-red-500 text-sm hover:underline"
+                        :disabled="formStore.isRemoving">
+                        <span v-if="formStore.isRemoving">Removing...</span>
+                        <span v-else>Remove</span>
                     </button>
                 </div>
+                <p class="text-sm text-gray-600 mt-1">
+                    {{ formStore.getFileName() || 'No file uploaded' }}
+                </p>
             </template>
-        </div>
+</div> -->
 
 
-
-
-        <div class="col-span-6 sm:col-span-6 md:col-span-12">
+        <div class="col-span-6 sm:col-span-6 md:col-span-8">
             <label for="living_situation" class="block text-sm font-medium text-gray-700">
                 Give more details about your living situation, such as who you live with and who owns the property
             </label>
@@ -359,7 +355,7 @@ watch(() => formStore.countries, (newCountries) => {
                 :class="{ 'text-red-900 focus:ring-red-500 focus:border-red-500 border-red-300': formStore.student.errors.correspondence_address }"></textarea>
             <InputError :message="formStore.student.errors.correspondence_address" class="mt-2" />
         </div>
-        <input type="hidden" v-model="formStore.student.updated_at" />
+
 
     </div>
 </template>

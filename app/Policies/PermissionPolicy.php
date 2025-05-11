@@ -10,20 +10,21 @@ class PermissionPolicy
 {
     use HandlesAuthorization;
 
-    private function hasAccess(User $user, string $permission): bool
+    private function hasAccess(User $user, string $permissionName): bool
     {
         $rolesWithAccess = ['admin']; 
-        foreach ($rolesWithAccess as $permission) {
-            if ($user->hasRole($permission)) {
+        foreach ($rolesWithAccess as $role) {
+            if ($user->hasRole($role)) {
                 return true;
             }
         }
-        return $user->hasPermissionTo($permission);
+
+        return $user->hasPermissionTo($permissionName);
     }
 
     public function viewAny(User $user): bool
     {
-        return $this->hasAccess($user, 'View Permissions');
+        return $this->hasAccess($user, 'View permissions');
     }
 
     public function create(User $user): bool

@@ -14,13 +14,11 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class UserController extends Controller
 {
     use AuthorizesRequests;
-    public static function middleware(): array
+    public function __construct()
     {
-        $this->middleware('permission:view users')->only('index');
-        $this->middleware('permission:create users')->only('create', 'store');
-        $this->middleware('permission:edit users')->only('edit', 'update');
-        $this->middleware('permission:delete users')->only('destroy');
+        $this->middleware('can:viewAny,App\Models\User');
     }
+
 
     public function index(Request $request)
     {

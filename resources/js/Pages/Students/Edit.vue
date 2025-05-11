@@ -1,14 +1,14 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link } from '@inertiajs/vue3';
-import { onMounted, watch } from 'vue';
+import { onMounted, watch, ref } from 'vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 
 import PersonalDetails from '@/Pages/Students/Components/PersonalDetails.vue';
 import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
 import StudentEmployment from '@/Pages/Students/Components/StudentEmployment.vue';
 import IncomeDetails from '@/Pages/Students/Components/IncomeDetails.vue';
-import References from '@/Pages/Students/Components/References.vue';
+import studentReferences from '@/Pages/Students/Components/StudentReferences.vue';
 import FinancialDocuments from '@/Pages/Students/Components/FinancialDocuments.vue';
 import ParentsDetails from '@/Pages/Students/Components/ParentsDetails.vue';
 import PassportDetails from '@/Pages/Students/Components/PassportDetails.vue';
@@ -27,6 +27,8 @@ import RequirementsForEuropeDetails from '@/Pages/Students/Components/Requiremen
 import DocumentRequired from '@/Pages/Students/Components/DocumentsRequired.vue';
 import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
 
+
+
 const props = defineProps({
     student: Object,
     message: String,
@@ -37,12 +39,13 @@ const props = defineProps({
 });
 
 const formStore = useStudentStore();
+const student = ref(props.student);
 
 onMounted(() => {
     if (props.student) {
         formStore.setStudent(props.student);
-    }
 
+    }
 });
 
 watch(() => props.student, (newStudent) => {
@@ -98,7 +101,7 @@ const updateStudent = () => {
                                 <FinancialDetails :student="student" />
                                 <StudentEmployment :student="student" />
                                 <IncomeDetails :student="student" />
-                                <References :student="student" />
+                                <studentReferences :student="student" />
                                 <FinancialDocuments :student="student" />
                                 <PassportDetails :student="student" />
                                 <FirstPassportDetails :student="student" />

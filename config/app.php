@@ -123,4 +123,9 @@ return [
         'store' => env('APP_MAINTENANCE_STORE', 'database'),
     ],
 
+     'spatie_permission' => [
+        'role_model' => \Spatie\Permission\Models\Role::class,
+        'permission_model' => \Spatie\Permission\Models\Permission::class,
+    ],
+
 ];

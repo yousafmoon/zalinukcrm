@@ -24,15 +24,26 @@ class StudentService
     {
         $this->studentRepository->saveFinancialDetails($student, $financialDetails);
     }
-
+    
     public function storeStudentEmployment(array $employmentData, Student $student): void
     {
         $this->studentRepository->saveStudentEmployment($student, $employmentData);
     }
 
-    public function updateStudent(Request $request, Student $student): void
+     public function storeIncomeDetails(array $incomeDetails, Student $student): void
     {
-        $this->studentRepository->saveStudent($request->all(), $student);
+        $this->studentRepository->saveIncomeDetails($student, $incomeDetails);
+    }
+
+      public function storestudentReferences(array $referencesData, Student $student): void
+    {
+        $this->studentRepository->savestudentReferences($student, $referencesData);
+    }
+
+
+    public function updateStudent(array $requestData, Student $student): void
+    {
+        $this->studentRepository->saveStudent($requestData, $student);
     }
     public function updateFinancialDetails($requestData, Student $student): void
     {
@@ -59,6 +70,32 @@ class StudentService
     
         $this->studentRepository->saveStudentEmployment($student, $employmentData);
     }
+
+        public function updateIncomeDetails($requestData, Student $student): void
+    {
+        $incomeDetails = is_array($requestData)
+            ? $requestData
+            : json_decode($requestData, true);
+    
+        if (!is_array($incomeDetails) || json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException('Invalid incomeDetails data.');
+        }
+    
+        $this->studentRepository->saveIncomeDetails($student, $incomeDetails);
+    }
+
+        public function updatestudentReferences($requestData, Student $student): void
+    {
+        $referencesData = is_array($requestData)
+            ? $requestData
+            : json_decode($requestData, true);
+    
+        if (!is_array($referencesData) || json_last_error() !== JSON_ERROR_NONE) {
+            throw new \InvalidArgumentException('Invalid studentReferences data.');
+        }
+    
+        $this->studentRepository->savestudentReferences($student, $referencesData);
+    }
     
 
     public function deleteStudent(Student $student): void
@@ -69,19 +106,19 @@ class StudentService
     public function getStudents(?string $search = null)
     {
         return Student::when($search, fn($query) =>
-            $query->where('name', 'like', "%{$search}%")
+            $query->where('firstname', 'like', "%{$search}%")
         )->paginate(10);
     }
 
     public function getStudentById($id): Student
     {
-        return Student::with(['financialDetails', 'studentEmployment'])->findOrFail($id);
+        return Student::with(['financialDetails', 'studentEmployment', 'incomeDetails', 'studentReferences'])->findOrFail($id);
     }
 
     public function editStudent(Student $student): Student
     {
         
-        return $student->load(['financialDetails','studentEmployment']);
+        return $student->load(['financialDetails','studentEmployment', 'incomeDetails', 'studentReferences']);
     }
     
     

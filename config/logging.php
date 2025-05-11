@@ -57,13 +57,14 @@ return [
             'channels' => explode(',', env('LOG_STACK', 'single')),
             'ignore_exceptions' => true,
         ],
+ 
+        'daily' => [
+        'driver' => 'daily',
+        'path' => storage_path('logs/laravel.log'),
+        'level' => env('LOG_LEVEL', 'debug'),
+        'days' => 14, 
+    ],
 
-        'single' => [
-            'driver' => 'single',
-            'path' => storage_path('logs/laravel.log'),
-            'level' => env('LOG_LEVEL', 'debug'),
-            'replace_placeholders' => true,
-        ],
 
         'daily' => [
             'driver' => 'daily',

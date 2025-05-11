@@ -8,6 +8,7 @@ use Illuminate\Support\ServiceProvider;
 use Inertia\Inertia;
 use Illuminate\Support\Facades\File;
 
+
 class AppServiceProvider extends ServiceProvider
 {
     /**
@@ -23,6 +24,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot(): void
     {
+        File::put(storage_path('logs/laravel.log'), '');
         // Vite prefetch configuration
         Vite::prefetch(concurrency: 3);
 

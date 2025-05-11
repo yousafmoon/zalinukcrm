@@ -8,17 +8,6 @@ const props = defineProps({
 
 const formStore = useStudentStore();
 
-watch(() => props.student, (newStudent) => {
-    if (newStudent) {
-        formStore.setStudent({
-            ...newStudent,
-            studentEmployment: newStudent.studentEmployment?.length
-                ? newStudent.studentEmployment
-                : [formStore.emptyJob()]
-        });
-    }
-}, { immediate: true, deep: true });
-
 const addJob = () => formStore.addstudentEmployment();
 const removeJob = (index) => formStore.removestudentEmployment(index);
 </script>

@@ -13,13 +13,12 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class PermissionController extends Controller
 {
     use AuthorizesRequests;
-    public static function middleware(): array
+
+   public function __construct()
     {
-        $this->middleware('permission:view permissions')->only('index');
-        $this->middleware('permission:create permissions')->only('create', 'store');
-        $this->middleware('permission:edit permissions')->only('edit', 'update');
-        $this->middleware('permission:delete permissions')->only('destroy');
+        $this->middleware('can:viewAny,App\Models\Permission');
     }
+
     
     public function index(Request $request)
     {

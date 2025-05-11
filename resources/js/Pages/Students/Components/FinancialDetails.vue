@@ -9,18 +9,7 @@ const props = defineProps({
 
 const formStore = useStudentStore();
 
-watch(() => props.student, (newStudent) => {
-    if (newStudent) {
-        const studentWithDefaults = {
-            ...newStudent,
-            financialDetails: {
-                ...(newStudent.financialDetails || {}),
-                errors: newStudent.financialDetails?.errors || {}
-            }
-        };
-        formStore.setStudent(studentWithDefaults);
-    }
-}, { immediate: true, deep: true });
+
 </script>
 <template>
     <div>

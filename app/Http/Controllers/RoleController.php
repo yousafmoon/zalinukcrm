@@ -18,13 +18,11 @@ class RoleController extends Controller
 {
     use AuthorizesRequests;
 
-    public static function middleware(): array
+   public function __construct()
     {
-        $this->middleware('permission:view roles')->only('index');
-        $this->middleware('permission:create roles')->only('create', 'store');
-        $this->middleware('permission:edit roles')->only('edit', 'update');
-        $this->middleware('permission:delete roles')->only('destroy');
+        $this->middleware('can:viewAny,App\Models\Role');
     }
+
 
     public function index(Request $request)
     {

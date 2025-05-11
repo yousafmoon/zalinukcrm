@@ -61,7 +61,7 @@ class StudentResource extends JsonResource
                 'monthly_income_given_to_family' => $this->monthly_income_given_to_family,
                 'monthly_living_costs' => $this->monthly_living_costs,
             ],
-            'References' => $this->References->map(function ($reference) {
+            'StudentReferences' => $this->StudentReferences->map(function ($reference) {
                 return [
                     'id' => $reference->id,
                     'name' => $reference->name,
