@@ -20,7 +20,7 @@ const formStore = useStudentStore();
             <label for="qualifications" class="block text-sm font-medium text-gray-700">
                 Please tell us about any Qualifications you hold at Degree level or higher:
             </label>
-            <textarea v-model="formStore.student.qualifications" id="qualifications" rows="4"
+            <textarea v-model="formStore.student.qualificationsDetails.qualifications" id="qualifications" rows="4"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 placeholder="Tell us about any Qualifications you hold at Degree level or higher"></textarea>
         </div>
@@ -29,7 +29,8 @@ const formStore = useStudentStore();
             <label for="study_institution" class="block text-sm font-medium text-gray-700">
                 Where did you study?
             </label>
-            <input v-model="formStore.student.study_institution" type="text" id="study_institution"
+            <input v-model="formStore.student.qualificationsDetails.study_institution" type="text"
+                id="study_institution"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 placeholder="Enter where did you study" />
         </div>
@@ -38,7 +39,7 @@ const formStore = useStudentStore();
             <label for="subjects_studied" class="block text-sm font-medium text-gray-700">
                 Subject/s studied
             </label>
-            <input v-model="formStore.student.subjects_studied" type="text" id="subjects_studied"
+            <input v-model="formStore.student.qualificationsDetails.subjects_studied" type="text" id="subjects_studied"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 placeholder="Enter the subject" />
         </div>
@@ -47,7 +48,7 @@ const formStore = useStudentStore();
             <label for="date_passed" class="block text-sm font-medium text-gray-700">
                 Date passed/qualified
             </label>
-            <input v-model="formStore.student.date_passed" type="date" id="date_passed"
+            <input v-model="formStore.student.qualificationsDetails.date_passed" type="date" id="date_passed"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm" />
         </div>
 
@@ -55,7 +56,8 @@ const formStore = useStudentStore();
             <label for="study_gap_after_last_degree" class="block text-sm font-medium text-gray-700">
                 Study Gap after Last Degree
             </label>
-            <input v-model="formStore.student.study_gap_after_last_degree" type="text" id="study_gap_after_last_degree"
+            <input v-model="formStore.student.qualificationsDetails.study_gap_after_last_degree" type="text"
+                id="study_gap_after_last_degree"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                 placeholder="Enter study gap" />
         </div>
@@ -64,11 +66,11 @@ const formStore = useStudentStore();
             <label for="can_you_justify_gap" class="block text-sm font-medium text-gray-700">
                 Can you justify gap?
             </label>
-            <select v-model="formStore.student.can_you_justify_gap" id="can_you_justify_gap"
+            <select v-model="formStore.student.qualificationsDetails.can_you_justify_gap" id="can_you_justify_gap"
                 class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
                 <option value="">Please select</option>
-                <option value="yes">Yes</option>
-                <option value="no">No</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
             </select>
         </div>
     </div>

@@ -1,8 +1,9 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
-import { Head, Link } from '@inertiajs/vue3';
+import { Head, Link, useForm, router } from '@inertiajs/vue3';
 import { onMounted, watch, ref } from 'vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
+import { useToast } from 'vue-toast-notification';
 
 import PersonalDetails from '@/Pages/Students/Components/PersonalDetails.vue';
 import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
@@ -21,44 +22,66 @@ import ImmigrationDetails from '@/Pages/Students/Components/ImmigrationDetails.v
 import UkVisaHistoryDetails from '@/Pages/Students/Components/UkVisaHistoryDetails.vue';
 import OverseasTravelHistoryDetails from '@/Pages/Students/Components/OverseasTravelHistoryDetails.vue';
 import SpousePartnersAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersAccompanyingDetails.vue';
-import Childrens from '@/Pages/Students/Components/Childrens.vue';
-import SpousePartnersNotAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersNotAccompanyingDetails.vue';
 import RequirementsForEuropeDetails from '@/Pages/Students/Components/RequirementsForEuropeDetails.vue';
 import DocumentRequired from '@/Pages/Students/Components/DocumentsRequired.vue';
 import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
-
-
+import ChildrenDetails from '@/Pages/Students/Components/ChildrenDetails.vue';
+import FamilyNotAccompanyingDetails from '@/Pages/Students/Components/FamilyNotAccompanyingDetails.vue';
 
 const props = defineProps({
     student: Object,
-    message: String,
     errors: {
         type: Object,
         default: () => ({})
     }
 });
 
+const toast = useToast();
 const formStore = useStudentStore();
-const student = ref(props.student);
+const student = ref({ ...props.student });
 
 onMounted(() => {
     if (props.student) {
         formStore.setStudent(props.student);
-
     }
 });
 
 watch(() => props.student, (newStudent) => {
     if (newStudent) {
+        student.value = { ...newStudent };
         formStore.setStudent(newStudent);
     }
 }, { deep: true });
 
-const updateStudent = () => {
-    formStore.updateStudentForm();
-};
+const updateStudent = async () => {
+    if (!formStore.student || !formStore.student.id) {
+        toast.error("Student data is missing.");
+        return;
+    }
 
+    try {
+        await router.put(route('students.update', formStore.student.id), formStore.student, {
+            preserveScroll: true,
+            preserveState: true,
+            onSuccess: () => {
+                toast.success("Student updated successfully.");
+            },
+            onError: (errors) => {
+                toast.error("Failed to update student. Please check the form.");
+                console.error(errors);
+                const firstErrorField = document.querySelector(".error");
+                if (firstErrorField) {
+                    firstErrorField.scrollIntoView({ behavior: "smooth", block: "center" });
+                }
+            }
+        });
+    } catch (error) {
+        toast.error("Unexpected error while updating student.");
+        console.error("Update error:", error);
+    }
+};
 </script>
+
 
 <template>
 
@@ -75,7 +98,7 @@ const updateStudent = () => {
         <div class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
             <div class="lg:grid lg:grid-cols-12 lg:gap-x-5">
                 <div class="space-y-6 sm:px-6 lg:px-0 lg:col-span-12">
-                    <form @submit.prevent="updateStudent()" enctype="multipart/form-data">
+                    <form @submit.prevent="updateStudent" enctype="multipart/form-data">
                         <div class=" shadow sm:rounded-md sm:overflow-hidden">
                             <div class="bg-white py-6 px-4 space-y-6 sm:p-6 relative">
                                 <div class="flex justify-between">
@@ -114,8 +137,8 @@ const updateStudent = () => {
                                 <UkVisaHistoryDetails :student="student" />
                                 <OverseasTravelHistoryDetails :student="student" />
                                 <SpousePartnersAccompanyingDetails :student="student" />
-                                <Childrens :student="student" />
-                                <SpousePartnersNotAccompanyingDetails :student="student" />
+                                <ChildrenDetails :student="student" />
+                                <FamilyNotAccompanyingDetails :student="student" />
                                 <RequirementsForEuropeDetails :student="student" />
                                 <DocumentRequired :student="student" />
                                 <CheckCopyDetails :student="student" />

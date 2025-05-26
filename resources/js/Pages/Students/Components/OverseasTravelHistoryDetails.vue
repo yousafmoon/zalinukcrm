@@ -18,7 +18,7 @@ const formStore = useStudentStore();
 
     <div class="grid grid-cols-12 gap-6">
         <!-- Loop through Travel History -->
-        <div v-for="(region, regionIndex) in formStore.student.OverseasTravelHistoryDetails" :key="regionIndex"
+        <div v-for="(region, regionIndex) in formStore.student.overseastravelhistoryDetails" :key="regionIndex"
             class="col-span-12">
             <div class="col-span-12 mb-2 relative border p-4 rounded-lg shadow-md bg-white mt-2">
                 <!-- Region Heading -->
@@ -31,7 +31,7 @@ const formStore = useStudentStore();
                     <button type="button" @click="formStore.addRegion"
                         class="bg-red-500 text-white px-3 py-1 rounded-md">+</button>
                     <button @click="formStore.removeRegion(regionIndex)" type="button"
-                        v-if="formStore.student.OverseasTravelHistoryDetails.length > 1"
+                        v-if="formStore.student.overseastravelhistoryDetails.length > 1"
                         class="bg-red-500 text-white px-3 py-1 rounded-md">-</button>
                 </div>
 

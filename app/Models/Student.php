@@ -29,17 +29,7 @@ class Student extends Model
     
     public function studentReferences()
     {
-        return $this->hasMany(studentReferences::class);
-    }
-
-    public function contactDetails()
-    {
-        return $this->hasOne(ContactDetails::class);
-    }
-
-    public function parentsDetails()
-    {
-        return $this->hasOne(ParentsDetails::class);
+        return $this->hasMany(StudentReferences::class);
     }
 
     public function passportDetails()
@@ -52,9 +42,19 @@ class Student extends Model
         return $this->hasMany(FinancialDocuments::class);
     }
 
-    public function firstPassportDetails()
+    public function firstpassportDetails()
     {
         return $this->hasOne(FirstPassportDetails::class);
+    }
+
+    public function contactDetails()
+    {
+        return $this->hasOne(ContactDetails::class);
+    }
+    
+    public function parentsDetails()
+    {
+        return $this->hasOne(ParentsDetails::class);
     }
 
     public function travelDetails()
@@ -67,9 +67,9 @@ class Student extends Model
         return $this->hasOne(OtherInformationDetails::class);
     }
 
-    public function qualificationDetails()
+    public function qualificationsDetails()
     {
-        return $this->hasOne(QualificationDetails::class);
+        return $this->hasOne(QualificationsDetails::class);
     }
 
     public function immigrationDetails()
@@ -82,29 +82,29 @@ class Student extends Model
         return $this->hasOne(UkVisaHistoryDetails::class);
     }
 
-    public function overseasTravelHistoryDetails()
+   public function overseastravelhistoryDetails()
     {
-        return $this->hasOne(OverseasTravelHistoryDetails::class);
+        return $this->hasMany(OverseasTravelRegion::class);
     }
 
-    public function spouseParnersNotAccompanyingDetails()
-    {
-        return $this->hasOne(SpousePartnersNotAccompanyingDetails::class);
-    }
-
-    public function childrens()
-    {
-        return $this->hasMany(Childrens::class);
-    }
-
-    public function spouseParnersAccompanyingDetails()
+    public function spousepartnersaccompanyingDetails()
     {
         return $this->hasOne(SpousePartnersAccompanyingDetails::class);
     }
 
-    public function requirmentsForEuropeDetails()
+    public function childrenDetails()
     {
-        return $this->hasOne(RequirmentsForEuropeDetails::class);
+        return $this->hasMany(ChildrenDetails::class);
+    }
+
+        public function familynotaccompanyingDetails()
+    {
+        return $this->hasOne(FamilyNotAccompanyingDetails::class);
+    }
+
+    public function requirementsforeuropeDetails()
+    {
+        return $this->hasOne(RequirementsForEuropeDetails::class);
     }
 
     public function documentsRequired()

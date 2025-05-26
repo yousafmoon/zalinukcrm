@@ -4,8 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class RequirmentsForEuropeDetails extends Model
+class RequirementsForEuropeDetails extends Model
 {
+    
     protected $fillable = [
         'do_you_have_block_account', 'have_you_legalised_documents', 'bonafide_student_undertaking', 'student_id'
     ];

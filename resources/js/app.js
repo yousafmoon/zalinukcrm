@@ -39,7 +39,6 @@ createInertiaApp({
     },
 });
 
-
 const idleLimit = 30 * 60 * 1000;
 let idleTimer;
 
@@ -57,3 +56,4 @@ const resetIdleTimer = () => {
 });
 
 resetIdleTimer();
+

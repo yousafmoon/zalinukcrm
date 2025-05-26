@@ -22,7 +22,8 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_given_name" class="block text-sm font-medium text-gray-700">Spouse / Partner’s Given
                     Name</label>
-                <input v-model="formStore.student.spouse_given_name" type="text" id="spouse_given_name"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_given_name" type="text"
+                    id="spouse_given_name"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                     placeholder="Enter spouse/partner's given name">
             </div>
@@ -32,7 +33,8 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_family_name" class="block text-sm font-medium text-gray-700">Spouse / Partner’s
                     Family Name</label>
-                <input v-model="formStore.student.spouse_family_name" type="text" id="spouse_family_name"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_family_name" type="text"
+                    id="spouse_family_name"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                     placeholder="Enter spouse/partner's family name">
             </div>
@@ -42,7 +44,8 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_passport_number" class="block text-sm font-medium text-gray-700">Spouse Passport
                     Number (if held)</label>
-                <input v-model="formStore.student.spouse_passport_number" type="text" id="spouse_passport_number"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_passport_number" type="text"
+                    id="spouse_passport_number"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                     placeholder="Enter spouse's passport number (if applicable)">
             </div>
@@ -52,7 +55,8 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_location" class="block text-sm font-medium text-gray-700">Where is your spouse /
                     partner now</label>
-                <input v-model="formStore.student.spouse_location" type="text" id="spouse_location"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_location" type="text"
+                    id="spouse_location"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                     placeholder="Enter spouse/partner's current location">
             </div>
@@ -62,7 +66,7 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_dob" class="block text-sm font-medium text-gray-700">Spouse / Partner’s Date of
                     Birth</label>
-                <input v-model="formStore.student.spouse_dob" type="date" id="spouse_dob"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_dob" type="date" id="spouse_dob"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
             </div>
         </div>
@@ -71,7 +75,8 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_nationality" class="block text-sm font-medium text-gray-700">Spouse’s
                     Nationality</label>
-                <input v-model="formStore.student.spouse_nationality" type="text" id="spouse_nationality"
+                <input v-model="formStore.student.familynotaccompanyingDetails.spouse_nationality" type="text"
+                    id="spouse_nationality"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm"
                     placeholder="Enter spouse's nationality">
             </div>
@@ -81,11 +86,12 @@ const formStore = useStudentStore();
             <div class="mt-2">
                 <label for="spouse_accompanying_uk" class="block text-sm font-medium text-gray-700">Will your spouse /
                     partner be accompanying you to the United Kingdom?</label>
-                <select v-model="formStore.student.spouse_accompanying_uk" id="spouse_accompanying_uk"
+                <select v-model="formStore.student.familynotaccompanyingDetails.spouse_accompanying_uk"
+                    id="spouse_accompanying_uk"
                     class="mt-1 block w-full border border-gray-300 rounded-md shadow-sm py-2 px-3 focus:outline-none focus:ring-red-500 focus:border-red-500 sm:text-sm">
                     <option value="" disabled>Select</option>
-                    <option value="yes">Yes</option>
-                    <option value="no">No</option>
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
                 </select>
             </div>
         </div>

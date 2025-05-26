@@ -18,12 +18,12 @@ import ImmigrationDetails from '@/Pages/Students/Components/ImmigrationDetails.v
 import UkVisaHistoryDetails from '@/Pages/Students/Components/UkVisaHistoryDetails.vue';
 import OverseasTravelHistoryDetails from '@/Pages/Students/Components/OverseasTravelHistoryDetails.vue';
 import SpousePartnersAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersAccompanyingDetails.vue';
-import Childrens from '@/Pages/Students/Components/Childrens.vue';
-import SpousePartnersNotAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersNotAccompanyingDetails.vue';
 import RequirementsForEuropeDetails from '@/Pages/Students/Components/RequirementsForEuropeDetails.vue';
 import DocumentRequired from '@/Pages/Students/Components/DocumentsRequired.vue';
 import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
+import ChildrenDetails from '@/Pages/Students/Components/ChildrenDetails.vue';
+import FamilyNotAccompanyingDetails from '@/Pages/Students/Components/FamilyNotAccompanyingDetails.vue';
 
 const props = defineProps({
     student: Object,
@@ -90,8 +90,8 @@ const createStudent = async () => {
                                 <UkVisaHistoryDetails :student="student" />
                                 <OverseasTravelHistoryDetails :student="student" />
                                 <SpousePartnersAccompanyingDetails :student="student" />
-                                <Childrens :student="student" />
-                                <SpousePartnersNotAccompanyingDetails :student="student" />
+                                <ChildrenDetails :student="student" />
+                                <FamilyNotAccompanyingDetails :student="student" />
                                 <RequirementsForEuropeDetails :student="student" />
                                 <DocumentRequired :student="student" />
                                 <CheckCopyDetails :student="student" />

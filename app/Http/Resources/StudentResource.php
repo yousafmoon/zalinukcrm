@@ -82,14 +82,14 @@ class StudentResource extends JsonResource
         }, $financialDocuments ?? []),
 
             
-            'PassportDetails' => [
+            'passportDetails' => [
                 'passport_number' => $this->passport_number,
                 'place_of_issue' => $this->place_of_issue,
                 'issuing_authority' => $this->issuing_authority,
                 'date_of_issue' => $this->date_of_issue,
                 'date_of_expiry' => $this->date_of_expiry,
             ],
-            'FirstPassportDetails' => [
+            'firstpassportDetails' => [
                 'previous_ppt_number' => $this->previous_ppt_number,
                 'place_of_issue_previous' => $this->place_of_issue_previous,
                 'issuing_authority_previous' => $this->issuing_authority_previous,
@@ -97,7 +97,7 @@ class StudentResource extends JsonResource
                 'date_of_expiry_previous' => $this->date_of_expiry_previous,
                 'national_id_number' => $this->national_id_number,
             ],
-            'ContactDetails' => [
+            'contactDetails' => [
                 'address' => $this->address,
                 'postal_code' => $this->postal_code,
                 'how_long_lived' => $this->how_long_lived,
@@ -108,34 +108,30 @@ class StudentResource extends JsonResource
                 'main_address_uk' => $this->main_address_uk,
                 'ownership_status' => $this->ownership_status,
             ],
-            'ParentsDetails' => [
-                'father' => [
-                    'given_name' => $this->father_given_name,
-                    'family_name' => $this->father_family_name,
-                    'date_of_birth' => $this->father_date_of_birth,
-                    'place_of_birth' => $this->father_place_birth,
-                    'nationality' => $this->father_nationality,
-                ],
-                'mother' => [
-                    'given_name' => $this->mother_given_name,
-                    'family_name' => $this->mother_family_name,
-                    'date_of_birth' => $this->mother_date_of_birth,
-                    'place_of_birth' => $this->mother_place_birth,
-                    'nationality' => $this->mother_nationality,
-                ]
+            'parentsDetails' => [
+                    'father_given_name' => $this->father_given_name,
+                    'father_family_name' => $this->father_family_name,
+                    'father_date_of_birth' => $this->father_date_of_birth,
+                    'father_place_birth' => $this->father_place_birth,
+                    'father_nationality' => $this->father_nationality,
+                    'mother_given_name' => $this->mother_given_name,
+                    'mother_family_name' => $this->mother_family_name,
+                    'mother_date_of_birth' => $this->mother_date_of_birth,
+                    'mother_place_birth' => $this->mother_place_birth,
+                    'mother_nationality' => $this->mother_nationality,
             ],
             
-            'TravelDetails' => [
+            'travelDetails' => [
                 'travel_date' => $this->travel_date,
             ],
 
-            'OtherInformationDetails' => [
+            'otherinformationDetails' => [
                 'family_in_uk' => $this->family_in_uk,
                 'travelling_with_others' => $this->travelling_with_others,
             ],
 
 
-            'QualificationsDetails' => [
+            'qualificationsDetails' => [
                 'qualifications' => $this->qualifications,
                 'study_institution' => $this->study_institution,
                 'subjects_studied' => $this->subjects_studied,
@@ -144,7 +140,7 @@ class StudentResource extends JsonResource
                 'can_you_justify_gap' => $this->can_you_justify_gap,
             ],
 
-            'ImmigrationDetails' => [
+            'immigrationDetails' => [
                 'travel_outside' => $this->travel_outside,
                 'travel_uk' => $this->travel_uk,
                 'refused_uk_visa' => $this->refused_uk_visa,
@@ -164,33 +160,59 @@ class StudentResource extends JsonResource
                 'organization_type' => $this->organization_type,
             ],
 
-            'UkVisaHistoryDetails' => [
+            'ukvisahistoryDetails' => [
                 'visa_type' => $this->visa_type,
                 'visa_valid_from' => $this->visa_valid_from,
                 'visa_expiry_date' => $this->visa_expiry_date,
                 'visa_reference_number' => $this->visa_reference_number,
             ],
 
-            'OverseasTravelHistoryDetails' => [
-                'uk_country_visited' => $this->uk_country_visited,
-                'uk_date_arrived' => $this->uk_date_arrived,
-                'uk_purpose_of_visit' => $this->uk_purpose_of_visit,
-                'uk_length_of_stay' => $this->uk_length_of_stay,
-                'europe_country_visited' => $this->europe_country_visited,
-                'europe_date_arrived' => $this->europe_date_arrived,
-                'europe_purpose_of_visit' => $this->europe_purpose_of_visit,
-                'europe_length_of_stay' => $this->europe_length_of_stay,
-                'acnz_usa_country_visited' => $this->acnz_usa_country_visited,
-                'acnz_usa_date_arrived' => $this->acnz_usa_date_arrived,
-                'acnz_usa_purpose_of_visit' => $this->acnz_usa_purpose_of_visit,
-                'acnz_usa_length_of_stay' => $this->acnz_usa_length_of_stay,
-                'row_country_visited' => $this->row_country_visited,
-                'row_date_arrived' => $this->row_date_arrived,
-                'row_purpose_of_visit' => $this->row_purpose_of_visit,
-                'row_length_of_stay' => $this->row_length_of_stay,
+                'overseastravelhistoryDetails' => collect($this->overseastravelhistoryDetails)->map(function ($region) {
+                return [
+                    'region_title' => $region['region_title'],  
+                    'visits' => collect($region['visits'])->map(function ($visit) {
+                        return [
+                            'country_visited' => $visit['country_visited'],
+                            'date_arrived' => $visit['date_arrived'],
+                            'purpose_of_visit' => $visit['purpose_of_visit'],
+                            'length_of_stay' => $visit['length_of_stay'],
+                        ];
+                    })->toArray(),
+                ];
+            })->toArray(),
+
+
+              'spouseparnersaccompanyingDetails' => [
+                'spouse_father_given_name' => $this->spouse_father_given_name,
+                'spouse_father_family_name' => $this->spouse_father_family_name,
+                'father_dob' => $this->father_dob,
+                'father_place_of_birth' => $this->father_place_of_birth,
+                'spouse_mother_given_name' => $this->spouse_mother_given_name,
+                'spouse_mother_family_name' => $this->spouse_mother_family_name,
+                'mother_dob' => $this->mother_dob,
+                'spouse_mother_place_of_birth' => $this->spouse_mother_place_of_birth,
+                'spouse_visa_valid_from' => $this->spouse_visa_valid_from,
+                'spouse_visa_expiry_date' => $this->spouse_visa_expiry_date,
+                'spouse_visa_type' => $this->spouse_visa_type,
+                'spouse_travel_history' => $this->spouse_travel_history,
             ],
 
-             'SpouseParnersNotAccompanyingDetails' => [
+        
+            'childrenDetails' => $this->childrenDetails->map(function ($child) {
+                return [
+                    'id' => $child->id,
+                    'child_full_name' => $child->child_full_name,
+                    'child_gender' => $child->child_gender,
+                    'child_dob' => $child->child_dob,
+                    'child_place_of_birth' => $child->child_place_of_birth,
+                    'child_child_nationality' => $child->child_nationality,
+                    'child_accompanying_uk' => $child->child_accompanying_uk,
+                    'child_current_address' => $child->child_current_address,
+                    'child_passport_number' => $child->child_passport_number,
+                ];
+            }),
+
+                 'spousepartnersnotaccompanyingDetails' => [
                 'spouse_given_name' => $this->spouse_given_name,
                 'spouse_family_name' => $this->spouse_family_name,
                 'spouse_passport_number' => $this->spouse_passport_number,
@@ -200,37 +222,8 @@ class StudentResource extends JsonResource
                 'spouse_accompanying_uk' => $this->spouse_accompanying_uk,
             ],
 
-            'Childrens' => $this->Childrens->map(function ($child) {
-                return [
-                    'id' => $child->id,
-                    'full_name' => $child->full_name,
-                    'gender' => $child->gender,
-                    'dob' => $child->dob,
-                    'place_of_birth' => $child->place_of_birth,
-                    'nationality' => $child->nationality,
-                    'accompanying_uk' => $child->accompanying_uk,
-                    'current_address' => $child->current_address,
-                    'passport_number' => $child->passport_number,
-                ];
-            }),
-
-            'SpouseParnersAccompanyingDetails' => [
-                'spouse_father_given_name' => $this->spouse_father_given_name,
-                'spouse_father_family_name' => $this->spouse_father_family_name,
-                'father_dob' => $this->father_dob,
-                'father_place_of_birth' => $this->father_place_of_birth,
-                'spouse_mother_given_name' => $this->spouse_mother_given_name,
-                'spouse_mother_family_name' => $this->spouse_mother_family_name,
-                'mother_dob' => $this->mother_dob,
-                'mother_place_of_birth' => $this->mother_place_of_birth,
-                'spouse_visa_valid_from' => $this->spouse_visa_valid_from,
-                'spouse_visa_expiry_date' => $this->spouse_visa_expiry_date,
-                'spouse_visa_type' => $this->spouse_visa_type,
-                'spouse_travel_history' => $this->spouse_travel_history,
-            ],
-
-            
-            'RequirmentsForEuropeDetails' => [
+          
+            'requirmentsforeuropeDetails' => [
                 'do_you_have_block_account' => $this->do_you_have_block_account,
                 'have_you_legalised_documents' => $this->have_you_legalised_documents,
                 'bonafide_student_undertaking' => $this->bonafide_student_undertaking,

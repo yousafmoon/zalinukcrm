@@ -14,7 +14,7 @@ class SpousePartnersAccompanyingDetails extends Model
         'spouse_mother_given_name',
         'spouse_mother_family_name',
         'mother_dob',
-        'mother_place_of_birth',
+        'spouse_mother_place_of_birth',
         'spouse_visa_valid_from',
         'spouse_visa_expiry_date',
         'spouse_visa_type', 

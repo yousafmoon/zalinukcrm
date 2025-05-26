@@ -1,7 +1,8 @@
 import { defineStore } from "pinia";
 import { useForm, router } from "@inertiajs/vue3";
 import { useToast } from "vue-toast-notification";
-import { Inertia } from '@inertiajs/inertia';
+
+
 
 import { ref } from "vue";
 export const useStudentStore = defineStore("student", {
@@ -62,14 +63,14 @@ export const useStudentStore = defineStore("student", {
       FinancialDocuments: [
         { document_title: "", document_name: "", document_path: "" }
     ],
-      PassportDetails: {
+      passportDetails: {
         passport_number: "",
         place_of_issue: "",
         issuing_authority: "",
         date_of_issue: "",
         date_of_expiry: "",
       },
-      FirstPassportDetails: {
+      firstpassportDetails: {
         previous_ppt_number: "",
         place_of_issue_previous: "",
         issuing_authority_previous: "",
@@ -77,7 +78,7 @@ export const useStudentStore = defineStore("student", {
         date_of_expiry_previous: "",
         national_id_number: "",
       },
-      ContactDetails: {
+      contactDetails: {
         address: "",
         postal_code: "",
         how_long_lived: "",
@@ -88,30 +89,27 @@ export const useStudentStore = defineStore("student", {
         main_address_uk: "",
         ownership_status: "",
       },
-      ParentsDetails: {
-        father: {
-          given_name: "",
-          family_name: "",
-          date_of_birth: "",
-          place_of_birth: "",
-          nationality: "",
-        },
-        mother: {
-          given_name: "",
-          family_name: "",
-          date_of_birth: "",
-          place_of_birth: "",
-          nationality: "",
-        },
+      parentsDetails: {
+          father_given_name: "",
+          father_family_name: "",
+          father_date_of_birth: "",
+          father_place_of_birth: "",
+          father_nationality: "",
+          mother_given_name: "",
+          mother_family_name: "",
+          mother_date_of_birth: "",
+          mother_place_of_birth: "",
+          mother_nationality: "",
+        
       },
-      TravelDetails: {
+      travelDetails: {
         travel_date: "",
       },
-      OtherInformationDetails: {
+      otherinformationDetails: {
         family_in_uk: "",
         travelling_with_others: "",
       },
-      QualificationsDetails: {
+      qualificationsDetails: {
         qualifications: "",
         study_institution: "",
         subjects_studied: "",
@@ -119,7 +117,7 @@ export const useStudentStore = defineStore("student", {
         study_gap_after_last_degree: "",
         can_you_justify_gap: "",
       },
-      ImmigrationDetails: {
+      immigrationDetails: {
         travel_outside: "",
         travel_uk: "",
         refused_uk_visa: "",
@@ -138,13 +136,13 @@ export const useStudentStore = defineStore("student", {
         nhs_treatment_unpaid: "",
         organization_type: "",
       },
-      UkVisaHistoryDetails: {
+      ukvisahistoryDetails: {
         visa_type: "",
         visa_valid_from: "",
         visa_expiry_date: "",
         visa_reference_number: "",
       },
-      OverseasTravelHistoryDetails: [
+      overseastravelhistoryDetails: [
         {
             region_title: '',
             visits: [
@@ -157,7 +155,35 @@ export const useStudentStore = defineStore("student", {
             ]
         }
     ],
-      SpousePartnersNotAccompanyingDetails: {
+     spousepartnersaccompanyingDetails: {
+        spouse_father_given_name: "",
+        spouse_father_family_name: "",
+        father_dob: "",
+        father_place_of_birth: "",
+        spouse_mother_given_name: "",
+        spouse_mother_family_name: "",
+        mother_dob: "",
+        spouse_mother_place_of_birth: "",
+        spouse_visa_valid_from: "",
+        spouse_visa_expiry_date: "",
+        spouse_visa_type: "",
+        spouse_travel_history: "",
+      },
+
+        childrenDetails: [
+        {
+          child_full_name: "",
+          child_gender: "",
+          child_dob: "",
+          child_place_of_birth: "",
+          child_nationality: "",
+          child_accompanying_uk: "",
+          child_current_address: "",
+          child_passport_number: "",
+        },
+      ],
+
+      familynotaccompanyingDetails: {
         spouse_given_name: "",
         spouse_family_name: "",
         spouse_passport_number: "",
@@ -166,33 +192,9 @@ export const useStudentStore = defineStore("student", {
         spouse_nationality: "",
         spouse_accompanying_uk: "",
       },
-      Childrens: [
-        {
-          full_name: "",
-          gender: "",
-          dob: "",
-          place_of_birth: "",
-          nationality: "",
-          accompanying_uk: false,
-          current_address: "",
-          passport_number: "",
-        },
-      ],
-      SpousePartnersAccompanyingDetails: {
-        spouse_father_given_name: "",
-        spouse_father_family_name: "",
-        father_dob: "",
-        father_place_of_birth: "",
-        spouse_mother_given_name: "",
-        spouse_mother_family_name: "",
-        mother_dob: "",
-        mother_place_of_birth: "",
-        spouse_visa_valid_from: "",
-        spouse_visa_expiry_date: "",
-        spouse_visa_type: "",
-        spouse_travel_history: "",
-      },
-      RequirmentsForEuropeDetails: {
+    
+     
+      requirementsforeuropeDetails: {
         do_you_have_block_account: "",
         have_you_legalised_documents: "",
         bonafide_student_undertaking: "",
@@ -222,6 +224,8 @@ export const useStudentStore = defineStore("student", {
     fileSizeError: null,
     
   }),
+
+  
   
   actions: {
   setStudent(student) {
@@ -239,7 +243,7 @@ export const useStudentStore = defineStore("student", {
   };
 
   const incomeDetails = {
-    ...this.defaulIncomeDetails(),
+    ...this.defaultIncomeDetails(),
     ...(this.student.incomeDetails || {}),
     ...(student.incomeDetails || {}),
   };
@@ -260,6 +264,96 @@ export const useStudentStore = defineStore("student", {
       }))
     : (this.student.studentReferences || []);
 
+      const passportDetails = {
+    ...this.defaultPassportDetails(),
+    ...(this.student.passportDetails || {}),
+    ...(student.passportDetails || {}),
+  };
+
+      const firstpassportDetails = {
+    ...this.defaultfirstpassportDetails(),
+    ...(this.student.firstpassportDetails || {}),
+    ...(student.firstpassportDetails || {}),
+  };
+
+      const contactDetails = {
+    ...this.defaultcontactDetails(),
+    ...(this.student.contactDetails || {}),
+    ...(student.contactDetails || {}),
+  };
+
+        const parentsDetails = {
+    ...this.defaultparentsDetails(),
+    ...(this.student.parentsDetails || {}),
+    ...(student.parentsDetails || {}),
+  };
+
+        const travelDetails = {
+    ...this.defaulttravelDetails(),
+    ...(this.student.travelDetails || {}),
+    ...(student.travelDetails || {}),
+  };
+
+      const otherinformationDetails = {
+    ...this.defaultotherinformationDetails(),
+    ...(this.student.otherinformationDetails || {}),
+    ...(student.otherinformationDetails || {}),
+  };
+
+      const qualificationsDetails = {
+    ...this.defaultqualificationsDetails(),
+    ...(this.student.qualificationsDetails || {}),
+    ...(student.qualificationsDetails || {}),
+  };
+
+
+        const immigrationDetails = {
+    ...this.defaultimmigrationDetails(),
+    ...(this.student.immigrationDetails || {}),
+    ...(student.immigrationDetails || {}),
+  };
+      const ukvisahistoryDetails = {
+    ...this.defaultukvisahistoryDetails(),
+    ...(this.student.ukvisahistoryDetails || {}),
+    ...(student.ukvisahistoryDetails || {}),
+  };
+
+
+const overseastravelhistoryDetails = Array.isArray(student.overseastravelhistoryDetails)
+  ? student.overseastravelhistoryDetails.map(child => ({
+      ...this.defaultoverseastravelhistoryDetails(),
+      ...child,
+    }))
+  : [this.defaultoverseastravelhistoryDetails()];
+
+
+        const spousepartnersaccompanyingDetails = {
+    ...this.defaultspousepartnersaccompanyingDetails(),
+    ...(this.student.spousepartnersaccompanyingDetails || {}),
+    ...(student.spousepartnersaccompanyingDetails || {}),
+  };
+
+    const childrenDetails = Array.isArray(student.childrenDetails)
+    ? student.childrenDetails.map((child,index) => ({
+        ...this.defaultchildrenDetails(),
+        ...(this.student.childrenDetails?.[index] || {}),
+        ...child
+      }))
+    : (this.student.childrenDetails || []);
+
+         const familynotaccompanyingDetails = {
+    ...this.defaultfamilynotaccompanyingDetails(),
+    ...(this.student.familynotaccompanyingDetails || {}),
+    ...(student.familynotaccompanyingDetails || {}),
+  };
+
+          const requirementsforeuropeDetails = {
+    ...this.defaultrequirementsforeuropeDetails(),
+    ...(this.student.requirementsforeuropeDetails || {}),
+    ...(student.requirementsforeuropeDetails || {}),
+  };
+  
+
   this.student = {
     ...this.student,
     ...student,
@@ -267,6 +361,20 @@ export const useStudentStore = defineStore("student", {
     incomeDetails,
     studentEmployment,
     studentReferences,
+    passportDetails,
+    firstpassportDetails,
+    contactDetails,
+    parentsDetails,
+    travelDetails,
+    otherinformationDetails,
+    qualificationsDetails,
+    immigrationDetails,
+    ukvisahistoryDetails,
+    overseastravelhistoryDetails,
+    spousepartnersaccompanyingDetails,
+    childrenDetails,
+    familynotaccompanyingDetails,
+    requirementsforeuropeDetails,
   };
 },
     
@@ -281,11 +389,12 @@ export const useStudentStore = defineStore("student", {
       };
   },
 
-    defaulIncomeDetails() {
+
+    defaultIncomeDetails() {
       return {
           monthly_income: '',
           income_from_others: '',
-          monthly_income_given_to_family: '',
+          other_income_sources: '',
           monthly_income_given_to_family: '',
           monthly_living_costs: '',
           errors: {}
@@ -317,60 +426,238 @@ export const useStudentStore = defineStore("student", {
   };
 },
 
-
- async addStudentForm() {
-      const toast = useToast();
-      const formData = new FormData();
-      for (const key in this.student) {
-        if (key === "FinancialDetails") {
-          formData.append("FinancialDetails", JSON.stringify(this.student.financialDetails));
-        } else if (key === "StudentEmployment") {
-          formData.append("StudentEmployment", JSON.stringify(this.student.studentEmployment));
-        } else if (key==='IncomeDetails') {
-          formData.append("IncomeDetails", JSON.stringify(this.student.incomeDetails));
-        } else if(key==='studentReferences') {
-          formData.append("studentReferences".JSON.stringify(this.student.studentReferences));
-        } else {
-          formData.append(key, this.student[key]);
-        }
-      }
-
-      try {
-        this.student.post(route("students.store"), formData, {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        });
-
-        toast.success("Student added successfully!");
-      } catch (error) {
-        toast.error("Failed to add student.");
-        console.error("Form submission error:", error);
-      }
-    },
-
-  updateStudentForm() {
-    const toast = useToast();
-
-    if (!this.student || !this.student.id) {
-      toast.error("Student data is missing.");
-      return;
-    }
-
-    Inertia.put(route('students.update', this.student.id), this.student, {
-      onSuccess: () => {
-        toast.success("Student updated successfully.");
-         router.visit(route('students.edit'), {
-                      preserveScroll: true,
-                      replace: true,
-                  });
-      },
-      onError: (errors) => {
-        console.error(errors);
-        toast.error("Failed to update student.");
-      }
-    });
+  defaultPassportDetails() {
+      return {
+          passport_number: '',
+          place_of_issue: '',
+          issuing_authority: '',
+          date_of_issue: '',
+          date_of_expiry: '',
+          errors: {}
+      };
   },
+
+   defaultfirstpassportDetails() {
+      return {
+          previous_ppt_number: '',
+          place_of_issue_previous: '',
+          issuing_authority_previous: '',
+          date_of_issue_previous: '',
+          date_of_expiry_previous: '',
+          national_id_number: '',
+          errors: {}
+      };
+  },
+
+     defaultcontactDetails() {
+      return {
+          address: '',
+          postal_code: '',
+          how_long_lived: '',
+          home_number: '',
+          mobile_number: '',
+          email_address: '',
+          contact_during_application: '',
+          main_address_uk: '',
+          ownership_status: '',
+          errors: {}
+      };
+  },
+
+     defaultparentsDetails() {
+      return {
+          father_given_name: '',
+          father_family_name: '',
+          father_date_of_birth: '',
+          father_place_of_birth: '',
+          father_nationality: '',
+          mother_given_name: '',
+          mother_family_name: '',
+          mother_date_of_birth: '',
+          mother_place_of_birth: '',
+          mother_nationality: '',
+          errors: {}
+      };
+  },
+
+   defaulttravelDetails() {
+      return {
+          travel_date: '',
+          errors: {}
+      };
+  },
+
+     defaultotherinformationDetails() {
+      return {
+          family_in_uk: '',
+          travelling_with_others: '',
+          errors: {}
+      };
+  },
+
+     defaultqualificationsDetails() {
+      return {
+          qualifications: '',
+          study_institution: '',
+          subjects_studied: '',
+          date_passed: '',
+          study_gap_after_last_degree: '',
+          can_you_justify_gap: '',
+          errors: {}
+      };
+  },
+
+    defaultimmigrationDetails() {
+      return {
+         travel_outside: '',
+        travel_uk: '',
+        refused_uk_visa: '',
+        refused_any_visa: '',
+        granted_uk_visa: '',
+        refused_entry_uk: '',
+        deported_uk: '',
+        deported_other_country: '',
+        applied_home_office: '',
+        breach_immigration_conditions: '',
+        criminal_convictions: '',
+        charged_criminal_offence: '',
+        involved_in_war_crimes: '',
+        involved_in_terrorism: '',
+        activities_bad_character: '',
+        nhs_treatment_unpaid: '',
+        organization_type: '',
+          errors: {}
+      };
+  },
+
+      defaultukvisahistoryDetails() {
+      return {
+         visa_type: '',
+        visa_valid_from: '',
+        visa_expiry_date: '',
+        visa_reference_number: '',
+          errors: {}
+      };
+  },
+
+defaultoverseastravelhistoryDetails() {
+  return {
+    region_title: '',
+    visits: [
+      {
+        country_visited: '',
+        date_arrived: '',
+        purpose_of_visit: '',
+        length_of_stay: ''
+      }
+    ]
+  };
+},
+
+    defaultspousepartnersaccompanyingDetails() {
+      return {
+         spouse_father_given_name: '',
+        spouse_father_family_name: '',
+        father_dob: '',
+        father_place_of_birth: '',
+        spouse_mother_given_name: '',
+        spouse_mother_family_name: '',
+        mother_dob: '',
+        spouse_mother_place_of_birth: '',
+        spouse_visa_valid_from: '',
+        spouse_visa_expiry_date: '',
+        spouse_visa_type: '',
+        spouse_travel_history: '',
+          errors: {}
+      };
+  },
+
+   defaultchildrenDetails() {
+  return {
+          child_full_name: '',
+          child_gender: '',
+          child_dob: '',
+          child_place_of_birth: '',
+          child_nationality: '',
+          child_accompanying_uk: '',
+          child_current_address: '',
+          child_passport_number: '',
+    errors: {}
+  };
+},
+
+  defaultfamilynotaccompanyingDetails() {
+    return {
+      spouse_given_name: '',
+      spouse_family_name: '',
+      spouse_passport_number: '',
+      spouse_location: '',
+      spouse_dob: '',
+      spouse_nationality: '',
+      spouse_accompanying_uk: '',
+      errors: {}
+    };
+  },
+
+    defaultrequirementsforeuropeDetails() {
+    return {
+        do_you_have_block_account: '',
+        have_you_legalised_documents: '',
+        bonafide_student_undertaking: '',
+        errors: {}
+    };
+  },
+
+
+
+async addStudentForm() {
+  const toast = useToast();
+  const email = this.student.email;
+
+  if (!email || email.trim() === "") {
+    toast.error("Email is required.");
+    return;
+  }
+
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(email)) {
+    toast.error("Please enter a valid email address.");
+    return;
+  }
+
+  const formData = new FormData();
+
+  for (const key in this.student) {
+    if (!this.student.hasOwnProperty(key)) continue;
+
+    const value = this.student[key];
+
+    const jsonFields = [
+      "financialDetails", "studentEmployment", "incomeDetails", "studentReferences",
+      "passportDetails", "firstpassportDetails", "contactDetails", "parentsDetails",
+      "travelDetails", "otherinformationDetails", "qualificationsDetails", "immigrationDetails",
+      "overseastravelhistoryDetails", "ukvisahistoryDetails", "spousepartnersaccompanyingDetails", 
+      "childrenDetails", "familynotaccompanyingDetails", 
+      "requirementsforeuropeDetails"
+    ];
+
+    if (jsonFields.includes(key) && value) {
+      formData.append(key, JSON.stringify(value));
+    } else {
+      formData.append(key, value);
+    }
+  }
+
+  try {
+    await this.student.post(route("students.store"), formData);
+    toast.success("Student added successfully!");
+  } catch (error) {
+    toast.error("Failed to add student.");
+    console.error("Form submission error:", error);
+  }
+},
+
+
       updateStudentField(field, value) {
         this.student[field] = value;
       },
@@ -503,22 +790,22 @@ export const useStudentStore = defineStore("student", {
       },
 
       addChild() {
-        this.student.Childrens.push({
-          full_name: "",
-          gender: "",
-          dob: "",
-          place_of_birth: "",
-          nationality: "",
-          accompanying_uk: false,
-          current_address: "",
-          passport_number: "",
+        this.student.childrenDetails.push({
+          child_full_name: "",
+          child_gender: "",
+          child_dob: "",
+          child_place_of_birth: "",
+          child_nationality: "",
+          child_accompanying_uk: false,
+          child_current_address: "",
+          child_passport_number: "",
         });
       },
       removeChild(index) {
-          this.student.Childrens.splice(index, 1);
+          this.student.childrenDetails.splice(index, 1);
       },
       addRegion() {
-        this.student.OverseasTravelHistoryDetails.push({
+        this.student.overseastravelhistoryDetails.push({
             region_title: '',
             visits: [
                 {
@@ -531,10 +818,10 @@ export const useStudentStore = defineStore("student", {
         });
     },
     removeRegion(index) {
-            this.student.OverseasTravelHistoryDetails.splice(index, 1);
+            this.student.overseastravelhistoryDetails.splice(index, 1);
     },
     addVisit(regionIndex) {
-        this.student.OverseasTravelHistoryDetails[regionIndex].visits.push({
+        this.student.overseastravelhistoryDetails[regionIndex].visits.push({
             country_visited: '',
             date_arrived: '',
             purpose_of_visit: '',
@@ -542,7 +829,7 @@ export const useStudentStore = defineStore("student", {
         });
     },
     removeVisit(regionIndex, visitIndex) {
-            this.student.OverseasTravelHistoryDetails[regionIndex].visits.splice(visitIndex, 1);
+            this.student.overseastravelhistoryDetails[regionIndex].visits.splice(visitIndex, 1);
     },
 
       addFinancialDocument() {
