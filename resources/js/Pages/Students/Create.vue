@@ -6,7 +6,6 @@ import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
 import StudentEmployment from '@/Pages/Students/Components/StudentEmployment.vue';
 import IncomeDetails from '@/Pages/Students/Components/IncomeDetails.vue';
 import studentReferences from '@/Pages/Students/Components/StudentReferences.vue';
-import FinancialDocuments from '@/Pages/Students/Components/FinancialDocuments.vue';
 import ParentsDetails from '@/Pages/Students/Components/ParentsDetails.vue';
 import PassportDetails from '@/Pages/Students/Components/PassportDetails.vue';
 import FirstPassportDetails from '@/Pages/Students/Components/FirstPassportDetails.vue';
@@ -19,8 +18,6 @@ import UkVisaHistoryDetails from '@/Pages/Students/Components/UkVisaHistoryDetai
 import OverseasTravelHistoryDetails from '@/Pages/Students/Components/OverseasTravelHistoryDetails.vue';
 import SpousePartnersAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersAccompanyingDetails.vue';
 import RequirementsForEuropeDetails from '@/Pages/Students/Components/RequirementsForEuropeDetails.vue';
-import DocumentRequired from '@/Pages/Students/Components/DocumentsRequired.vue';
-import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 import ChildrenDetails from '@/Pages/Students/Components/ChildrenDetails.vue';
 import FamilyNotAccompanyingDetails from '@/Pages/Students/Components/FamilyNotAccompanyingDetails.vue';
@@ -78,7 +75,6 @@ const createStudent = async () => {
                                 <StudentEmployment :student="student" />
                                 <IncomeDetails :student="student" />
                                 <studentReferences :student="student" />
-                                <FinancialDocuments :student="student" />
                                 <PassportDetails :student="student" />
                                 <FirstPassportDetails :student="student" />
                                 <ContactDetails :student="student" />
@@ -93,8 +89,6 @@ const createStudent = async () => {
                                 <ChildrenDetails :student="student" />
                                 <FamilyNotAccompanyingDetails :student="student" />
                                 <RequirementsForEuropeDetails :student="student" />
-                                <DocumentRequired :student="student" />
-                                <CheckCopyDetails :student="student" />
 
 
                             </div>

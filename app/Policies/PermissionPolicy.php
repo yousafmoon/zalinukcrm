@@ -24,7 +24,7 @@ class PermissionPolicy
 
     public function viewAny(User $user): bool
     {
-        return $this->hasAccess($user, 'View permissions');
+        return $this->hasAccess($user, 'View Permissions');
     }
 
     public function create(User $user): bool

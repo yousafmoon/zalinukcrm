@@ -19,6 +19,7 @@ export function defineAbilitiesFor(roles) {
     if (roleName === 'admin') {
       can('view', 'Dashboard');
       can('view', 'Students');
+      can('view', 'Documents');
       can('view', 'Permissions');
       can('view', 'Roles');
       can('view', 'Users');

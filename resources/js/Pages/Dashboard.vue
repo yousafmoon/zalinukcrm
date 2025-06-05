@@ -15,9 +15,14 @@ defineProps({
         required: false,
         default: 0,
     },
+    totalDocuments: {
+        type: Number,
+        required: false,
+    }
 });
 const page = usePage();
 const totalStudents = computed(() => page.props.totalStudents);
+const totalDocuments = computed(() => page.props.totalDocuments);
 const user = computed(() => page.props.auth?.user || {});
 const defaultImage = "/assets/images/profile-pic.jpg";
 const imageSrc = ref(user.value.image || defaultImage);
@@ -69,7 +74,7 @@ const totalAgents = ref(10);
 
                             <h5
                                 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                Student Management {{ totalStudents }}
+                                Student Management <span class="text-red-800">({{ totalStudents }})</span>
                             </h5>
 
                         </div>
@@ -110,13 +115,13 @@ const totalAgents = ref(10);
 
                             <h5
                                 class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                Document & File Management {{ totalAgents }}
+                                Document & File Management <span class="text-red-800">({{ totalDocuments }})</span>
                             </h5>
 
                         </div>
                         <div class="p-6 pt-0">
                             <a class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-green-500"
-                                :href="route('students.index')">
+                                :href="route('documents.index')">
                                 <button
                                     class="flex select-none items-center gap-2 rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-green-500 transition-all hover:bg-green-500/10 active:bg-green-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
                                     type="button" data-ripple-dark="true">

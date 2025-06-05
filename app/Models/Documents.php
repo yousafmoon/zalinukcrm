@@ -1,13 +1,13 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\RequiredDocuments;
 
-class studentReferences extends Model
+class Documents extends Model
 {
+    
     protected $fillable = [
-        'ref_name', 'ref_phone', 'ref_email', 'ref_position', 'ref_relationship', 'ref_duration',
         'student_id'
     ];
 
@@ -15,4 +15,11 @@ class studentReferences extends Model
     {
         return $this->belongsTo(Student::class);
     }
+
+
+    public function requiredDocuments()
+    {
+        return $this->hasMany(RequiredDocuments::class, 'document_id');
+    }
+
 }

@@ -37,11 +37,6 @@ class Student extends Model
         return $this->hasOne(PassportDetails::class);
     }
 
-    public function financialDocuments()
-    {
-        return $this->hasMany(FinancialDocuments::class);
-    }
-
     public function firstpassportDetails()
     {
         return $this->hasOne(FirstPassportDetails::class);
@@ -62,7 +57,7 @@ class Student extends Model
         return $this->hasOne(TravelDetails::class);
     }
 
-    public function otherInformationDetails()
+    public function otherinformationDetails()
     {
         return $this->hasOne(OtherInformationDetails::class);
     }
@@ -77,7 +72,7 @@ class Student extends Model
         return $this->hasOne(ImmigrationDetails::class);
     }
 
-    public function ukVisaHistoryDetails()
+    public function ukvisahistoryDetails()
     {
         return $this->hasOne(UkVisaHistoryDetails::class);
     }
@@ -107,13 +102,9 @@ class Student extends Model
         return $this->hasOne(RequirementsForEuropeDetails::class);
     }
 
-    public function documentsRequired()
+    public function documents()
     {
-        return $this->hasOne(DocumentsRequired::class);
+        return $this->hasMany(Documents::class);
     }
 
-    public function checkCopyDetails()
-    {
-        return $this->hasOne(CheckCopyDetails::class);
-    }
 }

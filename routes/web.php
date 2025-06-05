@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
 use App\Http\Controllers\RoleController;
@@ -9,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Student;
+use App\Models\Documents;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,11 +25,13 @@ Route::middleware('auth')->group(function () {
     Route::get('/dashboard', function () {
         $user = Auth::user();
         $totalStudents = Student::count();
+        $totalDocuments = Documents::count();
         $students = Student::all();
 
         return Inertia::render('Dashboard', [
             'students' => $students,
             'totalStudents' => $totalStudents,
+            'totalDocuments' => $totalDocuments,
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -44,11 +48,12 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('students', StudentController::class);
-    Route::delete('/students/{student}/fircopy', [StudentController::class, 'destroyFircopy'])->name('students.fircopy.destroy');
-
+    Route::resource('documents', DocumentsController::class);
     Route::resource('permissions', PermissionController::class);
     Route::resource('roles', RoleController::class);
     Route::resource('users', UserController::class);
+
+    
 
 });
 

@@ -36,14 +36,14 @@ class StudentResource extends JsonResource
             'fircopy' => $this->fircopy,
             'living_situation' => $this->living_situation,
             'correspondence_address' => $this->correspondence_address,
-            'FinancialDetails' => [
+            'financialDetails' => [
                 'own_property' => $this->own_property,
                 'bank_savings' => $this->bank_savings,
                 'tuition_budget' => $this->tuition_budget,
                 'bank_funds' => $this->bank_funds,
                 'tuition_payer' => $this->tuition_payer,
             ],
-            'StudentEmployment' => [
+            'studentEmployment' => [
                 'personal_circumstances' => $this->personal_circumstances,
                 'employment_details' => $this->employment_details,
                 'present_work' => $this->present_work,
@@ -54,41 +54,43 @@ class StudentResource extends JsonResource
                 'employer_email' => $this->employer_email,
                 'additional_jobs' => $this->additional_jobs,
             ],
-            'IncomeDetails' => [
+            'incomeDetails' => [
                 'monthly_income' => $this->monthly_income,
                 'income_from_others' => $this->income_from_others,
                 'other_income_sources' => $this->other_income_sources,
                 'monthly_income_given_to_family' => $this->monthly_income_given_to_family,
                 'monthly_living_costs' => $this->monthly_living_costs,
             ],
-            'StudentReferences' => $this->StudentReferences->map(function ($reference) {
+            'studentReferences' => $this->studentReferences->map(function ($reference) {
                 return [
                     'id' => $reference->id,
-                    'name' => $reference->name,
-                    'phone' => $reference->phone,
-                    'email' => $reference->email,
-                    'position' => $reference->position,
-                    'relationship' => $reference->relationship,
-                    'duration' => $reference->duration,
+                    'ref_name' => $reference->ref_name,
+                    'ref_phone' => $reference->ref_phone,
+                    'ref_email' => $reference->ref_email,
+                    'ref_position' => $reference->ref_position,
+                    'ref_relationship' => $reference->ref_relationship,
+                    'ref_duration' => $reference->ref_duration,
                 ];
             }),
 
-        'FinancialDocuments' => array_map(function ($document) {
+        'financialDocuments' => array_map(function ($document) {
             return [
                 'document_title' => $document->document_title,
                 'document_name' => $document->document_name,
                 'document_path' => $document->document_path,
+                'file' => $document->file,
             ];
         }, $financialDocuments ?? []),
 
             
-            'passportDetails' => [
-                'passport_number' => $this->passport_number,
-                'place_of_issue' => $this->place_of_issue,
-                'issuing_authority' => $this->issuing_authority,
-                'date_of_issue' => $this->date_of_issue,
-                'date_of_expiry' => $this->date_of_expiry,
-            ],
+          'passportDetails' => $this->passportDetails ? [
+            'passport_number' => $this->passportDetails->passport_number,
+            'place_of_issue' => $this->passportDetails->place_of_issue,
+            'issuing_authority' => $this->passportDetails->issuing_authority,
+            'date_of_issue' => $this->passportDetails->date_of_issue,
+            'date_of_expiry' => $this->passportDetails->date_of_expiry,
+        ] : null,
+
             'firstpassportDetails' => [
                 'previous_ppt_number' => $this->previous_ppt_number,
                 'place_of_issue_previous' => $this->place_of_issue_previous,
@@ -229,22 +231,6 @@ class StudentResource extends JsonResource
                 'bonafide_student_undertaking' => $this->bonafide_student_undertaking,
             ],
 
-            'DocumentsRequired' => optional($this->DocumentsRequired)->map(function ($document) {
-                    return [
-                        'file_title' => $document->file_title,
-                        'file_name' => $document->file_name,
-                        'file_path' => $document->file_path,
-                    ];
-                }) ?? [],
-
-
-
-            'CheckCopyDetails' => [
-                'copy_current_passport' => $this->copy_current_passport,
-                'copy_any_current_previous_uk_visas' => $this->copy_any_current_previous_uk_visas,
-                'copy_any_previous_passports' => $this->copy_any_previous_passports,
-                'remarks' => $this->remarks,
-            ],
         ]);
     }
 }

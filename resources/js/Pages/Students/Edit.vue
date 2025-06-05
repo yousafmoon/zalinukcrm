@@ -10,7 +10,6 @@ import FinancialDetails from '@/Pages/Students/Components/FinancialDetails.vue';
 import StudentEmployment from '@/Pages/Students/Components/StudentEmployment.vue';
 import IncomeDetails from '@/Pages/Students/Components/IncomeDetails.vue';
 import studentReferences from '@/Pages/Students/Components/StudentReferences.vue';
-import FinancialDocuments from '@/Pages/Students/Components/FinancialDocuments.vue';
 import ParentsDetails from '@/Pages/Students/Components/ParentsDetails.vue';
 import PassportDetails from '@/Pages/Students/Components/PassportDetails.vue';
 import FirstPassportDetails from '@/Pages/Students/Components/FirstPassportDetails.vue';
@@ -23,8 +22,6 @@ import UkVisaHistoryDetails from '@/Pages/Students/Components/UkVisaHistoryDetai
 import OverseasTravelHistoryDetails from '@/Pages/Students/Components/OverseasTravelHistoryDetails.vue';
 import SpousePartnersAccompanyingDetails from '@/Pages/Students/Components/SpousePartnersAccompanyingDetails.vue';
 import RequirementsForEuropeDetails from '@/Pages/Students/Components/RequirementsForEuropeDetails.vue';
-import DocumentRequired from '@/Pages/Students/Components/DocumentsRequired.vue';
-import CheckCopyDetails from '@/Pages/Students/Components/CheckCopyDetails.vue';
 import ChildrenDetails from '@/Pages/Students/Components/ChildrenDetails.vue';
 import FamilyNotAccompanyingDetails from '@/Pages/Students/Components/FamilyNotAccompanyingDetails.vue';
 
@@ -53,6 +50,7 @@ watch(() => props.student, (newStudent) => {
     }
 }, { deep: true });
 
+
 const updateStudent = async () => {
     if (!formStore.student || !formStore.student.id) {
         toast.error("Student data is missing.");
@@ -80,6 +78,7 @@ const updateStudent = async () => {
         console.error("Update error:", error);
     }
 };
+
 </script>
 
 
@@ -87,7 +86,7 @@ const updateStudent = async () => {
 
     <Head title="Update Student" />
 
-    <AuthenticatedLayout>
+    <AuthenticatedLayout :key="$page.url">
         <template #header>
             <h2 class="text-xl font-semibold leading-tight text-gray-800">
                 Update Student
@@ -125,7 +124,6 @@ const updateStudent = async () => {
                                 <StudentEmployment :student="student" />
                                 <IncomeDetails :student="student" />
                                 <studentReferences :student="student" />
-                                <FinancialDocuments :student="student" />
                                 <PassportDetails :student="student" />
                                 <FirstPassportDetails :student="student" />
                                 <ContactDetails :student="student" />
@@ -140,8 +138,7 @@ const updateStudent = async () => {
                                 <ChildrenDetails :student="student" />
                                 <FamilyNotAccompanyingDetails :student="student" />
                                 <RequirementsForEuropeDetails :student="student" />
-                                <DocumentRequired :student="student" />
-                                <CheckCopyDetails :student="student" />
+
                             </div>
 
                             <div class="px-4 py-3 bg-gray-50 text-right sm:px-6">

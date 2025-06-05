@@ -3,22 +3,27 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout.vue';
 import { Head, Link, router, usePage } from '@inertiajs/vue3';
 import MagnifyingGlass from '@/Components/Icons/MagnifyingGlass.vue';
 import Pagination from "@/Components/Pagination.vue";
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 import Modal from '@/Components/Modal.vue';
 import { useStudentStore } from '@/Pages/Stores/studentStore';
 
 const formStore = useStudentStore();
 
-defineProps({
+
+const props = defineProps({
     students: {
         type: Object,
         required: true,
+    },
+    student: {
+        type: Object,
     },
     totalStudents: {
         type: Number,
         required: false,
     },
 });
+
 
 let search = ref(usePage().props.search),
     pageNumber = ref(1);
@@ -48,7 +53,7 @@ watch(() => search.value, (value) => {
     }
 });
 
-watch(() => formStore.students, (newStudents) => {
+watch(() => formStore.student, (newStudents) => {
     students.value = newStudents;
 });
 
@@ -78,6 +83,15 @@ const handleDelete = () => {
     showModal.value = false;
 };
 
+const goToEdit = (id) => {
+    window.location.href = route('students.edit', id);
+};
+
+watchEffect(() => {
+    if (props.student) {
+        formStore.student = props.student;
+    }
+});
 
 </script>
 
@@ -145,8 +159,17 @@ const handleDelete = () => {
                                                     student.id }}</td>
                                                 <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">{{
                                                     student.firstname }} {{ student.middlename }}</td>
-                                                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">{{
-                                                    student.passport_number }}</td>
+
+
+                                                <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">
+                                                    {{ student.passportDetails &&
+                                                        student.passportDetails.passport_number ?
+                                                        student.passportDetails.passport_number : 'N/A' }}
+                                                </td>
+
+
+
+
                                                 <td class="px-3 py-4 text-sm text-gray-500">{{ student.email }}</td>
                                                 <td class="py-4 pl-4 pr-3 text-sm font-medium text-gray-900">{{
                                                     student.gender }}</td>
@@ -155,10 +178,12 @@ const handleDelete = () => {
                                                 <td class="py-4 pl-3 pr-4 text-right text-sm font-medium">
                                                     <Link :href="route('students.show', student.id)"
                                                         class="ml-2 text-white bg-orange-600 rounded-sm px-2 py-1">View
+                                                    Details
                                                     </Link>
-                                                    <Link :href="route('students.edit', student.id)"
-                                                        class="ml-2 text-white bg-green-600 rounded-sm px-2 py-1">Edit
-                                                    </Link>
+                                                    <button @click="goToEdit(student.id)"
+                                                        class="ml-2 text-white bg-green-600 rounded-sm px-2 py-1">
+                                                        Edit
+                                                    </button>
                                                     <button @click="confirmDelete(student.id)"
                                                         class="ml-2 text-white bg-red-600 rounded-sm px-2 py-1">Delete</button>
                                                 </td>

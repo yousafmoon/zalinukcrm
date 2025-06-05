@@ -90,7 +90,7 @@ class StudentController extends Controller
          if (!empty($studentReferences)) {
             $this->studentService->storestudentReferences($studentReferences, $student);
         }
-
+          
           if (!empty($passportDetails)) {
             $this->studentService->storePassportDetails($passportDetails, $student);
         }
@@ -138,8 +138,6 @@ class StudentController extends Controller
          if(!empty($requirementsforeuropeDetails)) {
             $this->studentService->storeRequirementsForEuropeDetails($requirementsforeuropeDetails, $student);
         }
-
-        
     
         return redirect()->route('students.index')->with('message', 'Student created successfully.');
     }
@@ -147,9 +145,10 @@ class StudentController extends Controller
     public function edit(Student $student)
     {
         $this->authorize('update', $student);
-        $student->load(['financialDetails', 'studentEmployment', 'incomeDetails', 'studentReferences', 'passportDetails', 
-        'firstpassportDetails', 'parentsDetails', 'travelDetails', 'otherinformationDetails', 'qualificationsDetails', 
-        'immigrationDetails', 'ukvisahistoryDetails', 'overseastravelhistoryDetails', 'spousepartnersaccompanyingDetails', 'childrenDetails', 
+        $student->load(['financialDetails', 'studentEmployment', 'incomeDetails', 'studentReferences', 
+        'passportDetails', 'firstpassportDetails', 'parentsDetails', 'travelDetails', 'otherinformationDetails', 
+        'qualificationsDetails', 'immigrationDetails', 'ukvisahistoryDetails', 'overseastravelhistoryDetails', 
+        'spousepartnersaccompanyingDetails', 'childrenDetails', 
         'familynotaccompanyingDetails','requirementsforeuropeDetails']);
 
         $financialDefaults = [
@@ -211,12 +210,12 @@ class StudentController extends Controller
         }
 
           $studentReferencesDefaults = [
-            'name' => '',
-            'phone'  => '',
-            'email'  => '',
-            'position' => '',
-            'relationship' => '',
-            'duration' => '',
+            'ref_name' => '',
+            'ref_phone'  => '',
+            'ref_email'  => '',
+            'ref_position' => '',
+            'ref_relationship' => '',
+            'ref_duration' => '',
         ];
 
         $referencesData = [];
@@ -236,6 +235,7 @@ class StudentController extends Controller
             'date_of_issue' => '',
             'date_of_expiry'    => '',
         ];
+
 
         $passportData = $student->passportDetails
             ? array_merge($passportDetailsDefaults, $student->passportDetails->toArray())
@@ -501,15 +501,16 @@ class StudentController extends Controller
         : $requirementsforeuropeDetailsDefaults;
 
         $studentData = $student->toArray();
-        unset($studentData['financial_details'], $studentData['student_employment'], $studentData['income_details'], 
-        $studentData['student_references'], $studentData['passport_details'], $studentData['first_passport_details'],
+        unset($studentData['financial_details'], $studentData['student_employment'], 
+        $studentData['income_details'], $studentData['student_references'], 
+        $studentData['passport_details'], $studentData['first_passport_details'],
         $studentData['contact_details'], $studentData['parents_details'],$studentData['travel_details'], 
         $studentData['other_information_details'], $studentData['qualifications_details'], 
         $studentData['immigration_details'], $studentData['uk_visa_history_details'], 
         $studentData['overseas_travel_regions'],
         $studentData['spouse_partners_accompanying_details'],
         $studentData['children_details'],
-        $studentData['spouse_partners_not_accompanying_details'], 
+        $studentData['family_not_accompanying_details'], 
         $studentData['requirements_for_europe_details']
         );
 

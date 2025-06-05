@@ -47,6 +47,12 @@ const showingNavigationDropdown = ref(false);
                 :active="route().current('students.index')">
                 Students
               </NavLink>
+
+              <NavLink v-if="abilities.can('view', 'Documents')" :href="route('documents.index')"
+                :active="route().current('documents.index')">
+                Documents
+              </NavLink>
+
             </div>
           </div>
 
@@ -97,6 +103,8 @@ const showingNavigationDropdown = ref(false);
         <ResponsiveNavLink v-if="abilities.can('view', 'Dashboard')" :href="route('dashboard')">Dashboard
         </ResponsiveNavLink>
         <ResponsiveNavLink v-if="abilities.can('view', 'Students')" :href="route('students.index')">Students
+        </ResponsiveNavLink>
+        <ResponsiveNavLink v-if="abilities.can('view', 'Documents')" :href="route('documents.index')">Documents
         </ResponsiveNavLink>
         <ResponsiveNavLink v-if="abilities.can('view', 'Permissions')" :href="route('permissions.index')">Permissions
         </ResponsiveNavLink>

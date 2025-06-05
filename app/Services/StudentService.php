@@ -5,6 +5,7 @@ namespace App\Services;
 use App\Models\Student;
 use App\Repositories\StudentRepository;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class StudentService
 {
@@ -141,7 +142,8 @@ class StudentService
         $this->studentRepository->saveStudentEmployment($student, $employmentData);
     }
 
-        public function updateIncomeDetails($requestData, Student $student): void
+
+  public function updateIncomeDetails($requestData, Student $student): void
     {
         $incomeDetails = is_array($requestData)
             ? $requestData
@@ -360,27 +362,37 @@ class StudentService
 
     public function getStudents(?string $search = null)
     {
-        return Student::when($search, fn($query) =>
-            $query->where('firstname', 'like', "%{$search}%")
-        )->paginate(10);
+        return Student::with('passportDetails')
+            ->when($search, function ($query) use ($search) {
+                $query->where(function ($q) use ($search) {
+                    $q->where('firstname', 'like', "%{$search}%")
+                    ->orWhere('middlename', 'like', "%{$search}%")
+                    ->orWhere('email', 'like', "%{$search}%")
+                    ->orWhere('nationality', 'like', "%{$search}%")
+                    ->orWhereHas('passportDetails', function ($q2) use ($search) {
+                        $q2->where('passport_number', 'like', "%{$search}%");
+                    });
+                });
+            })
+            ->paginate(10);
     }
 
     public function getStudentById($id): Student
     {
-        return Student::with(['financialDetails', 'studentEmployment', 'incomeDetails', 'studentReferences', 
-        'passportDetails','firstpassportDetails','contactDetails', 'parentsDetails', 'travelDetails',
-        'otherinformationDetails', 'qualificationsDetails', 'immigrationDetails', 'ukvisahistoryDetails',
-        'overseastravelhistoryDetails', 'spousepartnersaccompanyingDetails', 'familynotaccompanyingDetails', 
-        'requirementsforeuropeDetails'])->findOrFail($id);
+        return Student::with(['FinancialDetails', 'StudentEmployment', 'IncomeDetails', 'StudentReferences', 
+        'PassportDetails','FirstPassportDetails','ContactDetails', 'ParentsDetails', 
+        'TravelDetails','OtherInformationDetails', 'QualificationsDetails', 'ImmigrationDetails', 'UkVisaHistoryDetails',
+        'OverseasTravelHistoryDetails.visits', 'SpousePartnersAccompanyingDetails','ChildrenDetails', 'FamilyNotAccompanyingDetails', 
+        'RequirementsForEuropeDetails', 'documents.requiredDocuments'])->findOrFail($id);
     }
 
     public function editStudent(Student $student): Student
     {
         return $student->load(['financialDetails','studentEmployment', 'incomeDetails', 'studentReferences', 
-        'passportDetails', 'firstpassportDetails', 'contactDetails', 'parentsDetails', 'travelDetails', 
-        'otherinformationDetails', 'qualificationsDetails', 'immigrationDetails', 'ukvisahistoryDetails', 
-        'overseastravelhistoryDetails', 'spousepartnersaccompanyingDetails', 'familynotaccompanyingDetails', 
-        'requirementsforeuropeDetails']);
+        'passportDetails', 'firstpassportDetails', 'contactDetails', 'parentsDetails',
+         'travelDetails', 'otherinformationDetails', 'qualificationsDetails', 'immigrationDetails', 'ukvisahistoryDetails', 
+        'overseastravelhistoryDetails.visits', 'spousepartnersaccompanyingDetails', 'childrenDetails', 'familynotaccompanyingDetails', 
+        'requirementsforeuropeDetails', 'documents.requiredDocuments']);
     }
     
 }

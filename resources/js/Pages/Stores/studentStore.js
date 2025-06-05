@@ -1,10 +1,8 @@
 import { defineStore } from "pinia";
 import { useForm, router } from "@inertiajs/vue3";
 import { useToast } from "vue-toast-notification";
+import { reactive, ref } from "vue";
 
-
-
-import { ref } from "vue";
 export const useStudentStore = defineStore("student", {
   
   state: () => ({
@@ -59,9 +57,9 @@ export const useStudentStore = defineStore("student", {
         monthly_income_given_to_family: "",
         monthly_living_costs: "",
       },
-      studentReferences: [{ name: "", phone: "", email: "", position: "", relationship: "", duration: "" }],
-      FinancialDocuments: [
-        { document_title: "", document_name: "", document_path: "" }
+      studentReferences: [{ ref_name: "", ref_phone: "", ref_email: "", ref_position: "", ref_relationship: "", ref_duration: "" }],
+      requiredDocuments: [
+        { document_title: "", document_name: "", document_path: "", file: null }
     ],
       passportDetails: {
         passport_number: "",
@@ -193,32 +191,37 @@ export const useStudentStore = defineStore("student", {
         spouse_accompanying_uk: "",
       },
     
-     
       requirementsforeuropeDetails: {
         do_you_have_block_account: "",
         have_you_legalised_documents: "",
         bonafide_student_undertaking: "",
       },
-      DocumentsRequired: {
-        file_title: "",
-        file_name: "",  
-        file_path: "" 
-      },
-      CheckCopyDetails: {
-        copy_current_passport: false,
-        copy_any_current_previous_uk_visas: false,
-        copy_any_previous_passports: false,
-        remarks: "",
-      },
+
     }),
+
+   documents: useForm({
+    student_id: null,
+    requiredDocuments: [{
+      id: null,
+      document_type: "",
+      file_name: "",
+      original_name: "",
+      file_path: "",
+      uploaded_at: "",
+      file: null,
+    }]
+  }),
+
 
     showModal: ref(false),
     studentIdToDelete: ref(null),
+    documentIdToDelete: ref(null),
     errors: {},
     countries: ref([]),
     isOpen: ref(false),
     selectedCountry: ref(null),
     totalStudents: ref(0),
+    totalDocuments: ref(0),
     isRemoving: ref(false),
     selectedFile: null,
     fileSizeError: null,
@@ -226,8 +229,37 @@ export const useStudentStore = defineStore("student", {
   }),
 
   
-  
   actions: {
+    
+reset() {
+  this.student = { id: null };
+  this.documents = { requiredDocuments: [] };
+},
+
+resetDocuments(studentId = null) {
+  this.student = { id: studentId || null };
+  this.documents = {
+    requiredDocuments: [
+      {
+        document_type: '',
+        file_name: '',
+        file: null,
+        file_path: null,
+        original_name: '',
+      }
+    ],
+  };
+},
+
+ setDocuments(newDocuments) {
+      if (newDocuments && newDocuments.requiredDocuments) {
+        this.documents.requiredDocuments = [...newDocuments.requiredDocuments];
+      } else {
+        this.resetDocuments();
+      }
+    },
+
+
   setStudent(student) {
   if (!student) {
     this.student = {
@@ -235,6 +267,7 @@ export const useStudentStore = defineStore("student", {
     };
     return;
   }
+
 
   const financialDetails = {
     ...this.defaultFinancialDetails(),
@@ -378,29 +411,29 @@ const overseastravelhistoryDetails = Array.isArray(student.overseastravelhistory
   };
 },
     
-  defaultFinancialDetails() {
-      return {
-          own_property: '',
-          bank_savings: '',
-          tuition_budget: '',
-          bank_funds: '',
-          tuition_payer: '',
-          errors: {}
-      };
-  },
+defaultFinancialDetails() {
+    return {
+        own_property: '',
+        bank_savings: '',
+        tuition_budget: '',
+        bank_funds: '',
+        tuition_payer: '',
+        errors: {}
+    };
+},
 
+defaultIncomeDetails() {
+    return {
+        monthly_income: '',
+        income_from_others: '',
+        other_income_sources: '',
+        monthly_income_given_to_family: '',
+        monthly_living_costs: '',
+        errors: {}
+    };
+},
 
-    defaultIncomeDetails() {
-      return {
-          monthly_income: '',
-          income_from_others: '',
-          other_income_sources: '',
-          monthly_income_given_to_family: '',
-          monthly_living_costs: '',
-          errors: {}
-      };
-  },
-  defaultStudentEmployment() {
+defaultStudentEmployment() {
   return {
     personal_circumstances: '',
     employment_details: '',
@@ -414,131 +447,132 @@ const overseastravelhistoryDetails = Array.isArray(student.overseastravelhistory
     errors: {}
   };
 },
+
  defaultstudentReferences() {
   return {
-    name: '',
-    phone: '',
-    email: '',
-    position: '',
-    relationship: '',
-    duration: '',
+    ref_name: '',
+    ref_phone: '',
+    ref_email: '',
+    ref_position: '',
+    ref_relationship: '',
+    ref_duration: '',
     errors: {}
   };
 },
 
-  defaultPassportDetails() {
-      return {
-          passport_number: '',
-          place_of_issue: '',
-          issuing_authority: '',
-          date_of_issue: '',
-          date_of_expiry: '',
-          errors: {}
-      };
-  },
+defaultPassportDetails() {
+    return {
+        passport_number: '',
+        place_of_issue: '',
+        issuing_authority: '',
+        date_of_issue: '',
+        date_of_expiry: '',
+        errors: {}
+    };
+},
 
-   defaultfirstpassportDetails() {
-      return {
-          previous_ppt_number: '',
-          place_of_issue_previous: '',
-          issuing_authority_previous: '',
-          date_of_issue_previous: '',
-          date_of_expiry_previous: '',
-          national_id_number: '',
-          errors: {}
-      };
-  },
+defaultfirstpassportDetails() {
+    return {
+        previous_ppt_number: '',
+        place_of_issue_previous: '',
+        issuing_authority_previous: '',
+        date_of_issue_previous: '',
+        date_of_expiry_previous: '',
+        national_id_number: '',
+        errors: {}
+    };
+},
 
-     defaultcontactDetails() {
-      return {
-          address: '',
-          postal_code: '',
-          how_long_lived: '',
-          home_number: '',
-          mobile_number: '',
-          email_address: '',
-          contact_during_application: '',
-          main_address_uk: '',
-          ownership_status: '',
-          errors: {}
-      };
-  },
+defaultcontactDetails() {
+    return {
+        address: '',
+        postal_code: '',
+        how_long_lived: '',
+        home_number: '',
+        mobile_number: '',
+        email_address: '',
+        contact_during_application: '',
+        main_address_uk: '',
+        ownership_status: '',
+        errors: {}
+    };
+},
 
-     defaultparentsDetails() {
-      return {
-          father_given_name: '',
-          father_family_name: '',
-          father_date_of_birth: '',
-          father_place_of_birth: '',
-          father_nationality: '',
-          mother_given_name: '',
-          mother_family_name: '',
-          mother_date_of_birth: '',
-          mother_place_of_birth: '',
-          mother_nationality: '',
-          errors: {}
-      };
-  },
+defaultparentsDetails() {
+    return {
+        father_given_name: '',
+        father_family_name: '',
+        father_date_of_birth: '',
+        father_place_of_birth: '',
+        father_nationality: '',
+        mother_given_name: '',
+        mother_family_name: '',
+        mother_date_of_birth: '',
+        mother_place_of_birth: '',
+        mother_nationality: '',
+        errors: {}
+    };
+},
 
-   defaulttravelDetails() {
-      return {
-          travel_date: '',
-          errors: {}
-      };
-  },
+defaulttravelDetails() {
+    return {
+        travel_date: '',
+        errors: {}
+    };
+},
 
-     defaultotherinformationDetails() {
-      return {
-          family_in_uk: '',
-          travelling_with_others: '',
-          errors: {}
-      };
-  },
+defaultotherinformationDetails() {
+    return {
+        family_in_uk: '',
+        travelling_with_others: '',
+        errors: {}
+    };
+},
 
-     defaultqualificationsDetails() {
-      return {
-          qualifications: '',
-          study_institution: '',
-          subjects_studied: '',
-          date_passed: '',
-          study_gap_after_last_degree: '',
-          can_you_justify_gap: '',
-          errors: {}
-      };
-  },
+defaultqualificationsDetails() {
+    return {
+        qualifications: '',
+        study_institution: '',
+        subjects_studied: '',
+        date_passed: '',
+        study_gap_after_last_degree: '',
+        can_you_justify_gap: '',
+        errors: {}
+    };
+},
 
-    defaultimmigrationDetails() {
-      return {
-         travel_outside: '',
-        travel_uk: '',
-        refused_uk_visa: '',
-        refused_any_visa: '',
-        granted_uk_visa: '',
-        refused_entry_uk: '',
-        deported_uk: '',
-        deported_other_country: '',
-        applied_home_office: '',
-        breach_immigration_conditions: '',
-        criminal_convictions: '',
-        charged_criminal_offence: '',
-        involved_in_war_crimes: '',
-        involved_in_terrorism: '',
-        activities_bad_character: '',
-        nhs_treatment_unpaid: '',
-        organization_type: '',
-          errors: {}
-      };
-  },
+defaultimmigrationDetails() {
+    return {
+        travel_outside: '',
+      travel_uk: '',
+      refused_uk_visa: '',
+      refused_any_visa: '',
+      granted_uk_visa: '',
+      refused_entry_uk: '',
+      deported_uk: '',
+      deported_other_country: '',
+      applied_home_office: '',
+      breach_immigration_conditions: '',
+      criminal_convictions: '',
+      charged_criminal_offence: '',
+      involved_in_war_crimes: '',
+      involved_in_terrorism: '',
+      activities_bad_character: '',
+      nhs_treatment_unpaid: '',
+      organization_type: '',
+        errors: {}
+    };
+},
 
-      defaultukvisahistoryDetails() {
-      return {
-         visa_type: '',
-        visa_valid_from: '',
-        visa_expiry_date: '',
-        visa_reference_number: '',
-          errors: {}
-      };
-  },
+defaultukvisahistoryDetails() {
+    return {
+        visa_type: '',
+      visa_valid_from: '',
+      visa_expiry_date: '',
+      visa_reference_number: '',
+        errors: {}
+    };
+},
 
 defaultoverseastravelhistoryDetails() {
   return {
@@ -554,7 +588,7 @@ defaultoverseastravelhistoryDetails() {
   };
 },
 
-    defaultspousepartnersaccompanyingDetails() {
+defaultspousepartnersaccompanyingDetails() {
       return {
          spouse_father_given_name: '',
         spouse_father_family_name: '',
@@ -570,9 +604,9 @@ defaultoverseastravelhistoryDetails() {
         spouse_travel_history: '',
           errors: {}
       };
-  },
+},
 
-   defaultchildrenDetails() {
+defaultchildrenDetails() {
   return {
           child_full_name: '',
           child_gender: '',
@@ -586,7 +620,7 @@ defaultoverseastravelhistoryDetails() {
   };
 },
 
-  defaultfamilynotaccompanyingDetails() {
+defaultfamilynotaccompanyingDetails() {
     return {
       spouse_given_name: '',
       spouse_family_name: '',
@@ -597,17 +631,55 @@ defaultoverseastravelhistoryDetails() {
       spouse_accompanying_uk: '',
       errors: {}
     };
-  },
+},
 
-    defaultrequirementsforeuropeDetails() {
+defaultrequirementsforeuropeDetails() {
     return {
         do_you_have_block_account: '',
         have_you_legalised_documents: '',
         bonafide_student_undertaking: '',
         errors: {}
     };
-  },
+},
 
+setDocuments(documents) {
+  if (!documents) return;
+
+  const requiredDocuments = Array.isArray(documents.requiredDocuments)
+    ? documents.requiredDocuments.map((doc) => ({
+        ...this.defaultRequiredDocument(),
+        ...doc,
+      }))
+    : [];
+
+  this.documents = {
+    student_id: documents.student_id ?? null,
+    id: documents.id ?? null,
+    ...documents,
+    requiredDocuments,
+  };
+},
+
+resetDocuments() {
+  this.documents = {
+    student_id: null,
+    id: null,
+    requiredDocuments: [],
+  };
+},
+
+defaultRequiredDocument() {
+  return {
+    id: null,
+    document_type: '',
+    file_name: '',
+    original_name: '',
+    file_path: '',
+    uploaded_at: '',
+    file: null,
+    errors: {},
+  };
+},
 
 
 async addStudentForm() {
@@ -658,202 +730,224 @@ async addStudentForm() {
 },
 
 
-      updateStudentField(field, value) {
-        this.student[field] = value;
-      },
-      
-    confirmDelete(studentId) {
-      this.studentIdToDelete = studentId;
-      this.showModal = true;
+
+updateStudentField(field, value) {
+  this.student[field] = value;
+},
+
+confirmDelete(studentId) {
+this.studentIdToDelete = studentId;
+this.showModal = true;
+},
+
+confirmDocumentsDelete(documentId) {
+this.documentIdToDelete = documentId;
+this.showModal = true;
+},
+
+async handleDelete(studentId) {
+  const toast = useToast();
+  try {
+      await this.student.delete(route('students.destroy', { student: studentId }), {
+          onSuccess: () => {
+              toast.success("Student deleted successfully.");
+              router.visit(route('students.index'), {
+                  preserveScroll: true,
+                  replace: true,
+              });
+          },
+          onError: (error) => {
+              toast.error("Failed to delete student.");
+              console.error("Error deleting student:", error);
+          }
+      });
+  } catch (error) {
+      toast.error("An unexpected error occurred.");
+      console.error("Error deleting student:", error);
+  }
+},
+
+
+async handleDocumentsDelete(documentId) {
+const toast = useToast();
+try {
+await router.delete(route('documents.destroy', { document: documentId }));
+toast.success("Documents deleted successfully.");
+router.visit(route('documents.index'), { preserveScroll: true, replace: true });
+} catch (error) {
+toast.error("Failed to delete documents.");
+console.error("Error deleting documents:", error);
+}
+},
+
+
+setFormField(field, value) {
+  this.student[field] = value;
+  this.clearError(field);
+},
+
+setError(field, message) {
+  this.errors[field] = message;
+},
+
+clearError(field) {
+  if (this.student.errors && this.student.errors[field]) {
+      delete this.student.errors[field]; 
+  }
+    if (this.documents.errors && this.documents.errors[field]) {
+      delete this.documents.errors[field]; 
+  }
+},
+
+validateField(field) {
+if (!this.student[field] || this.student[field].trim() === '') {
+  this.setError(field, `${field} is required.`);
+  return false;
+}
+  if (!this.documents[field] || this.documents[field].trim() === '') {
+  this.setError(field, `${field} is required.`);
+  return false;
+}
+
+this.clearError(field);
+return true;
+},  
+
+async fetchCountries() {
+  try {
+    const response = await fetch('https://restcountries.com/v3.1/all');
+    const data = await response.json();
+    this.countries = data
+      .sort((a, b) => a.name.common.localeCompare(b.name.common))
+      .map((country) => {
+        const callingCode = country.idd?.root && country.idd?.suffixes
+          ? `${country.idd.root}${country.idd.suffixes[0]}`
+          : null;
+
+        return callingCode && country.name.common
+          ? {
+              code: callingCode,
+              name: country.name.common,
+              flag: country.flags?.svg || country.flags?.png || '',
+            }
+          : null;
+      })
+      .filter(Boolean);
+  } catch (error) {
+    console.error('Error fetching countries:', error);
+  }
+},
+
+selectCountry(country) {
+  this.selectedCountry = country;
+  this.student.choice_of_country = country?.name ? String(country.name).trim() : null;
+  this.isOpen = false;
+  this.clearError('choice_of_country');
+},  
+
+toggleDropdown() {
+  this.isOpen = !this.isOpen;
+},
+
+addstudentEmployment() {
+this.student.studentEmployment.push(this.emptyJob());
+},
+
+removestudentEmployment(index) {
+if (this.student.studentEmployment.length > 1) {
+this.student.studentEmployment.splice(index, 1);
+}
+},
+
+emptyJob() {
+    return {
+        personal_circumstances: '',
+        employment_details: '',
+        present_work: '',
+        company_name: '',
+        job_start_date: '',
+        work_address: '',
+        employer_phone: '',
+        employer_email: '',
+        additional_jobs: ''
+    };
+},
+
+addstudentReference() {
+  this.student.studentReferences.push({
+    ref_name: "",
+    ref_phone: "",
+    ref_email: "",
+    ref_position: "",
+    ref_relationship: "",
+    ref_duration: "",
+  });
+},
+
+removestudentReference(index) {
+    this.student.studentReferences.splice(index, 1);
+},
+
+addChild() {
+  this.student.childrenDetails.push({
+    child_full_name: "",
+    child_gender: "",
+    child_dob: "",
+    child_place_of_birth: "",
+    child_nationality: "",
+    child_accompanying_uk: false,
+    child_current_address: "",
+    child_passport_number: "",
+  });
+},
+removeChild(index) {
+    this.student.childrenDetails.splice(index, 1);
+},
+addRegion() {
+    this.student.overseastravelhistoryDetails.push({
+        region_title: '',
+        visits: [
+            {
+                country_visited: '',
+                date_arrived: '',
+                purpose_of_visit: '',
+                length_of_stay: ''
+            }
+        ]
+    });
+},
+removeRegion(index) {
+        this.student.overseastravelhistoryDetails.splice(index, 1);
+},
+addVisit(regionIndex) {
+    this.student.overseastravelhistoryDetails[regionIndex].visits.push({
+        country_visited: '',
+        date_arrived: '',
+        purpose_of_visit: '',
+        length_of_stay: ''
+    });
+},
+removeVisit(regionIndex, visitIndex) {
+        this.student.overseastravelhistoryDetails[regionIndex].visits.splice(visitIndex, 1);
+},
+
+  addrequiredDocuments() {
+      this.documents.requiredDocuments.push({
+         id: null,
+        document_type: '',
+        file_name: '',
+        original_name: '',
+        file_path: '',
+        uploaded_at: '',
+        file: null,
+      });
     },
 
-    async handleDelete(studentId) {
-      const toast = useToast();
-      try {
-          await this.student.delete(route('students.destroy', { student: studentId }), {
-              onSuccess: () => {
-                  toast.success("Student deleted successfully.");
-                  router.visit(route('students.index'), {
-                      preserveScroll: true,
-                      replace: true,
-                  });
-              },
-              onError: (error) => {
-                  toast.error("Failed to delete student.");
-                  console.error("Error deleting student:", error);
-              }
-          });
-      } catch (error) {
-          toast.error("An unexpected error occurred.");
-          console.error("Error deleting student:", error);
-      }
+    removerequiredDocuments(index) {
+      this.documents.requiredDocuments.splice(index, 1);
+    },
+
   },
 
-    setFormField(field, value) {
-        this.student[field] = value;
-        this.clearError(field);
-      },
-      
-      setError(field, message) {
-        this.errors[field] = message;
-      },
-  
-      clearError(field) {
-        if (this.student.errors && this.student.errors[field]) {
-            delete this.student.errors[field]; 
-        }
-    },
-    
-    validateField(field) {
-      if (!this.student[field] || this.student[field].trim() === '') {
-        this.setError(field, `${field} is required.`);
-        return false;
-      }
-      this.clearError(field);
-      return true;
-    },  
-  
-      async fetchCountries() {
-        try {
-          const response = await fetch('https://restcountries.com/v3.1/all');
-          const data = await response.json();
-          this.countries = data
-            .sort((a, b) => a.name.common.localeCompare(b.name.common))
-            .map((country) => {
-              const callingCode = country.idd?.root && country.idd?.suffixes
-                ? `${country.idd.root}${country.idd.suffixes[0]}`
-                : null;
-  
-              return callingCode && country.name.common
-                ? {
-                    code: callingCode,
-                    name: country.name.common,
-                    flag: country.flags?.svg || country.flags?.png || '',
-                  }
-                : null;
-            })
-            .filter(Boolean);
-        } catch (error) {
-          console.error('Error fetching countries:', error);
-        }
-      },
-  
-      selectCountry(country) {
-        this.selectedCountry = country;
-        this.student.choice_of_country = country?.name ? String(country.name).trim() : null;
-        this.isOpen = false;
-        this.clearError('choice_of_country');
-      },  
-      
-      toggleDropdown() {
-        this.isOpen = !this.isOpen;
-      },
 
-          addstudentEmployment() {
-        this.student.studentEmployment.push(this.emptyJob());
-    },
-
-    removestudentEmployment(index) {
-        if (this.student.studentEmployment.length > 1) {
-            this.student.studentEmployment.splice(index, 1);
-        }
-    },
-
-
-  emptyJob() {
-      return {
-          personal_circumstances: '',
-          employment_details: '',
-          present_work: '',
-          company_name: '',
-          job_start_date: '',
-          work_address: '',
-          employer_phone: '',
-          employer_email: '',
-          additional_jobs: ''
-      };
-  },
-
-      addstudentReference() {
-        this.student.studentReferences.push({
-          name: "",
-          phone: "",
-          email: "",
-          position: "",
-          relationship: "",
-          duration: "",
-        });
-      },
-      
-      removestudentReference(index) {
-          this.student.studentReferences.splice(index, 1);
-      },
-
-      addChild() {
-        this.student.childrenDetails.push({
-          child_full_name: "",
-          child_gender: "",
-          child_dob: "",
-          child_place_of_birth: "",
-          child_nationality: "",
-          child_accompanying_uk: false,
-          child_current_address: "",
-          child_passport_number: "",
-        });
-      },
-      removeChild(index) {
-          this.student.childrenDetails.splice(index, 1);
-      },
-      addRegion() {
-        this.student.overseastravelhistoryDetails.push({
-            region_title: '',
-            visits: [
-                {
-                    country_visited: '',
-                    date_arrived: '',
-                    purpose_of_visit: '',
-                    length_of_stay: ''
-                }
-            ]
-        });
-    },
-    removeRegion(index) {
-            this.student.overseastravelhistoryDetails.splice(index, 1);
-    },
-    addVisit(regionIndex) {
-        this.student.overseastravelhistoryDetails[regionIndex].visits.push({
-            country_visited: '',
-            date_arrived: '',
-            purpose_of_visit: '',
-            length_of_stay: ''
-        });
-    },
-    removeVisit(regionIndex, visitIndex) {
-            this.student.overseastravelhistoryDetails[regionIndex].visits.splice(visitIndex, 1);
-    },
-
-      addFinancialDocument() {
-        if (!this.student.FinancialDocuments) {
-          this.student.FinancialDocuments = [];
-        }
-        this.student.FinancialDocuments.push({
-          document_title: "",
-          document_name: "",
-          document_path: ""
-        });
-      },
-  
-      removeFinancialDocument(index) {
-          this.student.FinancialDocuments.splice(index, 1);
-      },
-  
-      handleFileChange(event, index) {
-        const file = event.target.files[0];
-        if (file) {
-          this.student.FinancialDocuments[index].document_name = file.name;
-          this.student.FinancialDocuments[index].document_path = URL.createObjectURL(file);
-        }
-      },
-
-  },
 });

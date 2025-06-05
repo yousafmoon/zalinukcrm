@@ -140,6 +140,7 @@ class StudentRepository
         }
     }
 
+
          public function savePassportDetails(Student $student, array $passportData): void
     {
 
