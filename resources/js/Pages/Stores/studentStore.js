@@ -1,7 +1,7 @@
 import { defineStore } from "pinia";
 import { useForm, router } from "@inertiajs/vue3";
 import { useToast } from "vue-toast-notification";
-import { reactive, ref } from "vue";
+import { ref } from "vue";
 
 export const useStudentStore = defineStore("student", {
   
@@ -211,7 +211,6 @@ export const useStudentStore = defineStore("student", {
       file: null,
     }]
   }),
-
 
     showModal: ref(false),
     studentIdToDelete: ref(null),

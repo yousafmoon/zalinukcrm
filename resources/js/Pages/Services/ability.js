@@ -20,6 +20,7 @@ export function defineAbilitiesFor(roles) {
       can('view', 'Dashboard');
       can('view', 'Students');
       can('view', 'Documents');
+      can('view', 'Leads');
       can('view', 'Permissions');
       can('view', 'Roles');
       can('view', 'Users');

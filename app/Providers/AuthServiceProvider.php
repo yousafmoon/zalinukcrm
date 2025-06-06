@@ -9,6 +9,7 @@ use App\Models\Role;
 use App\Models\Permission;
 use App\Models\User;
 use App\Policies\StudentPolicy;
+use App\Policies\LeadPolicy;
 use App\Policies\DocumentsPolicy;
 use App\Policies\RolePolicy;
 use App\Policies\PermissionPolicy;
@@ -18,6 +19,7 @@ class AuthServiceProvider extends ServiceProvider
 {
     protected $policies = [
         Student::class => StudentPolicy::class,
+        Lead::class => LeadPolicy::class,
         Documents::class => DocumentsPolicy::class,
         Role::class => RolePolicy::class,
         Permission::class => PermissionPolicy::class,

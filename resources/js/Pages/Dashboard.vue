@@ -18,11 +18,16 @@ defineProps({
     totalDocuments: {
         type: Number,
         required: false,
+    },
+    totalLeads: {
+        type: Number,
+        required: false,
     }
 });
 const page = usePage();
 const totalStudents = computed(() => page.props.totalStudents);
 const totalDocuments = computed(() => page.props.totalDocuments);
+const totalLeads = computed(() => page.props.totalLeads);
 const user = computed(() => page.props.auth?.user || {});
 const defaultImage = "/assets/images/profile-pic.jpg";
 const imageSrc = ref(user.value.image || defaultImage);
@@ -60,6 +65,47 @@ const totalAgents = ref(10);
                 </div>
 
                 <div class="flex justify-between flex-wrap">
+
+                    <div
+                        class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
+                        <div class="p-6">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"
+                                fill="none">
+                                <circle cx="50" cy="30" r="15" fill="#FF6347" stroke="#000" stroke-width="2" />
+                                <line x1="50" y1="45" x2="35" y2="60" stroke="#2E8B57" stroke-width="2" />
+                                <line x1="50" y1="45" x2="65" y2="60" stroke="#2E8B57" stroke-width="2" />
+                                <circle cx="35" cy="60" r="10" fill="#4682B4" stroke="#000" stroke-width="2" />
+                                <circle cx="65" cy="60" r="10" fill="#4682B4" stroke="#000" stroke-width="2" />
+                                <line x1="35" y1="70" x2="30" y2="80" stroke="#FFD700" stroke-width="2" />
+                                <line x1="65" y1="70" x2="70" y2="80" stroke="#FFD700" stroke-width="2" />
+                                <circle cx="30" cy="80" r="5" fill="#9370DB" stroke="#000" stroke-width="2" />
+                                <circle cx="70" cy="80" r="5" fill="#9370DB" stroke="#000" stroke-width="2" />
+                            </svg>
+
+                            <h5
+                                class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
+                                Lead & Inquiry Management {{ totalLeads }}
+                            </h5>
+
+                        </div>
+                        <div class="p-6 pt-0">
+                            <a class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-green-500"
+                                :href="route('leads.index')">
+                                <button
+                                    class="flex select-none items-center gap-2 rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-green-500 transition-all hover:bg-green-500/10 active:bg-green-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
+                                    type="button" data-ripple-dark="true">
+                                    Know More
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
+                                        stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-4 w-4">
+                                        <path stroke-linecap="round" stroke-linejoin="round"
+                                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
+                                    </svg>
+                                </button>
+                            </a>
+                        </div>
+
+                    </div>
+
                     <div
                         class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
                         <div class="p-6">
@@ -294,49 +340,7 @@ const totalAgents = ref(10);
 
                     </div>
 
-                    <div
-                        class="relative mt-6 flex w-96 flex-col rounded-xl bg-white bg-clip-border text-gray-700 shadow-md">
-                        <div class="p-6">
-                            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 100 100"
-                                fill="none">
-                                <circle cx="50" cy="30" r="15" fill="#FF6347" stroke="#000" stroke-width="2" />
-                                <line x1="50" y1="45" x2="35" y2="60" stroke="#2E8B57" stroke-width="2" />
-                                <line x1="50" y1="45" x2="65" y2="60" stroke="#2E8B57" stroke-width="2" />
-                                <circle cx="35" cy="60" r="10" fill="#4682B4" stroke="#000" stroke-width="2" />
-                                <circle cx="65" cy="60" r="10" fill="#4682B4" stroke="#000" stroke-width="2" />
-                                <line x1="35" y1="70" x2="30" y2="80" stroke="#FFD700" stroke-width="2" />
-                                <line x1="65" y1="70" x2="70" y2="80" stroke="#FFD700" stroke-width="2" />
-                                <circle cx="30" cy="80" r="5" fill="#9370DB" stroke="#000" stroke-width="2" />
-                                <circle cx="70" cy="80" r="5" fill="#9370DB" stroke="#000" stroke-width="2" />
-                            </svg>
 
-
-
-
-
-                            <h5
-                                class="mb-2 block font-sans text-xl font-semibold leading-snug tracking-normal text-blue-gray-900 antialiased">
-                                Lead & Inquiry Management {{ totalAgents }}
-                            </h5>
-
-                        </div>
-                        <div class="p-6 pt-0">
-                            <a class="!font-medium !text-blue-gray-900 !transition-colors hover:!text-green-500"
-                                :href="route('students.index')">
-                                <button
-                                    class="flex select-none items-center gap-2 rounded-lg py-2 px-4 text-center align-middle font-sans text-xs font-bold uppercase text-green-500 transition-all hover:bg-green-500/10 active:bg-green-500/30 disabled:pointer-events-none disabled:opacity-50 disabled:shadow-none"
-                                    type="button" data-ripple-dark="true">
-                                    Know More
-                                    <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                        stroke-width="2" stroke="currentColor" aria-hidden="true" class="h-4 w-4">
-                                        <path stroke-linecap="round" stroke-linejoin="round"
-                                            d="M17.25 8.25L21 12m0 0l-3.75 3.75M21 12H3"></path>
-                                    </svg>
-                                </button>
-                            </a>
-                        </div>
-
-                    </div>
 
 
                     <div

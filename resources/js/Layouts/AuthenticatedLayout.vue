@@ -43,6 +43,12 @@ const showingNavigationDropdown = ref(false);
                 :active="route().current('dashboard')">
                 Dashboard
               </NavLink>
+
+              <NavLink v-if="abilities.can('view', 'Leads')" :href="route('leads.index')"
+                :active="route().current('leads.index')">
+                Leads
+              </NavLink>
+
               <NavLink v-if="abilities.can('view', 'Students')" :href="route('students.index')"
                 :active="route().current('students.index')">
                 Students

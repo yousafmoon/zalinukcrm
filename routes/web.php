@@ -1,6 +1,7 @@
 <?php
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\StudentController;
+use App\Http\Controllers\LeadController;
 use App\Http\Controllers\DocumentsController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PermissionController;
@@ -11,6 +12,7 @@ use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Models\Student;
 use App\Models\Documents;
+use App\Models\Lead;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -26,12 +28,14 @@ Route::middleware('auth')->group(function () {
         $user = Auth::user();
         $totalStudents = Student::count();
         $totalDocuments = Documents::count();
+        $totalLeads = Lead::count();
         $students = Student::all();
 
         return Inertia::render('Dashboard', [
             'students' => $students,
             'totalStudents' => $totalStudents,
             'totalDocuments' => $totalDocuments,
+            'totalLeads' => $totalLeads,
             'user' => [
                 'id' => $user->id,
                 'name' => $user->name,
@@ -47,6 +51,7 @@ Route::middleware('auth')->group(function () {
     Route::post('/profile/upload-image', [ProfileController::class, 'uploadProfileImage'])->name('profile.upload-image');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::resource('leads', LeadController::class);
     Route::resource('students', StudentController::class);
     Route::resource('documents', DocumentsController::class);
     Route::resource('permissions', PermissionController::class);
